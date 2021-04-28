@@ -1,0 +1,127 @@
+@model LinkedInDemo.Models.PackagemasterModel
+@{
+    ViewBag.Title = "EditPackage";
+}
+
+@using (Html.BeginForm("EditPackage", "Packagemaster", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="mainBlock minheight500">
+        <div class="mainBlockTop">
+            <div class="mainBlockTopLeft">Edit Package Details</div>
+            <div class="back_btn_ara"><a id="addtotable1" href="@Url.Action("Index", "Packagemaster")" style="color:#33353f"><i class="fa fa-chevron-left"></i>&nbsp;Back</a></div>
+        </div>        
+        <div class="panel-body">
+            <div class="form-horizontal form-bordered innerform">
+                @Html.ValidationSummary(true)
+                <div>
+                    <div class="pad-top">
+
+                        @if (ViewBag.StatusMessage == "SuccessUpdate")
+                        {
+                            <div class="alert alert-success">
+                                <div class="tick">
+                                    <span>Record Updated Successful.</span>
+                                </div>
+                            </div>
+                        }
+
+                        @if (ViewBag.StatusMessage == "Exists")
+                        {
+                            <div class=" alert alert-danger">
+                                <div class="cross">
+                                    <span>@ViewBag.Message </span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <input type="hidden" id="PackageId" name="PackageId" value="@Model.PackageId" />
+                <input type="hidden" id="Isactive" name="Isactive" value="@Model.IsActive" />
+                <div class="row">
+                    <div class="col-lg-12 col-md-10">
+                        <ul class="formTop">
+                            
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault"> Name*</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", maxlength = 100, @placeholder = "Name" })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </span>
+                            </li>
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault"> Detail*</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.Detail, new { @class = "form-control", maxlength = 100, @placeholder = "Detail" })
+                                    @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
+                                </span>
+                            </li>
+
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault"> Cost per Event*</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.Cost, new { @class = "form-control", maxlength = 100, @placeholder = "Cost" })
+                                    @Html.ValidationMessageFor(model => model.Cost, "", new { @class = "text-danger" })
+                                </span>
+                            </li>
+
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault"> Validity*</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.Validity, new { @class = "form-control", maxlength = 100, @placeholder = "Validity" })
+                                    @Html.ValidationMessageFor(model => model.Validity, "", new { @class = "text-danger" })
+                                </span>
+                            </li>
+
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault"> No of Registration*</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.No_of_Registration, new { @class = "form-control", maxlength = 100, @placeholder = "No Of Registration" })
+                                    @Html.ValidationMessageFor(model => model.No_of_Registration, "", new { @class = "text-danger" })
+                                </span>
+                            </li>
+
+
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault"> Cost per Registration*</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.Cost_per_Registration, new { @class = "form-control", maxlength = 100, @placeholder = "Cost Per Registration" })
+                                    @Html.ValidationMessageFor(model => model.Cost_per_Registration, "", new { @class = "text-danger" })
+                                </span>
+                            </li>
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">No of Events*</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.No_of_Events, new { @class = "form-control", maxlength = 100, @placeholder = "No of Events" })
+                                    @Html.ValidationMessageFor(model => model.No_of_Events, "", new { @class = "text-danger" })
+                                </span>
+                            </li>
+                            <li class="width100">
+                                <div class="offset_30per">
+                                    <button class="btn btnblack">Save</button>
+                                  
+                                    <a class="btnblack btngreay" href="@Url.Action("Index", "Packagemaster")">Cancel</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+</div>
+</div>
+</div>
+</div>
+}

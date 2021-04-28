@@ -1,0 +1,137 @@
+﻿$(document).ready(function () {
+    var baseUrl = "https://eventnx.com/";
+    var currentscript = document.currentScript;
+    //SaveUser();
+	var t ;
+    function accessCookie(cookieName) {
+        var name = cookieName + "=";
+        var allCookieArray = document.cookie.split(';');
+        for (var i = 0; i < allCookieArray.length; i++) {
+            var temp = allCookieArray[i].trim();
+            if (temp.indexOf(name) == 0)
+                return temp.substring(name.length, temp.length);
+        }
+        return "";
+    }
+
+    function SaveUser() {
+        if (currentscript) {
+            var userid = currentscript.getAttribute('data-eventprouserid');
+            var allowPost = accessCookie("gepallowpost");
+            if (allowPost == undefined || allowPost == '' || allowPost == null) {
+                allowPost = true;
+            }
+            $.ajax({
+                method: 'POST',
+                url: baseUrl + '/Home/UpdateUserFromCRM',
+                data: {
+                    UserId: currentscript.getAttribute('data-eventprouserid'),
+                    firstname: currentscript.getAttribute('data-firstname'),
+                    lastname: currentscript.getAttribute('data-lastname'),
+                    emailid: currentscript.getAttribute('data-emailid'),
+                    companyname:currentscript.getAttribute('data-companyname'),
+                    jobtitle: currentscript.getAttribute('data-jobtitle'),
+                    crmregid: currentscript.getAttribute('data-crmregid'),
+                    allowpost: allowPost
+                },
+                success: function (response) {
+                    console.log(response.success);
+					clearInterval(t); 
+                    if (response.success) {
+                        $.ajax({
+                            method: 'POST',
+                            url: baseUrl + '/Home/GetRegisteredUserByUserId',
+                            data: {
+                                UserId: userid
+                            },
+                            success: function (response) {
+                                if (response.success) {
+                                    $("#divsuccessmessage").empty();
+                                    $("#divwhoisgoing").empty();
+                                    $("#divshareit").empty();
+
+                                    //var event = JSON.parse(response.RegisteredUser);
+                                    var event = response.RegisteredUser;
+                                    var eventuser = "<h3>Who is going?</h3><div class='whoisgoing'><table><tr>";
+                                    jQuery.each(event, function (i, val) {
+                                        eventuser += "<td> <img src=" + val.ProfileImage + " width=\"50\" height=\"auto\" /><span> " + val.FullName + "</span></td>";
+                                        if ((i + 1) % 4 == 0) {
+                                            eventuser += "</tr><tr>";
+                                        }
+                                    });
+                                    eventuser += "</tr></table></div>";
+
+                                    //for success message
+                                    $("#divsuccessmessage").show();
+                                    //var divsuccessmessage = "<span id='myInput' class='js-text'>" + response.ReferralLink + "</span><input type='hidden' id='copyText' value='" + response.ReferralLink + "'/><a id='btnCopy' onclick='myFunction();' href='#'> Copy text</a> ";
+                                    //var divsuccessmessage = "<h3>Sharable Link</h3><table><tr><td><input type='text' value='" + response.ReferralLink + "' id='myInput' readonly></td></tr><td><a id='btnCopy' onclick='myFunction();' href='#'> Copy text</a></td></table>";
+                                    var divsuccessmessage = "<h3>Sharable Link<a id='btnCopy' onclick='CopyToClipboard();' href='#'> Copy text</a></h3><table><tr><td><div id='modelbody'>" + response.ReferralLink + "</div></td></tr></table>";
+                                    $("#divsuccessmessage").append(divsuccessmessage);
+                                    //for who is going
+                                    $("#divwhoisgoing").show();
+                                    $("#divwhoisgoing").append(eventuser);
+
+                                    //for Share It Message
+
+                                    //$("#divshareit").show();
+                                    //var divshareit = $("<div class='special1'><b>Email / Share It</b></div><table class='social_icon'><tr><td><a href='https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse'><img src='" + baseUrl + "/content/images/icon_facebook.png' alt='' /></a></td><td><img src='" + baseUrl + "/content/images/icon_twitter.png' alt='' /></td><td><img src='" + baseUrl + "/content/images/icon_linked.png' alt='' /></td><td><img src='" + baseUrl + "/content/images/icon_email.png' alt='' /></td></tr></table>");
+                                    //$("#divshareit").append(divshareit);
+                                }
+                            },
+                            error: function () {
+                                return false;
+                            }
+                        });
+                    }
+
+
+
+                    //  return true;
+                },
+                error: function () {
+                    //  return false;
+                }
+            });
+        }
+    }
+
+   
+	t = setInterval(() => SaveUser(), 2000);
+	
+});
+//function myFunction() {
+//    var copyText = document.getElementById("myInput");
+
+//    /* Select the text field */
+//    copyText.select();
+//    copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+//    /* Copy the text inside the text field */
+//    document.execCommand("copy");
+
+//    /* Alert the copied text */
+//    alert("Copied the text: " + copyText.value);
+//}
+function CopyToClipboard() {
+    var elm = document.getElementById("modelbody");
+    // for Internet Explorer
+
+    if (document.body.createTextRange) {
+        var range = document.body.createTextRange();
+        range.moveToElementText(elm);
+        range.select();
+        document.execCommand("Copy");
+        alert("Copied Sharable Link to clipboard");
+    }
+    else if (window.getSelection) {
+        // other browsers
+
+        var selection = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(elm);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand("Copy");
+        alert("Copied Sharable Link to clipboard");
+    }
+}

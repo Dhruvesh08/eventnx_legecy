@@ -1,0 +1,87 @@
+﻿@model LinkedInDemo.Models.ContactUsModel
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <section class="login_bg set_popup">
+        <div class="mainBlock ">
+            <h2>Contact Us</h2>
+
+            <div id="diverror" style="display:none">
+                <label id="lblerrormsg" style="display:none"></label>
+            </div>
+            <div class="login_form widthset_register">
+
+                @if (@ViewBag.message != null)
+                {
+                    <div><h5 class="text-green text-center">@ViewBag.message </h5> <br /></div>
+
+                }
+
+                else
+                {
+                    <div class="register_popup">
+                        @*@Html.ValidationSummary()*@
+                        <form>
+                            <div>
+                                <ul class="formTop" style="margin-bottom: 0px;">
+                                    <li>
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", maxlength = 80, @placeholder = "Name" })
+                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.Company, new { @class = "form-control", maxlength = 100, @placeholder = "Company" })
+                                            @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                                        </div>
+                                    </li>
+                                    <li >
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.Designation, new { @class = "form-control", maxlength = 100, @placeholder = "Designation" })
+                                            @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+                                        </div>
+                                    </li>
+                                    <li >
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", maxlength = 15, @placeholder = "Phone" })
+                                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                        </div>
+                                    </li>
+                                    <li class="width100">
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control",  @placeholder = "Email" })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-group">
+                                            @Html.TextAreaFor(model => model.Message, new { @class = "form-control", maxlength = 100, @placeholder = "Message" })
+                                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                                        </div>
+                                    </li>
+                                    <li class="width100">
+                                        <div class="form-group margintop10">
+                                            @*<a href="@Url.Action("ContactUsEmail", "Account")">Inquiry</a>*@
+                                            <button class="btn btnRed">Inquiry</button>
+                                        </div>
+                                   </li>
+                            
+                                </ul>
+                            </div>
+
+                        </form>
+                    </div>  
+                }
+
+            </div>
+        </div>
+    </section>
+
+}
+
+

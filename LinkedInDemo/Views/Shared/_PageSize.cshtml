@@ -1,0 +1,24 @@
+﻿@{
+    Layout = null;
+}
+<div>
+    Show
+    @{
+
+        List<SelectListItem> listItem_Records = new List<SelectListItem>();
+        string[] Records = "10:10,50:50,100:100".Split(',');
+        foreach (string word in Records)
+        {
+            listItem_Records.Add(new SelectListItem
+            {
+                Text = word.Split(':')[0],
+                Value = word.Split(':')[1]
+            });
+        }
+
+        <div class="select2-container">
+            @Html.DropDownList("SelectRecords", listItem_Records, new { @class = "", Style = "50px;!important", @onchange = "javascript:FunPageRecord(this.value);" })
+        </div>
+    }
+    @*Entries Of @ViewBag.TotalRecords*@
+</div>

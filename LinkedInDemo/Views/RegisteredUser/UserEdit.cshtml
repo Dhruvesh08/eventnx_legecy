@@ -1,0 +1,239 @@
+@model LinkedInDemo.Models.RegisteredUserModel
+@{
+    ViewBag.Title = "UserEdit";
+}
+
+
+@using (Html.BeginForm("UserEdit", "RegisteredUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="mainBlock minheight500">
+        <div class="mainBlockTop">
+            <div class="mainBlockTopLeft">View User details </div>
+            <div class="back_btn_ara"><a id="addtotable1" href="@Url.Action("Index", "RegisteredUser")" style="color:#33353f"><i class="fa fa-chevron-left"></i>&nbsp;Back</a></div>
+        </div>
+        
+        <div class="panel-body">
+            <div class="form-horizontal form-bordered innerform">
+                @Html.ValidationSummary(true)
+                <div>
+                    <div class="pad-top">
+
+                        @if (ViewBag.StatusMessage == "SuccessUpdate")
+                        {
+                            <div class="alert alert-success">
+                                <div class="tick">
+                                    <span>Record Updated Successful.</span>
+                                </div>
+                            </div>
+                        }
+
+                        @if (ViewBag.StatusMessage == "Exists")
+                        {
+                            <div class=" alert alert-danger">
+                                <div class="cross">
+                                    <span>@ViewBag.Message </span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <input type="hidden" id="UserId" name="UserId" value="@Model.UserId" />
+                <input type="hidden" id="EventId" name="EventId" value="@Model.EventId" />
+                <input type="hidden" id="IsDeleted" name="IsDeleted" value="@Model.IsDeleted" />
+                <input type="hidden" id="IsRegistered" name="IsRegistered" value="@Model.IsRegistered" />
+                <input type="hidden" id="UserDocumentData" name="UserDocumentData" value="@ViewBag.UserDocumentData.ToString()" />
+                <input type="hidden" id="FormCode" name="FormCode" value="@ViewBag.FormCode.ToString()" />
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-10">
+                        <ul class="formTop" id="userprofile">
+                            <li class="width100">
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Profile Image </label>
+                                </span>
+                                <span class="inputBlock">
+                                    @if (Model.ProfileImage == null || Model.ProfileImage == "")
+                                    {
+                                        <img src="../Content/images/img_no.jpg" alt="">
+                                    }
+                                    else
+                                    {
+                                        <img src="@Model.ProfileImage" alt="">
+                                    }
+                                </span>
+                            </li>
+                            @*<li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">First Name*</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", maxlength = 100, @placeholder = "First Name" })
+                                    @Html.ValidationMessageFor(model => model.FirstName)
+                                </span>
+                            </li>
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Last Name *</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", maxlength = 100, @placeholder = "Last Name" })
+                                    @Html.ValidationMessageFor(model => model.LastName)
+                                </span>
+                            </li>
+
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Email *</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", maxlength = 100, @placeholder = "Email" })
+                                    @Html.ValidationMessageFor(model => model.Email)
+                                </span>
+                            </li>
+
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Country *</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.Country, new { @class = "form-control", maxlength = 100, @placeholder = "Country" })
+                                    @Html.ValidationMessageFor(model => model.Country)
+                                </span>
+                            </li>
+
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Date Of Registration *</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.DateOfRegistration, "{0:dd-MMM-yyyy}", new { @class = "form-control", maxlength = 100, @placeholder = "DateOfRegistration" })
+                                    @Html.ValidationMessageFor(model => model.DateOfRegistration)
+                                </span>
+                            </li>
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Profile Link</label>
+                                </span>
+                                <span class="inputBlock">
+                                    <a href="@Model.ProfileLink" target="_blank">View</a>
+                                </span>
+                            </li>
+                            <li class="width100">
+                                <div class="offset_30per">
+                                    <button class="btnblack">Save</button>
+                                    <a class="btn btngreay" href="@Url.Action("Index", "RegisteredUser")">Cancel</a>
+                                </div>
+                            </li>*@
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+    <script>
+        $(document).ready(function () {
+            var userdocdata = JSON.parse($('#UserDocumentData').val());
+            var formcode = JSON.parse($('#FormCode').val());
+            for (var key in userdocdata.data) {
+                if (key == "submit") {
+                    continue;
+                }
+                var fieldobj = getObjectInArray(formcode.components, "key", key);
+                if (fieldobj) {
+                    if (fieldobj.type === "survey") {
+                        var fieldli = "<li>";
+                        fieldli = fieldli + "<span class='lableBlock'>";
+                        fieldli = fieldli + "<label class='labelBox' for='inputDefault'>" + fieldobj["label"] + "</label>";
+                        fieldli = fieldli + "</span>";
+                        fieldli = fieldli + "<span class='inputBlock'>"
+                        for (var value in userdocdata.data[key]) {
+                            var q = getObjectInArray(userdocdata.data[key])
+                            var quetion = getObjectInArray(fieldobj.questions, "value", value);
+                            fieldli = fieldli + quetion["label"] + "</br>"+userdocdata.data[key][value]+"</br>";
+                        }
+                        fieldli = fieldli + "</span>";
+                        $('#userprofile').append(fieldli);
+                    }
+                    else if (fieldobj.type === "selectboxes") {
+                        var fieldli = "<li>";
+                        fieldli = fieldli + "<span class='lableBlock'>";
+                        fieldli = fieldli + "<label class='labelBox' for='inputDefault'>" + fieldobj["label"] + "</label>";
+                        fieldli = fieldli + "</span>";
+                        fieldli = fieldli + "<span class='inputBlock'>"
+                        for (var value in userdocdata.data[key])
+                        {
+                            var checkbox = getObjectInArray(fieldobj.values, "value", value);
+                            if (userdocdata.data[key][value] === true)
+                                fieldli = fieldli + checkbox.label + "</br>";
+                        }
+                        fieldli = fieldli + "</span>";
+                        $('#userprofile').append(fieldli);
+                    }
+                    else if (fieldobj.type === "file") {
+                        if (userdocdata.data[key].length > 0) {
+                            var fieldli = "<li>";
+                            fieldli = fieldli + "<span class='lableBlock'>";
+                            fieldli = fieldli + "<label class='labelBox' for='inputDefault'>" + fieldobj["label"] + "</label>";
+                            fieldli = fieldli + "</span>";
+                            fieldli = fieldli + "<span class='inputBlock'>"
+                           
+                            var ss = userdocdata.data[key][0].url.split(',');
+
+                            $.ajax({
+                                type: "POST",
+                                async: false,
+                                url: 'Download',
+                                data: { filename: userdocdata.data[key][0].originalName, contenttype: ss[0], data: ss[1] },
+                                success: function (data) {
+                                    var downloadurl = "../TempFiles/" + userdocdata.data[key][0].originalName;
+                                    fieldli = fieldli + "<a target='_blank' href='" + downloadurl + "'>" + userdocdata.data[key][0].originalName + "</a>";
+                                }
+                            });
+                            $('#userprofile').append(fieldli);
+                        }
+                    }
+                    else if (fieldobj.type === "currency") {
+                        var fieldli = "<li>";
+                        fieldli = fieldli + "<span class='lableBlock'>";
+                        fieldli = fieldli + "<label class='labelBox' for='inputDefault'>" + fieldobj["label"] + "</label>";
+                        fieldli = fieldli + "</span>";
+                        fieldli = fieldli + "<span class='inputBlock'>"
+                        fieldli = fieldli + "<literal>" + fieldobj["currency"] + " " + userdocdata.data[key] + "</literal>";
+                        $('#userprofile').append(fieldli);
+                    }
+                    else {
+                        var fieldli = "<li>";
+                        fieldli = fieldli + "<span class='lableBlock'>";
+                        fieldli = fieldli + "<label class='labelBox' for='inputDefault'>" + fieldobj["label"] + "</label>";
+                        fieldli = fieldli + "</span>";
+                        fieldli = fieldli + "<span class='inputBlock'>"
+                        fieldli = fieldli + "<literal>" + userdocdata.data[key] + "</literal>";
+                        $('#userprofile').append(fieldli);
+                    }
+                }
+                else if (key == "EventKey" || key == "ReferralId") {
+                    var fieldli = "<li>";
+                    fieldli = fieldli + "<span class='lableBlock'>";
+                    fieldli = fieldli + "<label class='labelBox' for='inputDefault'>" + key + "</label>";
+                    fieldli = fieldli + "</span>";
+                    fieldli = fieldli + "<span class='inputBlock'>"
+                    fieldli = fieldli + "<literal>" + userdocdata.data[key] + "</literal>";
+                    $('#userprofile').append(fieldli);
+                }
+                
+            }
+            function getObjectInArray(list, prop, val) {
+                if (list.length > 0) {
+                    for (i in list) {
+                        if (list[i][prop] === val) {
+                            return list[i];
+                        }
+                    }
+                }
+            }
+        });
+    </script>

@@ -1,0 +1,326 @@
+﻿
+<link rel='stylesheet' href='https://unpkg.com/formiojs@latest/dist/formio.full.min.css'>
+<script src='https://unpkg.com/formiojs@latest/dist/formio.full.min.js'></script>
+<script type='text/javascript'>
+    $(document).ready(function () {
+        var eventformcomponent = [];
+
+        $.ajax({
+            method: "POST",
+            url: 'GetEventKey',
+            async: false,
+            data: {
+                EventId: $('#EventId').val()
+            },
+            success: function (response) {
+                if (response.FormCode) {
+                    eventformcomponent = JSON.parse(response.FormCode).components
+                    $('#json').text(response.FormCode);
+                }
+                else {
+                    eventformcomponent.push({
+                        "label": "First Name",
+                        "allowMultipleMasks": false,
+                        "customClass": "firstname",
+                        "showWordCount": false,
+                        "showCharCount": false,
+                        "tableView": true,
+                        "alwaysEnabled": false,
+                        "type": "textfield",
+                        "input": true,
+                        "key": "firstName",
+                        "defaultValue": "",
+                        "validate": {
+                            "required": true,
+                            "customMessage": "",
+                            "json": ""
+                        },
+                        "conditional": {
+                            "show": "",
+                            "when": "",
+                            "json": ""
+                        },
+                        "inputFormat": "plain",
+                        "encrypted": false,
+                        "properties": {},
+                        "customConditional": "",
+                        "logic": [],
+                        "widget": {
+                            "type": ""
+                        },
+                        "reorder": false
+                    });
+
+                    eventformcomponent.push({
+                        "label": "Last Name",
+                        "allowMultipleMasks": false,
+                        "customClass": "lastname",
+                        "showWordCount": false,
+                        "showCharCount": false,
+                        "tableView": true,
+                        "alwaysEnabled": false,
+                        "type": "textfield",
+                        "input": true,
+                        "key": "lastName",
+                        "defaultValue": "",
+                        "validate": {
+                            "required": true,
+                            "customMessage": "",
+                            "json": ""
+                        },
+                        "conditional": {
+                            "show": "",
+                            "when": "",
+                            "json": ""
+                        },
+                        "inputFormat": "plain",
+                        "encrypted": false,
+                        "widget": {
+                            "type": ""
+                        },
+                        "reorder": false,
+                        "properties": {},
+                        "customConditional": "",
+                        "logic": []
+                    });
+
+                    eventformcomponent.push({
+                        "label": "Email",
+                        "allowMultipleMasks": false,
+                        "customClass": "email",
+                        "showWordCount": false,
+                        "showCharCount": false,
+                        "tableView": true,
+                        "alwaysEnabled": false,
+                        "type": "textfield",
+                        "input": true,
+                        "key": "email",
+                        "defaultValue": "",
+                        "validate": {
+                            "required": true,
+                            "customMessage": "",
+                            "json": ""
+                        },
+                        "conditional": {
+                            "show": "",
+                            "when": "",
+                            "json": ""
+                        },
+                        "inputFormat": "plain",
+                        "encrypted": false,
+                        "widget": {
+                            "type": ""
+                        },
+                        "reorder": false,
+                        "properties": {},
+                        "customConditional": "",
+                        "logic": []
+                    });
+
+                    eventformcomponent.push({
+                        "label": "Contact No.",
+                        "allowMultipleMasks": false,
+                        "customClass": "contactno",
+                        "showWordCount": false,
+                        "showCharCount": false,
+                        "tableView": true,
+                        "alwaysEnabled": false,
+                        "type": "textfield",
+                        "input": true,
+                        "key": "contactNo",
+                        "defaultValue": "",
+                        "validate": {
+                            "required": true,
+                            "customMessage": "",
+                            "json": ""
+                        },
+                        "conditional": {
+                            "show": "",
+                            "when": "",
+                            "json": ""
+                        },
+                        "widget": {
+                            "type": ""
+                        },
+                        "reorder": false,
+                        "inputFormat": "plain",
+                        "encrypted": false,
+                        "properties": {},
+                        "customConditional": "",
+                        "logic": []
+                    });
+
+                    eventformcomponent.push({
+                        "type": "button",
+                        "label": "Submit",
+                        "key": "submit",
+                        "disableOnInvalid": true,
+                        "theme": "primary",
+                        "input": true,
+                        "tableView": true
+                    });
+                }
+            }
+        });
+
+        var jsonElement = document.getElementById('json');
+        var formElement = document.getElementById('formio');
+        var subJSON = document.getElementById('subjson');
+        var builder = new Formio.FormBuilder(document.getElementById("builder"), {
+            display: 'form',
+            components: eventformcomponent
+        });
+
+        var onForm = function (form) {
+            form.on('change', function () {
+                subJSON.innerHTML = '';
+                subJSON.appendChild(document.createTextNode(JSON.stringify(form.submission, null, 4)));
+            });
+        };
+
+        var setDisplay = function (display) {
+            builder.setDisplay(display).then(function (instance) {
+                instance.on('change', function (form) {
+                    if (form.components) {
+                        formElement.innerHTML = '';
+                        jsonElement.innerHTML = '';
+                        jsonElement.appendChild(document.createTextNode(JSON.stringify(form, null, 4)));
+                        Formio.createForm(formElement, form).then(onForm);
+                    }
+                });
+            });
+        };
+
+        //Handle the form selection.
+        var formSelect = document.getElementById('form-select');
+        formSelect.addEventListener("change", function () {
+            setDisplay(this.value);
+        });
+        
+        setDisplay('form');
+
+    });
+
+</script>
+
+<div class="mainBlock minheight500">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="pad-top">
+                <div class="alert alert-danger" style="display:none;" id="divError">
+                    <div class="cross" id="lblerrormessage">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mainBlockTop">
+        <div class="mainBlockTopLeft">Create Event Form</div>      
+        <div class="back_btn_ara">
+             <a id="btnSaveForm" class="btn btnRed btnexcel"><i class="fa fa-save"></i>&nbsp;Save Form</a>
+            <a id="addtotable1" href="@Url.Action("index", "event")" style="color:#33353f"><i class="fa fa-chevron-left"></i>&nbsp;Back</a>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 class="text-center text-muted" style="display:none;">
+                <select class="form-control" id="form-select" style="display: inline-block; width: 150px;">
+                    <option value="form">Form</option>
+                </select>
+            </h3>
+            <div id="builder"></div>
+        </div>
+        <div class="col-sm-2" style="display:none;">
+            <div class="card card-body bg-light jsonviewer">
+                <input type="hidden" value="@ViewBag.EventId" id="EventId" name="EventId" />
+                <pre id="json"></pre>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4" style="display:none;">
+        <div class="col-sm-8 offset-sm-2">
+            <h3 class="text-center text-muted">
+                Form preview
+            </h3>
+            <div id="formio" class="card card-body bg-light"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="row mt-4" style="display:none;">
+        <div class="col-sm-8 offset-sm-2">
+            <h3 class="text-center text-muted">which creates a Submission JSON</h3>
+            <div class="card card-body bg-light jsonviewer">
+                <pre id="subjson"></pre>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#btnSaveForm').click(function () {
+            var formcode = $('#json').text();
+            var formjson = JSON.parse(formcode);
+            console.log(formjson.components[0]["key"]);
+            var error = false;
+            $('#lblerrormessage').empty();
+            if (formjson.components.length > 0) {
+                if (formjson.components[0].key != "firstName") {
+                    error = true;
+                    $('#lblerrormessage').append("First Name field is required at first position of the form<br>");
+                }
+            }
+            else {
+                error = true;
+                $('#lblerrormessage').append("First Name field is required at first position of the form<br>");
+            }
+            if (formjson.components.length > 1) {
+                if (formjson.components[1].key != "lastName") {
+                    error = true;
+                    $('#lblerrormessage').append("Last Name field is required at second position of the form<br>");
+                }
+            }
+            else {
+                error = true;
+                $('#lblerrormessage').append("Last Name field is required at first position of the form<br>");
+            }
+            if (formjson.components.length > 2) {
+                if (formjson.components[2].key != "email") {
+                    error = true;
+                    $('#lblerrormessage').append("Email field is required at third position of the form<br>");
+                }
+            }
+            else {
+                error = true;
+                $('#lblerrormessage').append("Email Name field is required at third position of the form<br>");
+            }
+            if (formjson.components.length > 3) {
+                if (formjson.components[3].key != "contactNo") {
+                    error = true;
+                    $('#lblerrormessage').append("Contact No field is required at fourth position of the form<br>");
+                }
+            }
+            else {
+                error = true;
+                $('#lblerrormessage').append("Contact No field is required at fourth position of the form<br>");
+            }
+
+            if (error) {
+                $('#divError').show();
+                return;
+            }
+
+            $.ajax({
+                method: "POST",
+                url: 'SaveFormJson',
+                data: {
+                    EventId: $('#EventId').val(), FormCode: $('#json').text()
+                },
+                success: function (response) {
+                    window.location.href = "Index?message=formSaved";
+                }
+            });
+        });
+    });
+</script>

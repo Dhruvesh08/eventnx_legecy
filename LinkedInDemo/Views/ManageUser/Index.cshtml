@@ -1,0 +1,15 @@
+@model LinkedInDemo.Models.CustomerModel
+
+@using DataLayer
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="mainBlock minheight500">
+    <div class="mainBlockTop">
+        <div class="mainBlockTopLeft">Manage Customers</div>
+        
+    </div>
+    @{Html.RenderAction("Grid");}
+</div>

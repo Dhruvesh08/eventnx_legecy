@@ -1,0 +1,70 @@
+@model LinkedInDemo.Models.DashboardModel
+@using DataLayer
+@{
+    ViewBag.Title = "Admindashboard";
+}
+
+<div class="row-block dashboardPage">
+    <div class="col col-3 mainBlock blockone">
+        <div class="mainBlockTop">
+            <div class="dashboardboxmain designavailabel box_1">
+                <div><i><img src="/Content/images/calendar.svg" alt=""></i>
+                <span>@Model.TotalEvent.ToString("#,##0")</span></div>
+                <p>Total Events</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="col col-3 mainBlock blocktwo">
+        <div class="mainBlockTop">
+            <div class="dashboardboxmain accountvalid box_1">
+                <div><i><img src="/Content/images/avatar1.svg" alt=""></i>
+                <span>@Model.RegisteredUser.ToString("#,##0")</span></div>
+                <p>Total User Registration</p>
+            </div>
+        </div>
+    </div>
+    <div class="col col-3 mainBlock blocktwo blockthree">
+        <div class="mainBlockTop">
+            <div class="dashboardboxmain accountvalid box_1">
+                <div><i><img src="/Content/images/value.svg" alt=""></i>
+                <span>@Model.TotalCustomers.ToString("#,##0")</span></div>
+                <p>Total Customers</p>
+            </div>
+        </div>
+    </div>
+    <div class="col col-3 mainBlock blocktwo blockfour">
+        <div class="mainBlockTop">
+            <div class="dashboardboxmain accountvalid box_1">
+                <div><i><img src="/Content/images/conversation.svg" alt=""></i>
+                <span>@Model.ActiveCustomers.ToString("#,##0")</span></div>
+                <p>Active Customers</p>
+            </div>
+        </div>
+    </div>
+    <div class="col col-3 mainBlock blocktwo blockfive">
+        <div class="mainBlockTop">
+            <div class="dashboardboxmain accountvalid box_1">
+                <div><i><img src="/Content/images/product.svg" alt=""></i>
+                <span>@Model.TotalPurchase.ToString("#,##0.00")</span></div>
+                <p>Total Credits</p>                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="mainBlockTop">
+    <div class="dashboardboxmain accountvalid">
+        <a id="addToTable1" class="topbtnadd" href="@Url.Action("AddCredit", "Transactions")" style="color: red"><i class="fa fa-plus"></i>&nbsp;Add Credit</a>
+    </div>
+</div>*@
+
+@*<div class="mainBlockTop">
+    <div class="dashboardboxmain accountvalid">
+        <a id="addToTable1" class="topbtnadd" href="@Url.Action("Details", "Event")" style="color: red"><i class="fa fa-plus"></i>&nbsp;Create Event </a>
+    </div>
+</div>*@
+
+
+

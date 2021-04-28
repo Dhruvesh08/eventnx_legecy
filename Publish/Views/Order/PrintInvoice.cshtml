@@ -1,0 +1,164 @@
+﻿@model LinkedInDemo.Models.OrderModel
+@using DataLayer
+@{
+    ViewBag.Title = "OrderTotal";
+    var OrderId = ViewBag.OrderId;
+}
+<div class="mainBlock minheight500">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+        <div class="form-group">
+            <div class="col-lg-12 col-md-12">
+                <div class="mainBlockTop">
+                    <div class="mainBlockTopLeft">Payment Details</div>
+                    <div class="back_btn_ara"><a class="btn btnblack" href="javascript:window.print()">Print</a></div>
+                </div>
+                <div style="float:right; display:none;" class="print_show"><img src="~/Content/images/logo_eventnx.jpg" class="img-fluid image" alt="logo"></div>
+               <div class="clear"></div>
+                <div class="payment_details_area">
+                    <div class="tital" style="border:0px;"><strong>@ViewBag.Message</strong></div>
+
+                    <div class="payment_area_box">
+                        @*<p class="hide_print">Thank you for Payment....</p>*@
+                        <div class="box_area">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="box1 floatright">                                          
+                                            <p>
+                                                @Model.companyaddress1 ,
+                                                @Model.companyaddress2 ,<br />
+                                                @Model.companyCity -
+                                                @Model.companyPincode, <br />
+                                                @Model.companyState,
+                                                @Model.companyCountry.<br />
+
+                                            </p>
+                                            <p>
+                                                <strong>Email:</strong> <a href="mailto:sujan@meghechnologies.com">@Model.companyemail</a><br>
+                                                <strong>Website:</strong> @Model.companywebsite
+                                            </p>
+                                           
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="row martop25">
+                                 <div class="col-md-6">
+                                    <div class="box1">
+                                       @* <h3> Customer Address</h3>*@
+                                        <p>
+                                            @Model.address1,<Br>
+                                            @Model.address2, <br />
+                                            @Model.City -
+                                            @Model.Pincode, <br />
+                                            @Model.State,
+                                            @Model.Country.<br />
+
+                                        </p>
+                                        <p>
+                                            <strong>Email:</strong> <a href="mailto:sujan@meghechnologies.com">@Model.Email</a><br>
+                                            <strong>Phone:</strong> @Model.Contactno
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="box1 floatright minw286">
+                                        @* <h3>Order Details</h3>*@
+                                        <p>
+                                            <strong>OrderId :</strong> @Model.OrderId
+                                            @Html.HiddenFor(model => model.OrderId)<br>
+                                            <strong>OrderCompletedDate  :</strong> @Model.OrderCompletedDate.ToString("dd-MMM-yyyy")
+                                            @Html.HiddenFor(model => model.OrderCompletedDate)<br>
+                                            <strong>OrderStatus :</strong> @Model.OrderStatus
+                                            @Html.HiddenFor(model => model.OrderStatus)
+
+                                        </p>
+                                    </div>
+                                </div>                             
+                            </div>
+                        </div>
+                        <div class="cart_area">
+                            <table width="100%" border="1" cellpadding="3" cellspacing="0" style=" border-collapse: collapse;" bordercolor="#ddd">
+                                <tr>
+                                    <th>Detail</th>
+                                    <th width="130" align="right" style="text-align:right;">Amount</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>Purchase Credits</strong></td>
+                                    <td align="right" style="text-align:right;">
+                                        $ @Model.OrderTotal.ToString("#,##0.00")
+                                        <strong> @Html.HiddenFor(model => model.OrderTotal)</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="paddnone">
+                                        <table align="right">
+                                            <tr>
+                                                <td>SubTotal :</td>
+                                                <td width="130" align="right" style="text-align:right;">
+                                                    $ @Model.OrderTotalWithoutTax.ToString("#,##0.00")
+                                                    @Html.HiddenFor(model => model.OrderTotalWithoutTax)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tax :</td>
+                                                <td align="right" style="text-align:right;">
+                                                    $ @Model.TaxAmount.ToString("#,##0.00")
+                                                    @Html.HiddenFor(model => model.TaxAmount)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Total :</strong></td>
+                                                <td align="right" style="text-align:right;">
+                                                    <strong>
+                                                        $ @Model.OrderTotal.ToString("#,##0.00")
+                                                        @Html.HiddenFor(model => model.OrderTotal)
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--<div class="cart_area">
+                            <div class="cart_header">
+                                <div class="cart_row">
+                                <div class="cart_col">Detail</div>
+                                <div class="cart_col">Amount</div>
+                                </div>
+                                </div>
+                            <div class="cart_body">
+                                <div class="cart_row">
+                                <div class="cart_col">Purchase Credits</div>
+                                <div class="cart_col">$ 100</div>
+                                </div>
+                                </div>
+                                <div class="cart_fotter">
+                                    <div class="cart_row">
+                                        <div class="cart_col">SubTotal</div>
+                                        <div class="cart_col">@Model.OrderTotalWithoutTax
+                        @Html.HiddenFor(model => model.OrderTotalWithoutTax)</div>
+                                    </div>
+                                    <div class="cart_row">
+                                        <div class="cart_col">Tax</div>
+                                        <div class="cart_col">@Model.TaxAmount
+                        @Html.HiddenFor(model => model.TaxAmount)</div>
+                                    </div>
+                                    <div class="cart_row">
+                                        <div class="cart_col">Total</div>
+                                        <div class="cart_col">@Model.OrderTotal
+                        @Html.HiddenFor(model => model.OrderTotal)</div>
+                                    </div>
+                                </div>
+                            </div>-->
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+   }
+</div>
+    

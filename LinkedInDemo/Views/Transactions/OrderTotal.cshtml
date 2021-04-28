@@ -1,0 +1,250 @@
+@model LinkedInDemo.Models.OrderModel
+@using DataLayer
+@{
+    ViewBag.Title = "OrderTotal";
+    var OrderId = ViewBag.OrderId;
+}
+<div class="mainBlock minheight500"> 
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-group">
+                <div class="col-lg-12 col-md-12">
+<div class="mainBlockTop">
+        <div class="mainBlockTopLeft">Payment Details</div>
+    <div class="back_btn_ara"><a class="btn btnblack" href="javascript:window.print()">Print</a></div>  
+    </div>
+                 <div style="display:none" class="print_show"><img src="~/Content/images/logo.png" class="img-fluid image" alt="logo"></div> 
+                    <div class="print_tital" style="display:none">Tax Invoice</div>
+                    <div class="payment_details_area">
+                    <div class="tital"><strong>@ViewBag.Message</strong></div>
+                        
+                        <div class="payment_area_box">
+                        <p class="hide_print">Thank you for Payment....</p>
+                            <div class="box_area">
+                            <div class="row">
+                                <div class="col-md-4">
+                                <div class="box1">
+                                    <h3>Order Details</h3>
+                                    <p><strong>OrderId :</strong> @Model.OrderId
+                    @Html.HiddenFor(model => model.OrderId)<br>
+                                    <strong>OrderCompleted Date :</strong> @Model.OrderCompletedDate
+                    @Html.HiddenFor(model => model.OrderCompletedDate)<br>
+                                        <strong>Status :</strong> @Model.OrderStatus
+                    @Html.HiddenFor(model => model.OrderStatus)
+                                    </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                <div class="box1">
+                                    <h3>Address</h3>
+                                    <p>
+                                    <strong>Sujan Valaji</strong><Br>
+                                        3-A, Dhahiba Nagar,<br>Majalpur,<br>Vadodara -390010,<br>Gujara, India.
+                                    </p>
+                                        <p><strong>Email:</strong> <a href="mailto:sujan@meghechnologies.com">sujan@meghechnologies.com</a><br>
+                                    <strong>Phone:</strong> +91 12345 67890</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                <div class="box1">
+                                    <h3>Order Status</h3>
+                                    <p>@Model.OrderStatus @Html.HiddenFor(model => model.OrderStatus)</p>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="cart_area">
+                            <table width="100%" border="1" cellpadding="3" cellspacing="0" style=" border-collapse: collapse;" bordercolor="#ddd">
+                                <tr>
+                                <th>Detail</th>
+                                <th width="130" align="right" style="text-align:right;">Amount</th>
+                                </tr>
+                                <tr>
+                                <td>Purchase Credits</td>
+                                    <td align="right" style="text-align:right;">
+                                        $ @Model.OrderTotal
+                                       <strong> @Html.HiddenFor(model => model.OrderTotal)</strong>
+                                   </td>
+                                </tr>
+                                <tr>
+                                <td colspan="2" class="paddnone">
+                                    <table align="right">
+                                    <tr>
+                                        <td>SubTotal :</td>
+                                        <td width="130" align="right" style="text-align:right;">$ @Model.OrderTotalWithoutTax
+                        @Html.HiddenFor(model => model.OrderTotalWithoutTax)</td>
+                                        </tr>
+                                        <tr>
+                                        <td>Tax :</td>
+                                        <td align="right" style="text-align:right;">$ @Model.TaxAmount
+                        @Html.HiddenFor(model => model.TaxAmount)</td>
+                                        </tr>
+                                        <tr>
+                                        <td><strong>Total :</strong></td>
+                                        <td align="right" style="text-align:right;"><strong>$ @Model.OrderTotal
+                        @Html.HiddenFor(model => model.OrderTotal)</strong></td>
+                                        </tr>
+                                    </table>
+                                    </td>
+                                </tr>
+                                </table>
+                            </div>
+                            <!--<div class="cart_area">
+                            <div class="cart_header">
+                                <div class="cart_row">
+                                <div class="cart_col">Detail</div>
+                                <div class="cart_col">Amount</div>
+                                </div>
+                                </div>
+                            <div class="cart_body">
+                                <div class="cart_row">
+                                <div class="cart_col">Purchase Credits</div>
+                                <div class="cart_col">$ 100</div>
+                                </div>
+                                </div>
+                                <div class="cart_fotter">
+                                    <div class="cart_row">
+                                        <div class="cart_col">SubTotal</div>
+                                        <div class="cart_col">@Model.OrderTotalWithoutTax
+                        @Html.HiddenFor(model => model.OrderTotalWithoutTax)</div>
+                                    </div>
+                                    <div class="cart_row">
+                                        <div class="cart_col">Tax</div>
+                                        <div class="cart_col">@Model.TaxAmount
+                        @Html.HiddenFor(model => model.TaxAmount)</div>
+                                    </div>
+                                    <div class="cart_row">
+                                        <div class="cart_col">Total</div>
+                                        <div class="cart_col">@Model.OrderTotal
+                        @Html.HiddenFor(model => model.OrderTotal)</div>
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div> 
+    <!--<ul class="formTop">
+            <li>
+                
+                <span class="lableBlock">
+                    <label class="labelBox" for="inputDefault"></label>
+                </span>
+                <span class="inputBlock">
+                    
+
+                </span>
+            </li>
+            <li>
+                <span class="lableBlock">
+                    <label class="labelBox" for="inputDefault"></label>
+                </span>
+                <span class="inputBlock">
+                    
+
+                </span>
+            </li>
+    <li>
+                <span class="lableBlock">
+                    <label class="labelBox" for="inputDefault"></label>
+                </span>
+                <span class="inputBlock">
+                    
+
+                </span>
+        </li>
+                <li>
+                    <span class="lableBlock">
+                        <label class="labelBox" for="inputDefault">Amount</label>
+                    </span>
+                    <span class="inputBlock">
+                        
+
+                    </span>
+                </li>
+                <li>
+                    <span class="lableBlock">
+                        <label class="labelBox" for="inputDefault">Tax Amount</label>
+                    </span>
+                    <span class="inputBlock">
+                        
+
+                    </span>
+                </li>
+                <li>
+                    <span class="lableBlock">
+                        <label class="labelBox" for="inputDefault">Total Order</label>
+                    </span>
+                    <span class="inputBlock">
+                        
+
+
+                    </span>
+                </li>
+                    <li>
+                        <div class="offset_30per">                    
+                        
+                </div>
+        </li>
+                    </ul> -->               
+                    </div>
+                </div>
+    
+   
+
+            @*<div class="form-group">
+                <div class="col-lg-6 col-md-10">
+                    <input type="hidden" id="CustomerId" name="CustomerId" value="@Model.CustomerId" />
+                    <div class="mainBlockTop">
+                <div class="mainBlockTopLeft">Confirm Order</div>
+                </div>
+                    <ul class="formTop">
+                            <li>
+
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Amount*</label>
+                                </span>
+                                <span class="inputBlock">
+                                    $ @Model.OrderTotalWithoutTax
+                                     @Html.HiddenFor(model => model.OrderTotalWithoutTax)
+
+                                </span>
+
+                            </li>
+
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Tax Amount*</label>
+                                </span>
+                                <span class="inputBlock">
+                                    $ @Model.TaxAmount
+                                    @Html.HiddenFor(model => model.TaxAmount)
+
+                                </span>
+                            </li>
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Total Order*</label>
+                                </span>
+                                <span class="inputBlock">
+                                    $  @Model.OrderTotal
+                                  @Html.HiddenFor(model => model.OrderTotal)
+
+
+                                </span>
+                            </li>
+
+                            <li>
+                                    <div class="offset_30per">
+                                        <button class="btn btnblack" style="text-align:center">Confirm Payment</button>
+                                    </div>
+                            </li>
+                        </ul>
+                    </div>
+                        </div>
+                 <div>
+                 </div>*@
+    
+}
+    </div>

@@ -1,0 +1,368 @@
+@model LinkedInDemo.Models.EventMasterModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+@using (Html.BeginForm("edit", "event", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="mainBlock minheight500">
+      
+        <div class="mainBlockTop">
+            <div class="mainBlockTopLeft">Edit Event </div>
+            <div class="back_btn_ara"><a id="addtotable1" href="@Url.Action("index", "event")" style="color:#33353f"><i class="fa fa-chevron-left"></i>&nbsp;Back</a></div>
+        </div>
+        
+        <div class="panel-body">
+            <div class="form-horizontal form-bordered innerform">
+                @Html.ValidationSummary(true)
+               
+                @*@if (ViewBag.StatusMessage == "SuccessUpdate")
+                {
+                    <div class="alert alert-success">
+                        <div class="tick">
+                            <span>Event Updated Successfully.</span>
+                        </div>
+                    </div>
+                }*@
+                <input type="hidden" id="EventId" name="EventId" value="@Model.EventId" />
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+
+
+                        <ul class="formTop">
+
+                            <li class="width100">
+                                <div class="eventlobgomainbox">
+                                    <span id="spanlogo" style="@((Model.Image == null) ? "display:none;" : "")">
+                                        <img src="@Model.Image" alt="" id="eventlogo">
+                                        <a class="btn_delete" id="btnremove"><i class="fa fa-trash"></i></a>
+                                    </span>
+                                    <input type="hidden" value="@Model.Image" name="Image" id="Image" />
+                                    <input type="hidden" value="@Model.ImageName" name="ImageName" id="ImageName" />
+                                    <input type="hidden" value="@Model.EventKey" name="EventKey" id="EventKey" />
+                                    <div class="set_2" id="filemsg"></div>
+                                    <div class="fileuploadbox">
+                                        <span class="lableBlock"><label for="file" class="labelBox">Event Logo</label></span>
+                                        <span class="inputBlock">
+                                            <div class="form-group marginbtmnone">
+                                                <div class="uploadresume">
+                                                    <div class="input-group">
+                                                        <input type="text" id="tempfile" value="" class="form-control"
+                                                               readonly placeholder="Choose File">
+                                                        <span class="input-group-btn btn-primary btn-none btn_greay">
+                                                            <span class="btn btn-file career_btn" id="tempfile">
+                                                                Browse
+                                                                <input type="file" class="custom-file-input required" name="file" id="file" onchange="readURL(this);" style="width: 100%;@((Model.Image == null) ? "" : "display:none;")" accept=".png,.jpg">
+                                                            </span>
+                                                        </span>
+                                                        <span class="text-danger" id="fileerror" style="display:none;">
+                                                            Please upload event logo
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </li>
+
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Event Url*</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.EventURL, new { @class = "form-control", maxlength = 100, @placeholder = "Event Url" })
+                                    @Html.ValidationMessageFor(model => model.EventURL, "", new { @class = "text-danger" })
+                                </span>
+                            </li>
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Event Name *</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.EventName, new { @class = "form-control", maxlength = 100, @placeholder = "Event Name" })
+                                    @Html.ValidationMessageFor(model => model.EventName, "", new { @class = "text-danger" })
+                                </span>
+                            </li>
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Redirect Url *</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.ResponseURL, new { @class = "form-control", maxlength = 100, @placeholder = "Page Url" })
+                                    @Html.ValidationMessageFor(model => model.ResponseURL, "", new { @class = "text-danger" })
+                                </span>
+                            </li>
+                            @*<li>
+            <span class="lableBlock">
+                <label class="labelBox" for="inputDefault">Article Title *</label>
+            </span>
+            <span class="inputBlock">
+                @Html.TextBoxFor(model => model.ArticalTitle, new { @class = "form-control", maxlength = 100, @placeholder = "Article Title" })
+                @Html.ValidationMessageFor(model => model.ArticalTitle, "", new { @class = "text-danger" })
+            </span>
+        </li>*@
+                            <li class="full_li">
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Comment *</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextAreaFor(model => model.Commentary, new { cols = "55", rows = "5", @placeholder = "Text to Share" })
+                                    @Html.ValidationMessageFor(model => model.Commentary, "", new { @class = "text-danger" })
+                                </span>
+                            </li>
+                            <li class="withd23per">
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Event Start Date *</label>
+                                </span>
+                                <span style="min-width:initial">
+                                    @Html.TextBoxFor(model => model.EventStartDate, new { htmlAttributes = new { @class = "form-control", maxlength = 100, @placeholder = "Select date" } })
+                                    @Html.ValidationMessageFor(model => model.EventStartDate, "", new { @class = "text-danger" })
+                                </span>
+
+                            </li>
+                            <li class="withd23per">
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Event End Date *</label>
+                                </span>
+                                <span style="min-width:initial">
+                                    @Html.TextBoxFor(model => model.EventEndDate, new { htmlAttributes = new { @class = "form-control", maxlength = 100, @placeholder = "Select date" } })
+                                    @Html.ValidationMessageFor(model => model.EventEndDate, "", new { @class = "text-danger" })
+                                </span>
+                            </li>
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Contact Person Name </label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.ContactPersonName, new { @class = "form-control", maxlength = 100, @placeholder = "Contact Person Name" })
+                                </span>
+                            </li>
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Contact Person Phone </label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.ContactPersonPhone, new { @class = "form-control", maxlength = 100, @placeholder = "Contact Person Phone" })
+                                </span>
+                            </li>
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Contact Person Email </label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.ContactPersonEmail, new { @class = "form-control", maxlength = 100, @placeholder = "Contact Person Email" })
+                                </span>
+                            </li>
+
+                            <li>
+                                <div class="eventlobgomainbox">
+                                    <span id="spanimglogo" style="@((Model.ButtonURL == null) ? "display:none;" : "")">
+                                        <img src="@Model.ButtonURL" alt="" id="ImgButtonURL">
+                                        <a class="btn_delete" id="removebutton"><i class="fa fa-trash"></i></a>
+                                    </span>
+                                    <input type="hidden" value="@Model.ButtonURL" name="ButtonURL" id="ButtonURL" />
+
+                                    <div class="set_2" id="filemsg"></div>
+
+                                </div>
+                            </li>
+                            
+                            <li>
+                                <div class="eventlobgomainbox">
+                                    <span id="spanimglogo" style="@((Model.FbButtonURL == null) ? "display:none;" : "")">
+                                        <img src="@Model.FbButtonURL" alt="" id="ImgButtonURL">
+                                        <a class="btn_delete" id="removebutton"><i class="fa fa-trash"></i></a>
+                                    </span>
+                                    <input type="hidden" value="@Model.FbButtonURL" name="ButtonURL" id="ButtonURL" />
+
+                                    <div class="set_2" id="filemsg"></div>
+
+                                </div>
+                            </li>
+                            <li class="width100">
+                                <div class="offset_30per">
+                                    <button id="btnsave" class="btnblack">Save</button>
+                                    <a class="btn btngreay" href="@Url.Action("Index", "Event")">Cancel</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    @*<div class="col-lg-6 col-md-10">
+            Place this tag into <code>&lt;head&gt;&lt;/head&gt;</code> section of your webpage<br />
+            <code>&lt;script src="https://www.eventnx.com/jquery-1.12.0.min.js"&gt;&lt;/script&gt;</code><br>
+            <code>&lt;script src="https://www.eventnx.com/eventregistration.renderer.js"&gt;&lt;/script&gt;</code><br>
+            Place below div where you want LinkedIn button to apper <br />
+            <code>&lt;div class="linkedinlogin" id="linkedinlogin_@ViewBag.EventId"&gt;&lt;/div&gt;</code><br>
+            <code>&lt;div class="eventregistration" id="eventid_@ViewBag.EventId"&gt;&lt;/div&gt;</code><br>
+        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$(function () {
+        //    $("#EventStartDate").datepicker({
+        //        dateFormat: 'dd-M-yy'
+        //    });
+        //    $("#EventEndDate").datepicker({
+        //        dateFormat: 'dd-M-yy'
+        //    });
+        //});
+        $("#EventStartDate").datepicker({
+            minDate: new Date()
+        });
+        $("#EventEndDate").datepicker({
+            minDate: new Date()
+        });
+        //$("#EventStartDate").val('');
+        //$("#EventEndDate").val('');
+        $("#EventEndDate").change(function () {
+            var startdate = Date.parse($('#EventStartDate').val());
+            var enddate = Date.parse($('#EventEndDate').val());
+            if (startdate >= enddate) {
+                alert("Event End Date should be greater than Event Start Date")
+                $('#EventEndDate').val('');
+                return
+            }
+        });
+
+
+        $('#ContactPersonPhone').blur(function () {
+            var num = $('#ContactPersonPhone').val();
+            if (isNaN(num)) {
+                $('#ContactPersonPhone').val('');
+                return false;
+            }
+            else {
+                return true;
+
+            }
+        });
+
+        $("#btnsave").click(function () {
+            var url = $('#eventlogo').attr('src');
+            if (url == null || url == undefined || url == "") {
+                $('#fileerror').show();
+                return false;
+            }
+        });
+    });
+
+        $('#btnremove').click(function () {
+           
+            $.ajax({
+                url: 'Remove',
+                data: {
+                    EventId: $('#EventId').val()
+                },
+                success: function (response) {
+                    $('#file').show();
+                    $('#file').val('');
+                    $('#spanlogo').hide();
+                    $('#eventlogo').attr('src', '');
+                    $('#ImageName').val('');
+                }
+            });
+    });
+
+    $('#removebutton').click(function () {
+       
+            $.ajax({
+                url: 'Removebtn',
+                data: {
+                    EventId: $('#EventId').val()
+                },
+                success: function (response) {
+                    $('#ImgButtonURL').remove()
+                    $('#ButtonURL').val('');
+                    $('#filebtn').show();
+                    $('#filebtn').val('');
+                    $('#spanimglogo').hide();
+                    $('#btnlogo').attr('src', '');
+                }
+            });
+            //$('#ButtonURL').remove();
+            //ButtonURL: $('#ButtonURL').val();
+        });
+
+    function readURL(input) {
+        //if (input.files[0].size > 60000) {
+        //    alert('File size should be 200x200 pixel & Less then 50 KB');
+        //    return;
+        //}
+
+        var _URL = window.URL || window.webkitURL;
+        var file, img;
+        if ((file = input.files[0])) {
+            img = new Image();
+            img.onload = function () {
+                //if (this.width > 200 || this.height > 200) {
+                //    alert('File size should be 200x200 pixel & Less then 50 KB');
+                //    return;
+                //}
+                //else {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            $('#file').hide();
+                            $('#spanlogo').show();
+                            $('#eventlogo')
+                                .attr('src', e.target.result)
+                                //.width(200)
+                                //.height(200);
+                            $('#fileerror').hide();
+                               
+                        };
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                //}
+            };
+            img.src = _URL.createObjectURL(file);
+        }
+    }
+
+    function readbtnURL(input) {
+        //if (input.files[0].size > 60000) {
+        //    alert('File size should be 200x200 pixel & Less then 50 KB');
+        //    return;
+        //}
+
+        var _URL = window.URL || window.webkitURL;
+        var file, img;
+        if ((file = input.files[0])) {
+            img = new Image();
+            img.onload = function () {
+                //if (this.width > 200 || this.height > 200) {
+                //    alert('File size should be 200x200 pixel & Less then 50 KB');
+                //    return;
+                //}
+
+                //else {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#filebtn').hide();
+                        $('#spanbtnlogo').show();
+                        $('#btnlogo')
+                            .attr('src', e.target.result);
+                        $('#filebtnerror').hide();
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+                //}
+            };
+            img.src = _URL.createObjectURL(file);
+        }
+    }
+</script>
+
+

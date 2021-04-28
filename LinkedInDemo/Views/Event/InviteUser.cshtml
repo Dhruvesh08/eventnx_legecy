@@ -1,0 +1,69 @@
+@model LinkedInDemo.Models.EventMasterModel
+@{
+    ViewBag.Title = "InviteUser";
+}
+
+@using (Html.BeginForm("InviteUser", "Event", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="mainBlock minheight500">
+
+
+    <div class="panel-body">
+        <div class="main_right"><a class="btn_back" href="@Url.Action("Index","Event")"> < Back</a></div>
+   
+        
+        @*<input type="hidden" id="CustomerId" name="CustomerId" value="@Model.CustomerId" />*@
+        @*<input type="hidden" id="CustomerEmail" name="CustomerEmail" value="@Model.ContactPersonEmail" />*@
+        <input type="hidden" id="EventId" name="EventId" value="@Model.EventId" />
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                @if (ViewBag.succesmessage != null)
+                {
+                    <div class="alert alert-success">
+                        <div class="tick">
+                            @ViewBag.succesmessage
+                        </div>
+                    </div>
+
+                }
+                @if (ViewBag.errormessage != null)
+                {
+
+                    <div class=" alert alert-danger">
+                        <div class="cross">
+                            @ViewBag.errormessage
+                        </div>
+                    </div>
+
+                }
+      
+                <ul class="formTop">
+
+                    <li>
+                        <span class="lableBlock">
+                            <label class="labelBox" for="inputDefault"> Email to Invite </label>
+                        </span>
+                        <span class="inputBlock">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", maxlength = 100, @placeholder = "Email to Invite" })
+                        </span>
+
+                    </li>
+                    <li>
+                        <div class="margintop26">
+                            <button id="btnsave" class="btnblack marginright2">Send</button>
+                            @*<a class="btn btngreay" href="@Url.Action("Index", "Event")">Cancel</a>*@
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    @{Html.RenderAction("usergrid", new {Event = Model.EventId });}
+</div>
+
+}
+   

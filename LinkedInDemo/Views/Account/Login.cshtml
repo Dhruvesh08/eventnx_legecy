@@ -1,0 +1,54 @@
+@model  LoginModel
+@using LinkedInDemo.Models
+@{
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <section class="login_bg">
+
+            <div class="mainBlock">
+                <h2>Login</h2>
+                <div class="login_form">                      
+                        @if (@ViewBag.message != null)
+                        {
+                            <div><h5>@ViewBag.message </h5></div>
+                        }
+                    <form>
+                        @Html.ValidationSummary()
+                        <div class="form-group">
+                            <input type="text" placeholder="Email Id" id="Username" name="Username" class="form-control">
+                        </div>
+
+
+                        <div class="form-group">
+                            <input type="password" placeholder="Password" id="Password" name="Password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <p class="left">
+                                <label class="container">
+                                    Remember Password
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </p>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div>
+                                <button class="btn_pinkcolor">LOGIN</button>
+                                @*<input type="submit" value="LOGIN" class="btn btnRed" />*@
+                            </div>
+                        </div>
+                        @*<a class="btn_pinkcolor" href="Index.cshtml">LOGIN </a>*@
+                        <p class="left forgot_pass">Don't have an account? &nbsp;&nbsp;<Strong><a class="btn_pink_brd" href=@Url.Action("Register","Account")>SIGN UP</a></Strong></p>
+                        <p class="left forgot_pass"><a href=@Url.Action("ForgotPassword", "Account")>Forgot Password?</a></p>
+
+                    </form>
+                </div>
+            </div>
+        </section>
+}

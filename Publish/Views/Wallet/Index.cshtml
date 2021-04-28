@@ -1,0 +1,55 @@
+@model LinkedInDemo.Models.DashboardModel
+@using DataLayer
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="mainBlock wallet_page">
+
+
+    <div class="mainBlockTop">
+        <div class="mainBlockTopLeft">Transactions Details</div>        
+        </div>
+        @if (User.IsInRole("User"))
+        {
+            <div class="margintop30 marginbottom30">
+                <div class="row-block dashboardPage">
+                    @*<div class="col col-3 mainBlock blockone">
+                            <div class="mainBlockTop">
+                                <div class="dashboardboxmain designavailabel box_1">
+                                    <div><i><img src="/Content/images/piggy-bank.svg" alt=""></i>
+                            <span>$ @Model.TotalDeposit.ToString("#,##0.00")</span></div>
+                            <p>Total Deposit</p>
+                                </div>
+                            </div>
+                        </div>*@
+                    <div class="col col-3 mainBlock blocktwo">
+                        <div class="mainBlockTop">
+                            <div class="dashboardboxmain designavailabel box_1">
+                                <div>
+                                    <i><img src="/Content/images/icon_credite_use.svg" alt=""></i>
+                                    <span> @Model.CreditsUsed</span>
+                                </div>
+                                <p>Credits Used</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-3 mainBlock blocktwo blockthree">
+                        <div class="mainBlockTop">
+                            <div class="dashboardboxmain designavailabel box_1">
+                                <div>
+                                    <i><img src="/Content/images/credit-card_ave.svg" alt=""></i>
+                                    <span>
+                                        @Model.AvailableCredits
+                                        @*@Model.AvailableCredits.ToString("#,##0.00")*@
+                                    </span>
+                                </div>
+                                <p>Available Credits</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @{Html.RenderAction("grid", new { IsBindData = 1, currentPageIndex = 1, orderby = "CustomerId", IsAsc = 0, PageSize = 10, SearchRecords = 1, Alpha = "", SearchTitle = "", CustomerId = ViewBag.CustomerId });}
+    </div>

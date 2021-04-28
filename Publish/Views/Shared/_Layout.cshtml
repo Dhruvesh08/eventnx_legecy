@@ -1,0 +1,313 @@
+﻿@using BussinessLayer;
+@{
+    string customerName = "";
+    var customer = CustomerService.GetCustomerByEmail(User.Identity.Name);
+    if (customer != null )
+    {
+        customerName = customer.FirstName + " " + customer.LastName;
+        if(customerName==" ")
+        {
+            customerName = "User";
+        }
+        else
+        {
+            customerName = customer.FirstName + " " + customer.LastName;
+        }
+    }
+    var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Event Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" media="all" href="~/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="~/Content/css/global.css" />
+    <link rel="stylesheet" href="~/Content/Theme/vendor/select2/select2.css">
+    @*<link rel="stylesheet" href="~/Content/Home/css/print.css" media="print" />*@
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+          rel="stylesheet">
+
+    <script src="~/Content/js/jquery-1.12.0.min.js"></script>
+    <script src="~/Content/js/popper.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/Theme/vendor/select2/select2.min.js"></script>
+    <script src="~/Content/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Content/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+</head>
+
+<body id="body">
+    <header>
+
+        <div class="headerLeft">
+            @if (User.IsInRole("Admin"))
+            {
+                <a href="@Url.Action("Admindashboard", "Dashboard")"><img src="~/Content/images/logo_eventnx.png" alt="Event nx" class="logo" style='width:140px;'></a>
+            }
+            else
+            {
+                <a href="@Url.Action("Index", "Dashboard")"><img src="~/Content/images/logo_eventnx.png" alt="Event nx" class="logo" style='width:140px;'></a>
+            }
+            @*<p class="pageName">
+            @if (controller == "Dashboard")
+            {
+                <literal>Dashboard</literal>
+            }
+            @if (controller == "Event")
+            {
+                <literal>Events</literal>
+            }
+            @if (controller == "RegisteredUser")
+            {
+                <literal>Registered Users</literal>
+            }
+            @if (controller == "Wallet")
+            {
+                <literal>Wallet</literal>
+            }
+            @if (controller == "Order")
+            {
+                <literal>Orders</literal>
+            }
+            @if (controller == "ManageUser")
+            {
+                <literal>Manage Users</literal>
+            }
+            @if (controller == "Packagemaster")
+            {
+                <literal>Packages</literal>
+            }
+            @if (controller == "Adminsettings")
+            {
+                <literal>Adminsettings</literal>
+            }
+        </p>*@
+            @if (User.IsInRole("User"))
+            {
+                @*<div class="marginleft50">
+                <a id="addToTable1" class="btn btnRed" href="@Url.Action("AddCredit", "Transactions")"><i class="fa fa-dollar"></i>&nbsp;Add Credit</a>
+            </div>*@
+                if (ViewBag.EventUserData == "true")
+                {
+                    <div class="marginleft30">
+                        <a id="addToTable1" class="btn btnRed" href="@Url.Action("Create", "Event")"><i class="fa fa-calendar"></i>&nbsp;Create Event </a>
+                    </div>
+                    }
+                }
+
+            </div>
+        <div class="headerRight">
+            <div class="dropdown">
+                <a class="dropbtn">
+                    @*<div class="userBlock">
+                            <span class="active"></span>
+                            <figure><img src="~/Content/images/user.jpg"></figure>
+                        </div>*@
+                    @if (User.IsInRole("User"))
+                    {
+                        <span class="userName">Welcome, @customerName<br></span>
+                        @*if (Model != null)
+                            {
+                                <span class="userName">Welcome,@Model.Name<br></span>
+                            }*@
+
+                    }
+                    else
+                    {
+                        <span class="userName">Welcome Admin </span>
+                    }
+
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </a>
+                <ul class="dropdown-content">
+
+                    <li>
+                        <a href="@Url.Action("Editprofile", "RegisteredUser")"><span><img src="~/Content/images/avatar.svg"></span> <span>My Profile</span> </a>
+                        <a href="@Url.Action("Changepassword", "RegisteredUser")"> <span><img src="~/Content/images/key.svg"></span> <span>Change Password</span> </a>
+                        <a href="@Url.Action("Logout", "Account")"> <span><img src="~/Content/images/logout.svg"></span> <span>Logout</span> </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </header>
+    <section class="main_section">
+        <aside class="leftNavbar">
+            <ul>
+                @*<li><a class="arrow_sub collapsed" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><span class="nav-icon nav-dashboard"></span><span class="nav-txt"> Test link</span></a>
+            <div class="collapse" id="collapseExample">
+            <ul>
+            <li><a href="#">link 1</a></li>
+            <li><a href="#">link 1</a></li>
+            <li><a href="#">link 1</a></li>
+            <li><a href="#">link 1</a></li>
+            <li><a href="#">link 1</a></li>
+            <li><a href="#">link 1</a></li>
+            </ul>
+            </div>
+        </li>*@
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li @((controller == "Dashboard") ? "class=active" : "")><a href="@Url.Action("Admindashboard", "Dashboard")"><span class="nav-icon nav-dashboard"></span><span class="nav-txt"> Admin Dashboard</span></a></li>
+                    <li @((controller == "ManageUser") ? "class=active" : "")><a href="@Url.Action("Index", "ManageUser")"><span class="nav-icon nav-user"></span><span class="nav-txt">Manage Customers</span></a></li>
+                    <li @((controller == "ManageEvents") ? "class=active" : "")><a href="@Url.Action("Index", "ManageEvents")"><span class="nav-icon nav-user"></span><span class="nav-txt">Manage Events</span></a></li>
+                    @*<li @((controller == "Packagemaster") ? "class=active" : "")><a href="@Url.Action("Index", "Packagemaster")"><span class="nav-icon nav-package"></span><span class="nav-txt">Package Details</span></a></li>*@
+                    <li @((controller == "Adminsettings") ? "class=active" : "")><a href="@Url.Action("Index", "Adminsettings")"><span class="nav-icon nav-settings"></span><span class="nav-txt">Admin Settings</span></a></li>
+
+
+                    <li @((controller == "Wallet") ? "class=active" : "")><a href="@Url.Action("Index", "Wallet")"><span class="nav-icon nav-wallet"></span><span class="nav-txt">Account</span></a></li>
+                    @*<li @((controller == "Order") ? "class=active" : "")><a href="@Url.Action("Index", "Order")"><span class="nav-icon nav-planning"></span><span class="nav-txt">Order</span></a></li>
+            <li><a href="@Url.Action("PackageDetails","Packagemaster")"><span class="nav-icon nav-package"></span><span class="nav-txt">Package Details</span></a></li>*@
+                }
+                else
+                {
+                    <li @((controller == "Dashboard") ? "class=active" : "")><a href="@Url.Action("Index", "Dashboard")"><span class="nav-icon nav-dashboard"></span><span class="nav-txt">Dashboard</span></a></li>
+                    <li @((controller == "Event") ? "class=active" : "")><a href="@Url.Action("Index", "Event")"><span class="nav-icon nav-event"></span><span class="nav-txt">Events</span></a></li>
+
+                    <li>
+                        <a class="arrow_sub collapsed" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="nav-icon nav-user">
+                            </span><span class="nav-txt">Users</span>
+                        </a>
+                        <div class="collapse " id="collapseExample">
+                            <ul>
+                                <li @((controller == "UserMaster") ? "class=active" : "")><a href="@Url.Action("Index", "UserMaster")"><span class="nav-txt"> Registered Users </span></a></li>
+                                <li @((controller == "ReferralUserReport") ? "class=active" : "")><a href="@Url.Action("Index", "ReferralUserReport")"><span class="nav-txt">Referred Users</span></a></li>
+                                <li @((controller == "BounceUserReport") ? "class=active" : "")><a href="@Url.Action("Index", "BounceUserReport")"><span class="nav-txt">Bounced Users</span></a></li>
+                            </ul>
+                        </div>
+
+                    </li>
+                    var eventuser = CustomerService.CheckEventUser(Convert.ToInt32(Session["CustomerId"]));
+                    if (eventuser == null)
+                    {
+                        <li @((controller == "Wallet") ? "class=active" : "")><a href="@Url.Action("Index", "Wallet")"><span class="nav-icon nav-wallet"></span><span class="nav-txt">Account</span></a></li>
+                    }
+
+                    @*<li @((controller == "UserMaster") ? "class=active" : "")><a href="@Url.Action("Index", "UserMaster")"><span class="nav-icon nav-user"></span><span class="nav-txt">ALL Registered Users </span></a></li>
+            <li @((controller == "ReferralUserReport") ? "class=active" : "")><a href="@Url.Action("Index", "ReferralUserReport")"><span class="nav-icon nav-user"></span><span class="nav-txt">Referral User Report</span></a></li>
+            <li @((controller == "BounceUserReport") ? "class=active" : "")><a href="@Url.Action("Index", "BounceUserReport")"><span class="nav-icon nav-user"></span><span class="nav-txt">Bounce User Report</span></a></li>*@
+
+
+                    @*<li @((controller == "Wallet") ? "class=active" : "")><a href="@Url.Action("Index", "Wallet")"><span class="nav-icon nav-wallet"></span><span class="nav-txt">Wallet</span></a></li>
+            <li @((controller == "Order") ? "class=active" : "")><a href="@Url.Action("Index", "Order")"><span class="nav-icon nav-planning"></span><span class="nav-txt">Order</span></a></li>
+            <li><a href="@Url.Action("PackageDetails","Packagemaster")"><span class="nav-icon nav-package"></span><span class="nav-txt">Package Details</span></a></li>*@
+                }
+            </ul>
+
+
+        </aside>
+        <div class="">
+
+
+
+            @*<nav class="breadcrumbBlock">
+                    @{
+                        var action = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
+                        var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+                    }
+                    @if (action == "Admindashboard")
+                    {
+                        <p>
+                            <a href="@Url.Action("Admindashboard","Dashboard")" class="">Home</a>
+
+                        </p>
+                    }
+                    else if (action == "Index" && controller == "Home")
+                    {
+                        <p>
+                            <a href="@Url.Action("Index","Dashboard")" class="">Home</a>
+
+                        </p>
+
+                    }
+                    else if (controller == "Event")
+                    {
+                            <p><a href="@Url.Action("Index","Dashboard")" class="">Home</a>>>
+                            <a href="@Url.Action("Index","Event")" class="">Event</a>>></p>
+                    }
+                    else if (controller == "RegisteredUser")
+                    {
+                            <p>
+                                <a href="@Url.Action("Index","Dashboard")" class="">Home</a>>>
+                                <a href="@Url.Action("Index","RegisteredUser")" class="">RegisteredUser</a>>>
+                            </p>
+                    }
+
+                    else if (controller == "Wallet")
+                    {
+                            <p>
+                                <a href="@Url.Action("Index","Dashboard")" class="">Home</a>>>
+                                <a href="@Url.Action("Index","Wallet")" class="">Wallet</a>>>
+                            </p>
+                    }
+                    else if (controller == "Order")
+                    {
+                            <p>
+                                <a href="@Url.Action("Index","Dashboard")" class="">Home</a>>>
+                                <a href="@Url.Action("Index","Order")" class="">Order</a>>>
+                            </p>
+                    }
+
+
+
+
+                </nav>*@
+            @RenderBody()
+        </div>
+    </section>
+    <script src="~/Content/js/custom.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropbtn").click(function () {
+                $(".dropdown-content").toggleClass("show");
+            });
+        });
+    </script>
+
+    <script>
+        var keepSessionAlive = false;
+        var keepSessionAliveUrl = null;
+
+        function SetupSessionUpdater(actionUrl) {
+            keepSessionAliveUrl = actionUrl;
+            var container = $("#body");
+            console.log(keepSessionAliveUrl);
+            console.log(container);
+            container.mousemove(function () { keepSessionAlive = true; });
+            container.keydown(function () { keepSessionAlive = true; });
+            console.log(keepSessionAlive);
+            CheckToKeepSessionAlive();
+        }
+
+        function CheckToKeepSessionAlive() {
+            console.log("jjjj");
+            setTimeout("KeepSessionAlive()", 2 * 60 * 1000);
+        }
+
+        function KeepSessionAlive() {
+            if (keepSessionAlive && keepSessionAliveUrl != null) {
+                $.ajax({
+                    type: "POST",
+                    url: keepSessionAliveUrl,
+                    success: function () { keepSessionAlive = false; }
+                });
+            }
+            CheckToKeepSessionAlive();
+        }
+
+        SetupSessionUpdater('/Home/KeepSessionAlive');
+    </script>
+</body>
+
+</html>

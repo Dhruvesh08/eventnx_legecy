@@ -1,0 +1,181 @@
+@model DashboardModel
+@using LinkedInDemo.Models
+@{
+
+    ViewBag.Title = "Index";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+<div class="row-block dashboardPage new_upadated">
+    <div class="col col-lg-3 col-sm-6 mainBlock blockone">
+        <div class="mainBlockTop">
+            <div class="dashboardboxmain designavailabel box_1">
+                <div>
+                    <i><img src="/Content/images/calendar.svg" alt=""></i>
+                    <span>@Model.TotalEvent.ToString("#,##0")</span>
+                </div>
+                <p>Total Events</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="col col-lg-3 col-sm-6 mainBlock blocktwo">
+        <div class="mainBlockTop">
+            <div class="dashboardboxmain accountvalid box_1">
+                <div>
+                    <i><img src="/Content/images/avatar1.svg" alt=""></i>
+                    <span>@Model.RegisteredUser.ToString("#,##0")</span>
+                </div>
+                <p>Total User Registrations</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col col-lg-3 col-sm-6 mainBlock blocktwo">
+        <div class="mainBlockTop">
+            <div class="dashboardboxmain accountvalid box_1">
+                <div>
+                    <i><img src="/Content/images/avatar1.svg" alt=""></i>
+                    <span>@Model.LinkedinUser.ToString("#,##0")</span>
+                </div>
+                <p>Linkedin User Registrations</p>
+            </div>
+        </div>
+    </div>
+    <div class="col col-lg-3 col-sm-6 mainBlock blocktwo">
+        <div class="mainBlockTop">
+            <div class="dashboardboxmain accountvalid box_1">
+                <div>
+                    <i><img src="/Content/images/avatar1.svg" alt=""></i>
+                    <span>@Model.FacebookUser.ToString("#,##0")</span>
+                </div>
+                <p>Facebook User Registrations</p>
+            </div>
+        </div>
+    </div>
+    <div class="col col-lg-3 col-sm-6 mainBlock blocktwo blockthree">
+        <div class="mainBlockTop">
+            <div class="dashboardboxmain accountvalid box_1">
+                <div>
+                    <i><img src="/Content/images/credit-card-1.svg" alt=""></i>
+                    <span>@Model.AvailableCredits </span>
+                </div>
+                <p>Available Credits</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row-block">
+    <div class="col col-12 paddzero">
+        @{Html.RenderAction("Grid");}
+    </div>
+    @*<div class="col col-4 paddzero">
+        <div class="mainBlock">
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+    </div>*@
+    @*<div class="col col-4 paddzero">
+            <div class="mainBlock">
+            <canvas id="myChartdoughnut" width="400" height="400"></canvas>
+            </div>
+        </div>*@
+</div>
+<div class="row-block margintop30">
+    <div class="col col-6 paddzero">
+        
+        @{Html.RenderAction("GridRegisteredUser");}
+    </div>
+    <div class="col col-6 paddzero">
+        
+        @{Html.RenderAction("GridTopReferrer");}
+    </div>
+</div>
+<script>
+    var ctx = document.getElementById('myChart');
+    var ctxdoughnut = document.getElementById('myChartdoughnut');
+    var eventlabels = [];
+    var eventdata = [];
+    var background = [];
+    $.ajax({
+        type: "GET",
+        async: false,
+        url: 'Event/GetCustomerEvent',
+        success: function (data) {
+            var events = JSON.parse(data.eventdata);
+            var i = 0;
+            $.each(events, function (index, e) {
+                eventlabels.push(e.EventName.toUpperCase());
+                
+                eventdata.push(e.RegisteredUsers);
+                background.push(dynamicColors(i));
+                i = i + 20;
+            });
+        }
+    });
+
+    function dynamicColors(v) {
+        var r = Math.floor(64 + v);
+        var g = Math.floor(196 + v);
+        var b = Math.floor(194 + v);
+        //return "rgb(" + r + "," + g + "," + b + ")";
+        return "rgb(" + r + "," + g + "," + b + ")";
+    };
+
+    console.log(eventlabels.length);
+    if (eventlabels.length > 0) {
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: eventlabels,
+                datasets: [{
+                    label: '# of Registrations',
+                    data: eventdata,
+                    backgroundColor: background
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            min: 0,
+                            stepSize: 1
+                        }
+                    }]
+                }
+            }
+        });
+
+
+
+        //myChart = new Chart(ctxdoughnut, {
+        //    type: 'doughnut',
+        //    data: {
+        //        labels: eventlabels,
+        //        datasets: [{
+        //            label: '# of Registrations',
+        //            data: eventdata,
+        //            backgroundColor: background
+        //        }]
+        //    },
+        //    options: {
+        //        scales: {
+        //            yAxes: [{
+        //                ticks: {
+        //                    beginAtZero: true,
+        //                    min: 0,
+        //                    stepSize: 1
+        //                }
+        //            }]
+        //        }
+        //    }
+        //});
+    }
+
+</script>
+
+
+
+
+
+

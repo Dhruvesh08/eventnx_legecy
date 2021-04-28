@@ -1,0 +1,245 @@
+﻿@model IEnumerable<LinkedInDemo.Models.PackagemasterModel>
+@using DataLayer
+@{
+    Layout = null;
+}
+
+<div id="grddata">
+    @*<div class="row">
+        <div class="col-sm-12">
+            <div class="pad-top">
+                @if (ViewBag.StatusMessage.ToString() == "SuccessDelete")
+                {
+                    <div class="alert alert-success">
+                        <div class="tick">
+                            <strong>Record Deleted Successfully.</strong>
+                        </div>
+                    </div>
+
+                }
+                @if (ViewBag.StatusMessage.ToString() == "Error")
+                {
+
+                    <div class=" alert alert-danger">
+                        <div class="cross">
+                            <strong>Error... Please Try Again.</strong>
+                        </div>
+                    </div>
+
+                }
+                @if (ViewBag.StatusMessage.ToString() == "NoItem")
+                {
+                    <div class=" alert alert-danger">
+                        <div class="cross">
+                            <strong>There are no items to show in this view.</strong>
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </div>*@
+    <div class="row search-areamain marleftzero">
+        <div class=" col-md-4 col-sm-5 padleftzero">
+            <div>
+                @{
+
+                    Html.RenderPartial("_PageSize");
+                }
+            </div>
+        </div>
+        @*<div class="col-md-8 col-sm-7 padrightzero">
+                <div class="searchareamain">
+                    <ul>
+                        <li> <input name="txtSearchTitle" type="text" maxlength="100" class="form-control" id="txtSearchTitle" style="width: 100%;" placeholder="Domain Name"></li>
+                        <li>  <input type="submit" name="btnSearch" value="Search" id="btnSearch" onclick="javascript:FunSearchRecord();" class="btn btn-primary "></li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="clear"></div>*@
+
+    </div>
+    <div class="datatable">
+        <div class="table-responsive">
+            <table class="borderbtm">
+                <tbody>
+                    <tr>
+                        <th style="text-align:center">PackageId</th>
+                        <th style="text-align:center">Name</th>
+                        <th style="text-align:center">Detail</th>
+                        <th style="text-align:center">Cost</th>
+                        <th style="text-align:center">Validity</th>
+                        <th style="text-align:center">No Of Registration</th>
+                        <th style="text-align:center">Cost Per Registration</th>
+                        <th style="text-align:center">No Of Events</th>
+                        <th style="text-align:center">Action</th>
+                    </tr>
+                    @foreach (var e in Model)
+                    {
+                        <tr>
+                            <td style="text-align:center">@e.PackageId</td>
+                            <td style="text-align:center">@e.Name</td>
+                            <td style="text-align:center">@e.Detail</td>
+                            <td style="text-align:center">@e.Cost</td>
+                            <td style="text-align:center">@e.Validity</td>
+                            <td style="text-align:center">@e.No_of_Registration</td>
+                            <td style="text-align:center">@e.Cost_per_Registration</td>
+                            <td style="text-align:center">@e.No_of_Registration</td>
+                            <td class="text-center" width="180px">
+                    
+                                <a class="btn btnRed" href="@Url.Action("Login", "Home")">BuyNow</a>
+
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mar_top_15">
+        @{
+            Html.RenderPartial("_Pagination");
+        }
+    </div>
+</div>
+
+
+<script>
+
+    var top=0;
+
+    function FunPageIndex(pageindex)//grid pagination
+    {
+        GetData(0,pageindex, '@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'@ViewBag.Alpha',@ViewBag.SearchRecords,'@ViewBag.SearchTitle');
+    }
+
+
+    function FunPageRecord(PageRecord)//Grid Page per record
+    {
+        GetData(0,1, '@ViewBag.OrderByVal',@ViewBag.IsAscVal,PageRecord,'@ViewBag.Alpha',@ViewBag.SearchRecords,'@ViewBag.SearchTitle');
+    }
+
+    function FunSearchRecord()//Search
+    {
+        var element_txtSearchTitle = document.getElementById('txtSearchTitle').value;
+        GetData(1,1,'@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'','',element_txtSearchTitle);
+    }
+
+    function GetData(IsBindData_val,PageIndex,orderby_val,isAsc_val,PageSize_val,alpha_val,SearchRecords_val,SearchTitle_val)
+    {
+        $.ajax({
+            url: '/Packagemaster/Grid',
+            data: {IsBindData: IsBindData_val, currentPageIndex: PageIndex,orderby:orderby_val.trim(),IsAsc:isAsc_val,PageSize:PageSize_val,SearchRecords:SearchRecords_val,Alpha:alpha_val,SearchTitle:SearchTitle_val },
+            beforeSend: function () {  },
+            success: function (response) {
+                $('#grddata').empty();
+                $('#grddata').append(response);
+            }
+        });
+    }
+
+    function FunWithSelected() {
+
+        var e = document.getElementById("SelectedRecord");
+        var strUser = e.options[e.selectedIndex].value;
+
+        var suc=0;
+
+        if (strUser != "") {
+            $('#SelectedRecord').css("border-color", "#cdcdcd");
+            $('#SelectedRecord').css("background", "#FFFFFF");
+            if(strUser==1)
+            {
+                var check = confirm("Are you sure you want to Delete selected all record?");
+                if (check == true) {
+
+                    var checkboxes = document.getElementsByName('chk');
+                    for(var i=0, n=checkboxes.length;i<n;i++) {
+                        if(checkboxes[i].checked==true)
+                        {
+                            Delete(checkboxes[i].value);
+                        }
+                    }
+                    suc=1;
+
+                }
+            }
+
+            if(suc==1)
+            {
+                GetData(1,@ViewBag.CurrentPageIndex,  '@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'@ViewBag.Alpha',@ViewBag.SearchRecords,'@ViewBag.SearchTitle');
+                return true;
+            }
+            else{
+                return false;
+            }
+
+
+        }
+        else {
+            $('#SelectedRecord').css("border-color", "#FF0000");
+            $('#SelectedRecord').css("background", "#f9e8e8");
+            return false;
+        }
+    }
+
+    function Delete(id) {
+        var check = confirm("Are you sure you want to Delete this record?");
+        if (check == true) {
+            if (id == 1) {
+                alert("Cannot delete system account");
+            }
+            else {
+                $.ajax({
+                    method: "POST",
+                    url: '/Packagemaster/Delete',
+                    data: { PackageId: id },
+                    success: function (response) {
+                        $('#grddata').empty();
+                        $('#grddata').append(response);
+                    }
+                });
+            }
+        }
+    }
+
+    $(document).ready(function(){
+
+        document.getElementById('SelectRecords').value = @ViewBag.PageSize;
+
+    });
+</script>
+
+<script type="text/javascript">
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+    function FunCheck() {
+        checkboxes = document.getElementsByName('chk');
+
+        if (document.getElementById("CdkSelect").checked == true) {
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = true;
+            }
+        }
+        else {
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = false;
+            }
+        }
+    }
+</script>
+
+
+
+

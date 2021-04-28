@@ -1,0 +1,290 @@
+﻿@model LinkedInDemo.Models.ContactUsModel
+@{
+    Layout = null;
+}
+
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>EVENTNX - Event and Trade Show Attendee Acquisition and Growth through Referral Marketing</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="EventNX is an event marketing platform essential to grow audience at your event. With EventNX, you can plug and play social registration, automatic social posting and personalized tracking of attendee acquisition through referrals. You can expand your social reach and increase your event attendance by word of mouth from existing attendees.">
+    <meta name="keywords" content="HTML5, bootstrap, mobile, app, landing, ios, android, responsive">
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- Font -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <!-- Themify Icons -->
+    <link rel="stylesheet" href="~/css/themify-icons.css">
+    <!-- Owl carousel -->
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <!-- Main css -->
+    <link href="~/css/jquery.mCustomScrollbar.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <script src="~/js/jquery-3.2.1.min.js"></script>
+
+    <style>
+        .errormessage {
+            color: red;
+            font-size: 12px;
+            width: 100%;
+            text-align: left !important;
+            display: inline-block;
+        }
+
+     .nav-menu{background: #ffffff;}
+       
+    </style>
+</head>
+<body>
+    <!-- Nav Menu -->
+    <div class="nav-menu fixed-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-dark navbar-expand-lg">
+                        <a class="navbar-brand" href="@Url.Action("Index","Home")"><img src="~/images/logo_eventnx1.png" class="img-fluid" alt="Event nx"></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+                        <div class="collapse navbar-collapse" id="navbar">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index","Home")#about_us">ABOUT US</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index","Home")#whyus">WHY US</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index","Home")#benefits">BENEFITS</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index","Home")#features">FEATURES</a> </li>
+                                <!--<li class="nav-item"> <a class="nav-link" href="#gallery">GALLERY</a> </li>-->
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index","Home")#pricing">PRICING</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index","Home")#contact">CONTACT</a> </li>
+                                <li class="nav-item"><a href="@Url.Action("Login","Account")" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">Login</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="conatcpage">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" >
+                    <p class="mar100">
+                        We are happy to address any of your queries or if you need any assistance with
+                        EventNX. Please refer below to understand our support system.
+                    </p>
+                    <p>
+                        <strong>Days of the Week:</strong> Monday to Friday<br />
+                        <strong>Active hours:</strong> 9 AM IST - 6 PM IST<br />
+                        <strong>Response Time:</strong> In &lt; 6 hours on working days<br />
+                        <strong>Reach out to us via email at</strong> <a href="mailto:contacts@eventnx.com">contacts@eventnx.com</a>
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="contactform">
+                        <h4>Get in touch</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Your Name*</label>
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", maxlength = 80, @placeholder = "Your Name" })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    <span id="spanName" class="errormessage" style="display:none">Enter Name</span>
+                                    @*<input type="text" class="form-control" placeholder="First Name"/>*@
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Company*</label>
+                                    @Html.TextBoxFor(model => model.Company, new { @class = "form-control", maxlength = 100, @placeholder = "Company" })
+                                    @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                                    <span id="spanCompany" class="errormessage" style="display:none">Enter Company</span>
+                                </div>
+                            </div>
+                            @*<div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Last Name </label>
+                                        <input type="text" class="form-control" placeholder="Last Name" />
+                                    </div>
+                                </div>*@
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Designation*</label>
+                                    @Html.TextBoxFor(model => model.Designation, new { @class = "form-control", maxlength = 100, @placeholder = "Designation" })
+                                    @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+                                    <span id="spanDesignation" class="errormessage" style="display:none">Enter Designation</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Your Phone Or Mobile Number*</label>
+                                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", maxlength = 15, @placeholder = "Your Phone Or Mobile Number" })
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                    <span id="spanPhone" class="errormessage" style="display:none">Enter Phone</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Your E-mail Address*</label>
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Your E-mail Address" })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    <span id="spanEmail" class="errormessage" style="display:none">Enter Email</span>
+                                </div>
+                            </div>
+                            @*<div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Inquiry For  </label>
+                                        <input type="text" class="form-control" placeholder="Inquiry For" />
+                                    </div>
+                                </div>*@
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Your Message   </label>
+                                    @Html.TextAreaFor(model => model.Message, new { @class = "form-control height100", @placeholder = "Your Message   " })
+                                    @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                               <p style="font-size:12px;"> By submitting, you agree to our <a href="https://www.eventnx.com/Home/Privacy" target="_blank"> Terms & Privacy Policy</a></p>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="Submit" class="btn btn_white icon_arrow text_upper" value="Submit" onclick="Contactus()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- // end .section -->
+    <div class="light-bg py-5" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-center text-lg-left">
+                    <p class="mb-2"> <span class="ti-location-pin mr-2"></span> 1485 Pacific St, Vadodara, Gujarat, India.</p>
+                    <div class=" d-block d-sm-inline-block">
+                        <p class="mb-2">
+                            <span class="ti-email mr-2"></span> <a class="mr-4" href="mailto:support@eventnx.com">support@eventnx.com</a>
+                        </p>
+                    </div>
+                    <div class="d-block d-sm-inline-block">
+                        <p class="mb-0">
+                            <span class="ti-headphone-alt mr-2"></span> <a href="tel:51836362800">518-3636-2800</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="social-icons">
+                        <a href="#"><span class="ti-facebook"></span></a>
+                        <a href="#"><span class="ti-twitter-alt"></span></a>
+                        <a href="#"><span class="ti-instagram"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- // end .section -->
+    <footer class="my-5 text-center">
+        <!-- Copyright removal is not prohibited! -->
+        <p class="mb-2 fnt_capital"><small>Copyrigh &copy; 2019. All Rights Reserved. Event nx</small></p>
+        <small>
+            <a href="#" class="m-2">PRESS</a>
+            <a href="#" class="m-2">TERMS</a>
+            <a href="@Url.Action("Privacy","Home")" class="m-2">PRIVACY</a>
+        </small>
+    </footer>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background:#117db5; color:#fff;">
+                    <h4 class="modal-title" style="color:#fff;">Thank You!</h4>
+                </div>
+                <div class="modal-body">
+                    <p style="color:#2d8600;">Your message has been sent successfully....</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        function validate() {
+            var isvalid = true;
+            var Name = $("#Name").val();
+            var Company = $("#Company").val();
+            var Designation = $("#Designation").val();
+            var Phone = $("#Phone").val();
+            var Email = $("#Email").val();
+            if (Name == "" || Name == null) {
+                $("#spanName").show();
+                isvalid = false;
+            }
+            if (Company == "" || Company == null) {
+                $("#spanCompany").show();
+                isvalid = false;
+            }
+            if (Designation == "" || Designation == null) {
+                $("#spanDesignation").show();
+                isvalid = false;
+            }
+            if (Phone == "" || Phone == null) {
+                isvalid = false;
+                $("#spanPhone").show();
+            }
+            if (Email == "" || Email == null) {
+                $("#spanEmail").show();
+                isvalid = false;
+            }
+            return isvalid;
+        }
+
+        function Contactus() {
+            var Name = $("#Name").val();
+            var Company = $("#Company").val();
+            var Designation = $("#Designation").val();
+            var Phone = $("#Phone").val();
+            var Message = $("#Message").val();
+            var Email = $("#Email").val();
+            if (validate()) {
+                $.ajax({
+                    method: "POST",
+                    url: '/ContactUs/Index',
+                    data: {
+                        Name: Name,
+                        Company: Company,
+                        Designation: Designation,
+                        Phone: Phone,
+                        Message: Message,
+                        Email: Email
+                    },
+                    success: function (response) {
+                        $('#myModal').modal('show');
+                        $("#Name").val("");
+                        $("#Company").val("");
+                        $("#Designation").val("");
+                        $("#Phone").val("");
+                        $("#Message").val("");
+                        $("#Email").val("");
+                        $("#spanName").hide();
+                        $("#spanCompany").hide();
+                        $("#spanDesignation").hide();
+                        $("#spanPhone").hide();
+                        $("#spanEmail").hide();
+                        @* alert("Thankyou!");
+                        window.location.href = '@Url.Content("~/Home/Index")';*@
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

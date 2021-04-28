@@ -1,0 +1,88 @@
+﻿@LinkedInDemo.Models.RegisterCustomerModel
+@{
+    Layout = null;
+}
+
+<table  style="background-color: #f1f1f1; width:100%; max-width:600px; min-height:600px; margin:0px auto; text-align:center; display:block;
+	 font-family: 'Nunito', sans-serif; color:#000;">
+     <tr>
+         <td>
+
+
+        <table border="0" cellpadding="0" cellspacing="0" width="80%" style="min-height:400px;" align="center">
+            <tr>
+                <td style="height:60px;"></td>
+            </tr>
+            <tr>
+                <td>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#fff">
+                        <tr><td style="height:60px;"></td></tr>
+                        <tr>
+                            <td align="center">
+                                <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/logo_eventnx.jpg" />
+                            </td>
+                        </tr>
+                        <tr><td style="height:30px;"></td></tr>
+                        <tr>
+                            <td style="text-align:center; font-size:28px; color:#0033CC;">
+                                <b>@ViewBag.Subject</b>
+                            </td>
+                        </tr>
+                        <tr><td style="height:40px;"></td></tr>
+                        <tr>
+                            <td style="text-align:left; padding: 0px 30px;">
+                                <p>  Hello @Model.FirstName @Model.LastName,</p>
+                                <p>
+                                    Welcome to EventNX!
+                                </p>
+                                <br />
+                                <p>
+                                    To activate your account, please click on the button below to verify your email address.
+                                    <a href="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Account/ActivationAccount/?id=@Model.Guid" target="_blank"> </a>
+                                </p>
+                                <p>
+                                    Or paste this link into your browser:
+                                    @LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Account/ActivationAccount/51c67e90-042c-4bba-8e78-e5db7e8ded24
+
+                                    If you have any questions you can contact us at contact@eventnx.com.
+                                </p>
+                                <p>
+                                    Thanks and Cheers, <br />
+                                    The Entire EventNX team
+                                    @*@LinkedInDemo.Class.AdminSiteConfiguration.SiteName Team*@
+                                </p>
+
+                            </td>
+                        </tr>
+                        <tr><td style="height:50px;"></td></tr>
+                    </table>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#d8d8d8" style="margin-top:20px;">
+                        <tr><td style="height:15px;"></td></tr>
+                        <tr>
+                            <td style="font-size:14px; text-align:center">
+                                <p style="font-size:14px; text-align:center">
+                                    <strong>Email : </strong><a href="mailto:@LinkedInDemo.Class.AdminSiteConfiguration.CompanyEmail">@LinkedInDemo.Class.AdminSiteConfiguration.CompanyEmail</a>
+                                    <strong>Phone : </strong>+971 6 533 3371
+                                </p><p style="font-size:14px; text-align:center">
+                                    <strong>
+                                        Address :
+                                    </strong>
+                                    Al Wahda Street, GIBCA Building, #2A
+                                    PO Box 2393, Sharjah, UAE.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr><td style="height:15px;"></td></tr>
+                    </table>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:20px;">
+
+                        <tr><td style="height:30px;"></td></tr>
+                    </table>
+
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+</table>
+

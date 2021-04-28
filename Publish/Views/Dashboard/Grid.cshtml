@@ -1,0 +1,217 @@
+
+@model IEnumerable<LinkedInDemo.Models.EventMasterModel>
+@using DataLayer
+@{
+    Layout = null;
+}
+
+@if (User.IsInRole("User") && Model.Count() > 0)
+{
+    <div class="mainBlock paddnoneall">
+        <h4 class="paddbtm5 bg_tital"> Event Details</h4>
+        <div id="grddata">
+            <div class="datatable mgtopmins2" style="height:341px; overflow:auto;">
+                <div class="table-responsive">
+                    <table class="table borderbtm">
+                        <tbody>
+                            <tr>
+                                <th style="text-align:center">Event Details</th>
+                                @*<th>Event Name</th>*@
+                                @*<th>Event Start Date</th>*@
+                                <th>Contact Details</th>
+                                <th style="text-align:center;">Total Referrals</th>
+                                <th style="text-align:center;">Total Registrations</th>
+                                <th style="text-align:center;">LinkedIn Registrations</th>
+                                <th style="text-align:center;">Facebook Registrations</th>
+                                <th class="text-center" width="100">Action</th>
+                            </tr>
+
+                            @foreach (var e in Model)
+                            {
+                            <tr>
+                                @if (e.ImageName == null)
+                                {
+                                    <td>
+                                        <div class="detail_and_img"><span class="img_round">
+                                            <img src="~/Content/images/img_eventlogo.jpg" width="70px" height="70px" />
+                                        </span>
+                                        <span><b>@e.EventName</b> <br /><text style="font-weight:normal"> From: </text>   @e.EventStartDate &nbsp; <text style="font-weight:normal"> <br>To: </text>  &nbsp;@e.EventEndDate
+                                            </span></div></td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <div class="detail_and_img"><span class="img_round"><img src="@e.Image" alt="" width="70px" height="auto"></span>
+                                        <span><b>@e.EventName</b> <br /><text style="font-weight:normal"> From: </text>   @e.EventStartDate &nbsp; <text style="font-weight:normal"> <br>To: </text>  &nbsp;@e.EventEndDate</span>
+                                        </div></td>
+                                }
+                                @*<td><b>@e.EventName</b> <br /><text style="font-weight:normal"> From: </text>   @e.EventStartDate &nbsp; <text style="font-weight:normal"> To: </text>  &nbsp;@e.EventEndDate </td>*@
+                                @*<td>@e.EventStartDate</td>*@
+                                <td>@e.ContactPersonName <br /> @e.ContactPersonPhone <br /> @e.ContactPersonEmail</td>
+                                <td class="text-center"><a href=@Url.Action("Index", "ReferralUserReport", new { EventId = @e.EventId })>@e.Referralusers.ToString("#,##0")</a></td>
+                                @if (e.RegisteredUsers > 0)
+                                {
+                                    <td><center>
+                                        <a href=@Url.Action("Index", "UserMaster", new { EventId = @e.EventId })>@e.RegisteredUsers.ToString("#,##0") </a></center></td>
+                                }
+                                else
+                                {
+                                    <td><center>@e.RegisteredUsers.ToString("#,##0")</center></td>
+                                }
+                                <td class="text-center">@e.Linkedinusers</td>
+                                <td class="text-center">@e.Facebookusers</td>
+                                <td class="text-center">
+                                    <a class="btn btnRed" href="@Url.Action("Index","RegisteredUser",new { EventId = e.EventId})" class="on-default edit-row iconbtn" data-toggle="tooltip" data-placement="top" title="Edit">Details</a>
+                                    @*<a href="@Url.Action("Index","RegisteredUser",new { EventId = e.EventId})" class="on-default edit-row iconbtn" data-toggle="tooltip" data-placement="top" title="Details"><i class="ui-icon-info"></i></a>*@
+                                </td>
+
+                                @*<td class="text-center">
+            <a href="@Url.Action("Edit","Event",new { EventId = e.EventId})" class="on-default edit-row iconbtn" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>
+            <a onclick="Delete(@e.EventId);" class="fa fa-remove iconbtn" data-toggle="tooltip" data-placement="top" title="Delete"></a>
+        </td>*@
+                            </tr>
+
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            @*<div class="row mar_top_15">
+                @{
+                    Html.RenderPartial("_Pagination");
+                }
+            </div>*@
+        </div>
+
+</div>
+        <script>
+
+    var top=0;
+
+    function FunPageIndex(pageindex)//grid pagination
+    {
+        GetData(0,pageindex, '@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'@ViewBag.Alpha',@ViewBag.SearchRecords,'@ViewBag.SearchTitle');
+    }
+
+
+    function FunPageRecord(PageRecord)//Grid Page per record
+    {
+        GetData(0,1, '@ViewBag.OrderByVal',@ViewBag.IsAscVal,PageRecord,'@ViewBag.Alpha',@ViewBag.SearchRecords,'@ViewBag.SearchTitle');
+    }
+
+    function FunSearchRecord()//Search
+    {
+        var element_txtSearchTitle = document.getElementById('txtSearchTitle').value;
+        GetData(1,1,'@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'','',element_txtSearchTitle);
+    }
+
+    function GetData(IsBindData_val,PageIndex,orderby_val,isAsc_val,PageSize_val,alpha_val,SearchRecords_val,SearchTitle_val)
+    {
+        $.ajax({
+            url: '/Dashboard/Grid',
+            data: {IsBindData: IsBindData_val, currentPageIndex: PageIndex,orderby:orderby_val.trim(),IsAsc:isAsc_val,PageSize:PageSize_val,SearchRecords:SearchRecords_val,Alpha:alpha_val,SearchTitle:SearchTitle_val },
+            beforeSend: function () {  },
+            success: function (response) {
+                $('#grddata').empty();
+                $('#grddata').append(response);
+            }
+        });
+    }
+
+    function FunWithSelected() {
+
+        var e = document.getElementById("SelectedRecord");
+        var strUser = e.options[e.selectedIndex].value;
+
+        var suc=0;
+
+        if (strUser != "") {
+            $('#SelectedRecord').css("border-color", "#cdcdcd");
+            $('#SelectedRecord').css("background", "#FFFFFF");
+            if(strUser==1)
+            {
+                var check = confirm("Are you sure you want to Delete selected all record?");
+                if (check == true) {
+
+                    var checkboxes = document.getElementsByName('chk');
+                    for(var i=0, n=checkboxes.length;i<n;i++) {
+                        if(checkboxes[i].checked==true)
+                        {
+                            Delete(checkboxes[i].value);
+                        }
+                    }
+                    suc=1;
+
+                }
+            }
+
+            if(suc==1)
+            {
+                GetData(1,@ViewBag.CurrentPageIndex,  '@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'@ViewBag.Alpha',@ViewBag.SearchRecords,'@ViewBag.SearchTitle');
+                return true;
+            }
+            else{
+                return false;
+            }
+
+
+        }
+        else {
+            $('#SelectedRecord').css("border-color", "#FF0000");
+            $('#SelectedRecord').css("background", "#f9e8e8");
+            return false;
+        }
+    }
+
+    function Delete(id) {
+        var check = confirm("Are you sure you want to Delete this record?");
+        if (check == true) {
+            $.ajax({
+                method: "POST",
+                url: '/Dashboard/Delete',
+                data: { eventid: id },
+                success: function (response) {
+                    $('#grddata').empty();
+                    $('#grddata').append(response);
+                }
+            });
+        }
+    }
+
+    $(document).ready(function(){
+        if (document.getElementById('SelectRecords')) {
+            document.getElementById('SelectRecords').value = @ViewBag.PageSize;
+        }
+
+    });
+        </script>
+
+
+        <script type="text/javascript">
+            function isNumberKey(evt) {
+                var charCode = (evt.which) ? evt.which : event.keyCode;
+                if (charCode != 46 && charCode > 31
+                    && (charCode < 48 || charCode > 57))
+                    return false;
+
+                return true;
+            }
+
+            function FunCheck() {
+                checkboxes = document.getElementsByName('chk');
+
+                if (document.getElementById("CdkSelect").checked == true) {
+                    for (var i = 0, n = checkboxes.length; i < n; i++) {
+                        checkboxes[i].checked = true;
+                    }
+                }
+                else {
+                    for (var i = 0, n = checkboxes.length; i < n; i++) {
+                        checkboxes[i].checked = false;
+                    }
+                }
+            }
+        </script>
+        }

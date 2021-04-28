@@ -1,0 +1,24 @@
+@using DataLayer
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<div class="mainBlock minheight500">
+    <div class="mainBlockTop brd_bottom">
+        <div class="mainBlockTopLeft">
+            <div class="tab_design_area">
+                    <input type="submit" name="btnUpcominEvents" value="Upcoming Events" id="btnUpcominEvents" onclick="javascript:UpcomingEvents();" class="tab_bg tab_active">
+                    <input type="submit" name="btnPastEvents" value="Past Events" id="btnPastEvents" onclick="javascript:PastEvents();" class="tab_bg">
+            </div>
+        </div> 
+        @if (ViewBag.EventUserData=="true")
+        {
+        <div>
+            <a id="addToTable1" class="btn btnRed" href="@Url.Action("Create", "Event")"><i class="fa fa-calendar"></i>&nbsp;Create Event</a>
+        </div>
+        }
+    </div>
+
+    @{Html.RenderAction("grid");}
+</div>

@@ -1,0 +1,664 @@
+﻿.center {
+	text-align:center
+}
+.right {
+	text-align:right
+}
+.width40 {
+	width:40px
+}
+.float_right_selected {
+	float:left
+}
+.clear {
+	clear:both
+}
+.pad40 {
+	padding-left:40px
+}
+.tick {
+	background-image:url(../images/icon-tick.gif);
+	background-position:3px 0;
+	background-repeat:no-repeat;
+	height:20px;
+	padding:0 10px 0 30px;
+	margin:5px 0;
+	line-height:15px;
+	font-size:12px
+}
+.cross {
+	background-image:url(../images/icon-cross.gif);
+	background-position:0 0;
+	background-repeat:no-repeat;
+	height:23px;
+	padding:0 10px 0 30px;
+	margin:0 0 5px;
+	line-height:23px;
+	font-size:12px
+}
+input.input-validation-error, textarea.input-validation-error, select.input-validation-error,div.input-validation-error {
+	border-color:#b94a48!important;
+	background:#f9e8e8!important
+}
+div.input-validation-error .select2-choices{
+	background:#f9e8e8!important;
+}
+
+.field-validation-error {
+	color:#b94a48;
+	font-weight:700
+}
+.validation-summary-errors {
+	font-size:14px;
+	color:#b94a48;
+	font-weight:700
+}
+.validation-summary-errors ul {
+	padding:0
+}
+.validation-summary-errors ul li {
+	display:block
+}
+.mypagination input {
+	background-color:#fff;
+	border:1px solid #ddd;
+	color:#0C0633;
+	float:left;
+	line-height:1.42857;
+	margin-left:-1px;
+	padding:6px 12px;
+	position:relative;
+	text-decoration:none
+}
+.mypagination input:hover, .mypagination input:focus {
+	background-color:#eee;
+	border-color:#ddd
+}
+.mypagination input.active {
+	border-color:#0C0633;
+	background-color:#0C0633;
+	color:#fff
+}
+.mypagination input.inactive {
+	color:#000
+}
+a {
+	cursor:pointer
+}
+.checkboxcenter {
+	padding-left:3px!important;
+	padding-right:10px!important
+}
+.plan_header {
+	left:0!important
+}
+.plan_body {
+	margin:0!important
+}
+.sep_div {
+	width:100%;
+	padding-top:10px;
+	padding-bottom:10px;
+	display:inline-block;
+	background-color:#fff;
+	border-bottom:1px solid #ccc;
+	vertical-align:middle;
+	font-size:14px
+}
+.no_pad {
+	padding:0
+}
+.mar_top_15 {
+	margin-top:15px
+}
+.pad_10 {
+	padding:0 10px
+}
+.first_div {
+	font-weight:700;
+	height:100%
+}
+.plan_btn a {
+	padding:5px 10px;
+	background:#760000;
+	float:right;
+	color:#fff;
+	border-radius:4px
+}
+.customer_title {
+	font-size:18px!important;
+	margin-top:15px
+}
+.sales_customer_input .clearfix {
+	display:none
+}
+.customer_sep_div {
+	background-color:#fff;
+	border-bottom:1px solid #ccc;
+	font-size:14px;
+	vertical-align:middle;
+	display:inline-block;
+	padding:10px 0
+}
+.sales_customer_input .customer_title {
+	width:100%!important;
+	margin-top:20px
+}
+.sales_customer_input .martopzero {
+	margin-top:0!important
+}
+.iterate_btn {
+	width:97.5%!important;
+	margin-top:20px!important;
+	text-align:center;
+	border-bottom:none!important
+}
+@media (max-width: 800px) {
+.first_div {
+margin-bottom:15px
+}
+}
+.maindiagram {
+	width:457px;
+	height:340px;
+	position:relative;
+	background:url(../images/diagram.png) no-repeat left top;
+	display:block;
+	margin:0 auto
+}
+.maindiagram span {
+	position:absolute;
+	font-size:12px;
+	font-weight:700
+}
+.maindiagram span.one {
+	top:143px;
+	left:121px
+}
+.maindiagram span.two {
+	top:163px;
+	left:121px
+}
+.maindiagram span.three {
+	top:180px;
+	left:121px
+}
+.maindiagram span.four {
+	top:197px;
+	left:121px
+}
+.maindiagram span.five {
+	top:215px;
+	left:121px
+}
+.maindiagram span.six {
+	top:125px;
+	left:170px
+}
+.maindiagram span.seven {
+	top:125px;
+	left:208px
+}
+.maindiagram span.eight {
+	top:125px;
+	left:264px
+}
+.maindiagram span.nine {
+	top:125px;
+	left:314px
+}
+.maindiagram span.ten {
+	top:102px;
+	left:98px
+}
+.maindiagram span.eleven {
+	top:47px;
+	left:190px
+}
+.maindiagram span.twelve {
+	top:56px;
+	left:325px
+}
+.maindiagram span.thirteen {
+	bottom:46px;
+	left:222px
+}
+.maindiagram span.fourteen {
+	bottom:52px;
+	left:322px
+}
+.maindiagram span.fifteen {
+	bottom:10px;
+	left:103px
+}
+.maindiagram span.sixteen {
+	bottom:10px;
+	left:208px
+}
+.maindiagram span.seventeen {
+	bottom:-10px;
+	left:208px
+}
+.maindiagram span.eighteen {
+	bottom:10px;
+	left:305px
+}
+.maindiagram span.nineteen {
+	bottom:-10px;
+	left:305px
+}
+.diagrammain {
+	width:709px;
+	height:780px;
+	display:block;
+	position:relative;
+	margin:0 auto
+}
+.valuebox {
+	color:#000;
+	display:block;
+	font-size:15px;
+	font-weight:700;
+	height:25px;
+	position:absolute;
+	text-align:center;
+	width:50px
+}
+.tankinsidewidthw1 {
+	left:0;
+	top:90px
+}
+.tankinsidewidthw2 {
+	left:55px;
+	top:110px
+}
+.clearance_on_left {
+	left:116px;
+	top:90px
+}
+.od {
+	left:180px;
+	top:90px
+}
+.clearance_on_lv_side {
+	right:264px;
+	top:45px
+}
+.clearance_on_lv_side_neck {
+	right:170px;
+	top:17px
+}
+.leg_centres {
+	right:270px;
+	top:122px
+}
+.clearance_on_right {
+	right:140px;
+	top:85px
+}
+.clearance_on_hv_side {
+	right:170px;
+	top:160px
+}
+.average_tank_inside_length {
+	right:361px;
+	top:200px
+}
+.height_of_swan_neck {
+	right:189px;
+	top:252px
+}
+.distance_bet_tank_cover {
+	right:260px;
+	top:285px
+}
+.clearance_bet_top_core_tank_cover_inside {
+	left:105px;
+	top:295px
+}
+.insulation_thk_bet_lay {
+	left:192px;
+	top:366px
+}
+.clearance_on_lv_side_neckone {
+	left:19px;
+	top:453px
+}
+.clearance_on_lv_sideone {
+	left:50px;
+	top:427px
+}
+.odone {
+	left:190px;
+	top:487px
+}
+.total_top_clearance {
+	left:254px;
+	top:426px
+}
+.centre_distance {
+	right:110px;
+	top:430px
+}
+.clearance_on_hv_sideone {
+	right:293px;
+	top:463px
+}
+.average_tank_inside_height {
+	right:41px;
+	top:498px
+}
+.tank_inside_heighth1 {
+	left:0;
+	top:628px
+}
+.outer_coil_height {
+	left:140px;
+	top:508px
+}
+.total_btm_clearance {
+	left:271px;
+	top:590px
+}
+.tank_inside_heighth5 {
+	right:108px;
+	top:582px
+}
+.distance_bet_tank_base {
+	right:166px;
+	top:661px
+}
+.tank_inside_heighth4 {
+	right:210px;
+	top:614px
+}
+.tank_inside_heighth3 {
+	right:242px;
+	top:644px
+}
+.insulation_thk_bet_layone {
+	left:188px;
+	top:647px
+}
+.btm_channel_height {
+	left:148px;
+	top:708px
+}
+.tblDisplay td td {
+	height:22px;
+	padding:5px!important;
+	margin:0;
+	display:inline-block
+}
+.tblDisplay td.noBorder table td {
+	border-right:none;
+	border-bottom:none
+}
+.menumainbox {
+	margin:0;
+	padding:0
+}
+.menumainbox ul li {
+	float:left;
+	width:200px;
+	margin:10px;
+	border:1px solid #ccc;
+	list-style:none
+}
+.menumainbox ul li a {
+	width:200px;
+	height:45px;
+	display:table-cell;
+	vertical-align:middle;
+	padding:15px 0;
+	text-decoration:none;
+	color:#333;
+	text-align:center
+}
+.menumainbox ul li a:hover {
+	background:#e1e1e1
+}
+.ajaxLoader {
+	outline-style:none;
+	outline-color:invert;
+	outline-width:0;
+	width:24px;
+	height:24px;
+	background-image:url(ajax_loader_red_512.gif)
+}
+.cols2 {
+	padding:0!important
+}
+.cols2 span.brd1 {
+	width:49%;
+	padding:8px 0;
+	border-right:1px solid #ddd;
+	text-align:center;
+	display:inline-block
+}
+.cols2 span.brd2 {
+	width:49%;
+	padding:8px 0;
+	text-align:center;
+	float:right;
+	display:inline-block
+}
+@media print {
+.diagrammain {
+	width:500px;
+	height:650px;
+	display:block;
+	position:relative;
+	margin:0 auto
+}
+.diagrammain img {
+	max-height:550px
+}
+.valuebox {
+	color:#000;
+	display:block;
+	font-size:10px;
+	font-weight:700;
+	height:25px;
+	position:absolute;
+	text-align:center;
+	width:50px
+}
+.tankinsidewidthw1 {
+	left:-10px;
+	top:65px
+}
+.tankinsidewidthw2 {
+	left:34px;
+	top:79px
+}
+.clearance_on_left {
+	left:82px;
+	top:65px
+}
+.od {
+	left:128px;
+	top:63px
+}
+.clearance_on_lv_side {
+	right:163px;
+	top:30px
+}
+.clearance_on_lv_side_neck {
+	right:94px;
+	top:11px
+}
+.leg_centres {
+	right:171px;
+	top:90px
+}
+.clearance_on_right {
+	right:72px;
+	top:62px
+}
+.clearance_on_hv_side {
+	right:102px;
+	top:118px
+}
+.average_tank_inside_length {
+	right:234px;
+	top:151px
+}
+.height_of_swan_neck {
+	right:109px;
+	top:182px
+}
+.distance_bet_tank_cover {
+	right:160px;
+	top:210px
+}
+.clearance_bet_top_core_tank_cover_inside {
+	left:73px;
+	top:220px
+}
+.insulation_thk_bet_lay {
+	left:134px;
+	top:273px
+}
+.clearance_on_lv_side_neckone {
+	left:6px;
+	top:310px
+}
+.clearance_on_lv_sideone {
+	left:31px;
+	top:340px
+}
+.odone {
+	left:138px;
+	top:338px
+}
+.total_top_clearance {
+	left:174px;
+	top:318px
+}
+.centre_distance {
+	right:50px;
+	top:317px
+}
+.clearance_on_hv_sideone {
+	right:188px;
+	top:341px
+}
+.average_tank_inside_height {
+	right:-17px;
+	top:366px
+}
+.tank_inside_heighth1 {
+	left:-15px;
+	top:438px
+}
+.outer_coil_height {
+	left:98px;
+	top:379px
+}
+.total_btm_clearance {
+	left:190px;
+	top:436px
+}
+.tank_inside_heighth5 {
+	right:28px;
+	top:428px
+}
+.distance_bet_tank_base {
+	right:78px;
+	top:490px
+}
+.tank_inside_heighth4 {
+	right:112px;
+	top:458px
+}
+.tank_inside_heighth3 {
+	right:151px;
+	top:479px
+}
+.insulation_thk_bet_layone {
+	left:134px;
+	top:481px
+}
+.btm_channel_height {
+	left:102px;
+	top:528px
+}
+.diagram_td {
+	margin-bottom:50px
+}
+.chart-data-selector {
+	visibility:hidden;
+	max-height:255px;
+	padding:6px
+}
+.chart-data-selector h2 {
+	color:#33353f;
+	font-size:20px;
+	line-height:20px;
+	margin:0;
+	padding:0;
+	text-transform:none;
+	letter-spacing:-1px
+}
+.chart-data-selector h2 .multiselect {
+	background:#f6f6f6;
+	border:0 none;
+	font-size:20px;
+	font-weight:600;
+	margin:-4px 0 0 4px !important;
+	padding:3px 12px 3px 8px
+}
+.chart-data-selector h2 .multiselect:hover, .chart-data-selector h2 .multiselect:focus, .chart-data-selector h2 .multiselect:active {
+	text-decoration:none
+}
+.chart-data-selector h2 .multiselect-container {
+	margin:0 0 0 4px;
+	min-width:120%
+}
+.chart-data-selector .chart-data-selector-items {
+	position:relative;
+	overflow:hidden
+}
+.chart-data-selector .chart-data-selector-items .chart-active {
+	visibility:hidden
+}
+.chart-data-selector .chart-data-selector-items .chart-hidden {
+	visibility:hidden
+}
+.chart-data-selector.ready {
+	max-height:none;
+	visibility:visible
+}
+.chart-data-selector.ready .chart-active {
+	visibility:visible;
+	position:relative;
+	z-index:2
+}
+.chart-data-selector.ready .chart-hidden {
+	visibility:hidden;
+	position:absolute;
+	z-index:1;
+	top:-9999px
+}
+html.dark .chart-data-selector h2 .multiselect {
+	background-color:#282d36
+}
+}
+
+@media screen and (max-width:800px){
+		 .menumainbox ul li{width:160px;}
+	}
+
+@media screen and (max-width:750px){
+	 .h40{height:auto; max-height:auto;}
+	 .padrightzero{padding-right:15px;}
+	 .padleftzero{padding-left:15px!important;}
+	 .searcharea .form-control{margin-bottom:5px;}
+.first_div{margin-bottom:0px; margin-top:8px;}
+.customer_sep_div{display:inline-block; width:100%;}
+.customer_sep_div div.col-md-1, .customer_sep_div div.col-md-2, .customer_sep_div div.col-md-3, .customer_sep_div div.col-md-4, .customer_sep_div div.col-md-5,
+.customer_sep_div div.col-md-6, .customer_sep_div div.col-md-7, .customer_sep_div div.col-md-8, .customer_sep_div div.col-md-9, .customer_sep_div div.col-md-10, .customer_sep_div div.col-md-11,
+.customer_sep_div div.col-md-12{width:100%; display:inline-block;}
+	}
+	

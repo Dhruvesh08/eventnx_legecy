@@ -1,0 +1,76 @@
+@model IEnumerable<LinkedInDemo.Models.RegisteredUserModel>
+@using DataLayer
+@{
+    Layout = null;
+}
+
+<div class="mainBlock paddnoneall">
+    <h4 class="paddbtm5 bg_tital">
+        Recent Registered Users  &nbsp; &nbsp; &nbsp;
+        @if (Model.Count() > 0)
+        {
+            <a href="@Url.Action("Index", "UserMaster")">View All </a>
+        }
+    </h4>
+      
+
+    @if (Model.Count() > 0)
+    {
+        <div id="grddata">
+            <div class="datatable mgtopmins2" style="max-height:373px; overflow:auto;">
+                <div class="table-responsive">
+                    <table class="table borderbtm">
+                        <tbody>
+                            <tr>
+                                <th class="text-left">User Details</th>
+                                <th class="text-center"><div class="width150">Event Name</div></th>
+                                <th class="text-center">Referral Count</th>
+                            </tr>
+                            @foreach (var e in Model)
+                            {
+                                <tr>
+                                    <td class="text-left">
+                                        <div class="flex_div">
+                                            <span class="img_round">
+                                                @if (e.ProfileImage == null || e.ProfileImage == "")
+                                                {
+                                                    <img src="~/Content/images/icon_user.jpg" alt="" width="50" height="auto" />
+                                                }
+                                                else
+                                                {
+                                                    <img src="@e.ProfileImage" alt="" width="50" height="auto" />
+
+                                                }
+                                            </span> <span>
+                                                @e.FirstName @e.LastName
+                                                <br />@e.Email
+                                                <br />@e.DateOfRegistration.ToString("dd-MM-yyyy")
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">@e.EventName</td>
+                                    @if (e.ReferralCount > 0)
+                                    {
+                                        <td class="text-center"><a target="_blank" href=@Url.Action("Index", "RegisteredUser", new { UserId = @e.UserId, EventId = @e.EventId })>@e.ReferralCount.Value.ToString("#,##0")</a></td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center"> @e.ReferralCount.Value.ToString("#,##0")</td>
+                                    }
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    { 
+        <div id="grddata">
+            <center>No users have registered yet.</center>
+        </div>
+    }
+
+</div>

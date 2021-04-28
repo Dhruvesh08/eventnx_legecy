@@ -1,0 +1,877 @@
+﻿@model LinkedInDemo.Models.ContactUsModel
+@{
+    Layout = null;
+    ViewBag.Title = "Share";
+}
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>EVENTNX - Event and Trade Show Attendee Acquisition and Growth through Referral Marketing</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="EventNX is an event marketing platform essential to grow audience at your event. With EventNX, you can plug and play social registration, automatic social posting and personalized tracking of attendee acquisition through referrals. You can expand your social reach and increase your event attendance by word of mouth from existing attendees.">
+    <meta name="keywords" content="HTML5, bootstrap, mobile, app, landing, ios, android, responsive">
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- Font -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <!-- Themify Icons -->
+    <link rel="stylesheet" href="~/css/themify-icons.css">
+    <!-- Owl carousel -->
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <!-- Main css -->
+    <link href="~/css/jquery.mCustomScrollbar.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <script src="~/js/jquery-3.2.1.min.js"></script>
+
+    <style>
+        .errormessage {
+            color: red;
+            font-size: 12px;
+            width: 100%;
+            text-align: left !important;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target="#navbar" data-offset="30">
+    <!-- Nav Menu -->
+    <!--<div class="nav-menu fixed-top bg_with">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-dark navbar-expand-lg">
+                        <a class="navbar-brand" href="index.html"><img src="images/logo_eventnx.png" class="img-fluid" alt="Event nx"></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon ti-menu"></span> </button>
+                        <div class="collapse navbar-collapse" id="navbar">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item"> <a class="nav-link active" href="#home">HOME <span class="sr-only">(current)</span></a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#features">FEATURES</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#gallery">GALLERY</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#pricing">PRICING</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#contact">CONTACT</a> </li>
+                                <li class="nav-item"><a href="#" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">Download</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div class="nav-menu fixed-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-dark navbar-expand-lg">
+                        <a class="navbar-brand" href="@Url.Action("Index","Home")"><img src="~/images/logo_eventnx1.png" class="img-fluid" alt="Event nx"></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+                        <div class="collapse navbar-collapse" id="navbar">
+                            <ul class="navbar-nav ml-auto">
+                                <!--<li class="nav-item"> <a class="nav-link active" href="#home">HOME <span class="sr-only">(current)</span></a> </li>-->
+                                <!--<li class="nav-item"> <a class="nav-link" href="#about_us">ABOUT US</a> </li>-->
+                                <li class="nav-item"> <a class="nav-link" href="#whyus">WHY US</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#benefits">BENEFITS</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#features">FEATURES</a> </li>
+                                <!--<li class="nav-item"> <a class="nav-link" href="#gallery">GALLERY</a> </li>-->
+                                <li class="nav-item"> <a class="nav-link" href="#pricing">PRICING</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#contact">CONTACT</a> </li>
+                                <li class="nav-item"><a href="@Url.Action("Login","Account")" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">Sign in</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header class="" id="home">
+        <div class="container">
+            <div class="banner_area">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h1>The Best Event Registration Tool You Can Rely On</h1>
+                        <p class="tagline">One click Social Registration with intelligently automated engagement features.</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="banner_img"><img src="~/images/banner_img.png" alt="" class="img-fluid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="zoommetting">
+            <div class="container">
+            <h3>Our Integrations </h3>
+				<div class="zoomappbox">
+				<a href="#"><img src="../images/icon_zoom.png" alt=""  style="width:170px"></a><a href="#"><img src="../images/icon_bigmarker.png" alt="" style="width:170px"></a>
+				</div>
+            </div>				
+		    </div>
+    <div class="trusted_by_logo_area">
+        <div class="container">
+            <h3>Trusted by</h3>
+            <ul>
+                <li><img src="~/images/trusted1.png" alt="" class="img-fluid"></li>
+                <li><img src="~/images/trusted2.png" alt="" class="img-fluid"></li>
+                <li><img src="~/images/trusted3.png" alt="" class="img-fluid"></li>
+                <li><img src="~/images/trusted4.png" alt="" class="img-fluid"></li>
+            </ul>
+        </div>
+    </div>
+    <!--<div class="section paddbtm50 about_us_section" id="about_us">
+        <div class="container">
+            <div class="section-title">
+                <h3>About Us</h3>
+            </div>
+            <p>The only purpose of our existence is to help you with the best option for your event registration and engagement. We want to build a seamless and self-help tool which event promoters can use to easily integrate social registration and word-of-mount marketing in their events website. With hundreds of other similar tools out there in market, we are carving a niche in terms of usability, simplicity and pricing to come up with the best possible service for the whole event industry. We dreamt of building a registration technology with keeping end users in mind and making sure that the whole registration process is instinctive, fun and simple - encouraging prospects to enjoy the process and be a faithful advocate of the event. </p>
+
+        </div>
+    </div>
+    <div class="about_us_area mission_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="misstion_img">
+                        <img src="~/images/img_mission.png" alt="" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="misstion_text">
+                        <div class="section-title">
+                            <h3>Our Mission</h3>
+                        </div>
+                        <p>We love lending helping hands for events, we use technology to metamorphosise the way people experience events. We are a company with experience, with events at heart, and attendees on the top of our priority list, we build events technology to make events more stupendous. We build attendees centric event apps to ignite more connections during events, we believe in face to face connections at events. We build event technologies to maximize the value for all stakeholders and help them enjoy and benefit the most from events.</p>
+                      <p>Our team combines technology experts, user experience specialists and tech gurus who are working hard everyday to reimagine the events space and special event gurus.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="values_area">
+                <div class="section-title">
+                    <h3>Our Values</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="box_special1">
+                            <h5>Make the Impossible- Possible</h5>
+                            <p>We deliver fast to stay ahead of the competition and make sure you always have the upper hand. We bet we are the best at making the impossible possible.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="box_special1">
+                            <h5>We Believe in FUN<br>(Focus on User Needs)</h5>
+                            <p>We embrace hardcore research to delight our users. We’re sharply focused on amplifying the attendee experience by putting our leg in the client’s shoes wherever we go and in whatever we do.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="box_special1">
+                            <h5>People Centric Approach</h5>
+                            <p>Everybody is important. We believe each other and we welcome diversity. We show integrity, gratitude and respect. We’re transparent and we value every minimal input.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>-->
+    <div class="section whay_us_section" id="whyus">
+        <div class="container">
+            <div class="section-title">
+                <h3>
+                    Why Us
+                    <span>What's In It For You?</span>
+                </h3>
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 order-lg-4 col-md-12 order-md-1">
+                    <div class="img_why"><img src="~/images/why_img.png" alt="" class="img-fluid"></div>
+
+                </div>
+                <div class="col-lg-4 order-lg-1 col-md-6 order-md-4">
+                    <div class="why_box">
+                        <span class="icon_why"><img src="~/images/why_us_icon1.png" alt="" class="img-fluid"></span>
+                        <div class="text_why">
+                            <h5>Referrals on registration</h5>
+                            <p>Add EventNX to registration and give ALL your attendees the convenience to invite contacts &amp; social connections to attend.</p>
+                        </div>
+                    </div>
+                    <div class="why_box">
+                        <span class="icon_why"><img src="~/images/why_us_icon2.png" alt="" class="img-fluid"></span>
+                        <div class="text_why">
+                            <h5>Statistics &amp; reports</h5>
+                            <p>View the results of your website, mailings, registration, tickets and survey in a hassle free mode.</p>
+                        </div>
+                    </div>
+                    <div class="why_box">
+                        <span class="icon_why"><img src="~/images/why_us_icon3.png" alt="" class="img-fluid"></span>
+                        <div class="text_why">
+                            <h5>Transparency of results</h5>
+                            <p>EventNX's real-time reporting and clarity of result leads to total transparency in real-time.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 order-lg-8 col-md-6 order-md-8 right_whay">
+                    <div class="why_box">
+                        <span class="icon_why"><img src="~/images/why_us_icon4.png" alt="" class="img-fluid"></span>
+                        <div class="text_why">
+                            <h5>Event email invitations</h5>
+                            <p>Send professional invites and follow-up emails in the style as your event.</p>
+                        </div>
+                    </div>
+                    <div class="why_box">
+                        <span class="icon_why"><img src="~/images/why_us_icon5.png" alt="" class="img-fluid"></span>
+                        <div class="text_why">
+                            <h5>Guest list</h5>
+                            <p>Enable your visitors to contact each other. Networking has never been so easy.</p>
+                        </div>
+                    </div>
+                    <div class="why_box">
+                        <span class="icon_why"><img src="~/images/why_us_icon6.png" alt="" class="img-fluid"></span>
+                        <div class="text_why">
+                            <h5>Referrals post registration</h5>
+                            <p>Use EventNX attendee tracking links in ongoing referral campaigns so that existing attendees can get more registrations.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="" id="benefits">
+        <div class="section paddbtm50 benefit_section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 web_site_img">
+                        <div><img src="~/images/img_benifint.png" alt="" class="img-fluid"></div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="section-title">
+                            <h3>Benefits</h3>
+                        </div>
+                        <div class="img_benefits_mobile_new"><img src="~/images/img_benifint.png" alt="" class="img-fluid"></div>
+                        <div class="benefit_box">
+                            <ul>
+                                <li><strong>1</strong><span>Easy to activate integration in your website for social registration of attendees.</span></li>
+                                <li><strong>2</strong><span>Maximize your reach with shareable links of existing attendees.</span></li>
+                                <li><strong>3</strong><span>Manage multiple events from single dashboard with comparable results.</span></li>
+                                <li><strong>4</strong><span>Real-time reports and insights to make on-the-go changes in your campaigns.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="section paddbtm50 features_section" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h3>
+                    Highlights
+                    <span>Features you love</span>
+                </h3>
+
+            </div>
+            <div class="text_features">
+                <p>
+                    Conveniently customize your event registration process on your event website with
+                    simple embeddable code and get insightful real-time reports of attendee acquisition.
+                </p>
+                <h4>Boost Your Event Attendee Registration and Get used to Success!</h4>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="card features">
+                        <div class="card-body">
+                            <div class="media">
+                                <span class="ti-3x mr-3"><img src="~/images/features_icon1.png" alt="" class="img-fluid"></span>
+                                <div class="media-body">
+                                    <h4 class="card-title">One Click Social Registration</h4>
+                                    <p class="card-text">Attendees can use their social credentials to register for your event. The registration form will auto-populate with attendee details and with very less information to enter, attendees will find it easier than ever to register - reducing the bounce rate drastically.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="card features">
+                        <div class="card-body">
+                            <div class="media">
+                                <span class="ti-3x mr-3"><img src="~/images/features_icon2.png" alt="" class="img-fluid"></span>
+                                <div class="media-body">
+                                    <h4 class="card-title">Shareable Links for enhanced Referral tracking</h4>
+                                    <p class="card-text">Once registered, attendees will get a personalized sharing URL to post on their social profiles and also to invite their peers - making them promoters of your event.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 last_div mobile_divider">
+                    <div class="card features">
+                        <div class="card-body">
+                            <div class="media">
+                                <span class="ti-3x mr-3"><img src="~/images/features_icon3.png" alt="" class="img-fluid"></span>
+                                <div class="media-body">
+                                    <h4 class="card-title">Show Who Else is Attending the Show</h4>
+                                    <p class="card-text">Event Attendees can also see who all are attending the same event. They can find some connections with common interest and can start networking even before the event.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 last_div">
+                    <div class="card features">
+                        <div class="card-body">
+                            <div class="media">
+                                <span class="ti-3x mr-3"><img src="~/images/features_icon4.png" alt="" class="img-fluid"></span>
+                                <div class="media-body">
+                                    <h4 class="card-title">Actionable Insights and Reports</h4>
+                                    <p class="card-text">
+                                        EventNX dashboard smartly displays real time information with various parameters to take actions on the go. Organizers can also see reports regarding referral marketing
+                                        activities carried out by attendees and which attendees helped them get more registrations
+                                        by their personalized referral links.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section light-bg" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h3>
+                    Pricing
+                    <span>Simple and Cost Effective Pricing. Use Credits Across Events.</span>
+                </h3>
+            </div>
+            <div class="price_area_box">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div>
+                            <div class="box_width">
+                                <h3>Get a Quote</h3>
+                                <div class="form_area_new">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", maxlength = 80, @placeholder = "Full Name" })
+                                                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                                                <span id="spanQuoteFullName" class="errormessage" style="display:none">Enter Name</span>
+                                                @*<input type="text" placeholder="Name" id="Name" name="Name" class="form-control">*@
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.CompanyName, new { @class = "form-control", maxlength = 100, @placeholder = "Company Name" })
+                                                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                                                <span id="spanQuoteCompanyName" class="errormessage" style="display:none">Enter Company Name</span>
+                                                @*<input type="text" placeholder="Company" id="Company" name="Company" class="form-control">*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", maxlength = 15, @placeholder = "Your Phone Or Mobile Number" })
+                                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                                <span id="spanQuotePhoneNumber" class="errormessage" style="display:none">Enter Phone Number</span>
+                                                @*<input type="text" placeholder="Phone" id="Phone" name="Phone" class="form-control">*@
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.EmailAddress, new { @class = "form-control", @placeholder = "Your E-mail Address" })
+                                                @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                                                <span id="spanQuoteEmailAddress" class="errormessage" style="display:none">Enter Email Address</span>
+                                                @*<input type="text" placeholder="Email" id="Email" name="Email" class="form-control">*@
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <div class="form-group">
+                                                @Html.TextAreaFor(model => model.CreditsRequired, new { @class = "form-control", maxlength = 15, @placeholder = "Estimated Registration Credits Required" })
+                                                @Html.ValidationMessageFor(model => model.CreditsRequired, "", new { @class = "text-danger" })
+                                                @*<input type="text" placeholder="Estimated Registration Credits Required" id="Credits" name="Credits" class="form-control">*@
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12" style="padding-top:5px;">
+                                            <div class="text-right"><a class="btn btn_white icon_arrow" onclick="GetQuote()">Submit</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<p>Enter your estimated number of Registrations:</p>
+                                <div class="input_div"><input type="text" placeholder="How Many?" id="howmany" name="howmany" class="form-control"></div>
+                                <div class="total_price">Your Total 1,212 x 0.65 per Registrations<span>$9.70</span></div>
+                                <a href="#" class="btn btn_white">Start Testing Free</a>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="price_text_area">
+                            <h4>What is Included in The Price</h4>
+                            <h5>Social Registration and Posting</h5>
+                            <p>You can implement Linkedin Social Registration and Linkedin Post on your event website.</p>
+                            <h4>Widget</h4>
+                            <h5>Who Else is Attending the Event</h5>
+                            <p>A convincing and effective widget to put on your website, which shows who all are already registered and attending the event. The widget is a photo grid of attendees with their company name and designation. An awesome way to build trust and attract more attendees.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="section" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h3>Pricing</h3>
+            </div>
+            <div class="price_area_box">
+            <div class="row">
+                <div class="col-lg-7">
+                <div class="bg-gradient">
+                    <div class="box_width">
+                    <h3>Calculate Your Cost</h3>
+                        <p>Enter your estimated number of Registrations:</p>
+                        <div class="input_div"><input type="text" placeholder="How Many?" id="howmany" name="howmany" class="form-control"></div>
+                        <div class="total_price">Your Total 1,212 x 0.65 per Registrations<span>$9.70</span></div>
+                        <a href="#" class="btn btn_white">Start Testing Free</a>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                <div class="price_text_area">
+                    <div class="price_box tital_price">
+                        <div>Registrations</div>
+                        <div>Price per Registrations</div>
+                    </div>
+                    <div class="price_box">
+                    <div>0-2000</div>
+                    <div>$0.65</div>
+                    </div>
+                    <div class="price_box">
+                    <div>2001-5000</div>
+                    <div>$0.55</div>
+                   </div>
+                    <div class="price_box">
+                    <div>5000-9999</div>
+                    <div>$0.45</div>
+                    </div>
+                    <div class="price_box">
+                    <div>10000+</div>
+                    <div>$0.40</div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!--<div class="range-holder">
+
+                <div id="pr-slider" class="dragdealer">
+                    <div class="stripe">
+
+                        <div id="green-highlight"></div>
+                        <div id="orange-highlight"></div>
+                        <div id="blue-highlight"></div>
+
+                        <div class="handle">
+                            <div class="infobox">
+                                <div class="titlebar"><span id="plan-holder"></span> <span id="device-holder"></span></div>
+                                <div class="innerbox">
+
+                                    <div class="info-price"></div>
+                                    <div class="annual-label">ANNUALY:</div>
+                                    <div class="annual-price"></div>
+
+
+                                </div>
+                            </div>
+                            <div class="square">
+                                <span class="value"></span>
+                                <span class="menu-line"></span>
+                                <span class="menu-line"></span>
+                                <span class="menu-line"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>-->
+    <!-- // end .section -->
+    <!-- // end .section -->
+    <!--<div class="sign_area bg-gradient">
+        <div class="bg_login"></div>
+        <div class="container">
+            <h2>Sign-up today and start getting socially strong attendees <Br>for your event.</h2>
+            <div><a href="@Url.Action(" Register","Account")" class="btn btn_white">Signup</a></div>
+        </div>
+    </div>-->
+    <!-- // end .section -->
+    <div class="vidio_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="video_box">
+                        <div class="videoWrapper">
+                        <iframe src="https://player.vimeo.com/video/436330053" width="560" height="349" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+                    </div>
+                    </div>
+                    </div>
+                
+                <div class="col-lg-5">
+                    <div class="text_video">
+                        <span>We &#64; EventNX Helping you</span>
+                        Connect People To People To <br>Manage There Events
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact_bg py-5" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h3>Contact Us</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 text-center text-lg-left set_1_contact">
+                    <div class="btm_logo"><a class="navbar-brand" href="@Url.Action("Index","Home")"><img src="~/images/logo_eventnx1.png" class="img-fluid" alt="Event nx"></a></div>
+                    <p class="mb-2">
+                        <i class="mr-2"><img src="~/images/icon_location.png" alt="" class="img-fluid"></i> <span>
+                            <b>Office Location</b>
+                            4th Floor, Aarna One, Kalali, Vadodara, Gujarat, India.
+                        </span>
+                    </p>
+                    <div class="d-block d-sm-inline-block colo_000">
+                        <p class="mb-0">
+                            <i class="mr-2"><img src="~/images/icon_call.png" alt="" class="img-fluid"></i> <span><a href="tel:+919726188777">+91 97261 88777</a></span>
+                        </p>
+                    </div>
+                    <div class=" d-block d-sm-inline-block">
+                        <p class="mb-2">
+                            <i class="mr-2"><img src="~/images/icon_mail.png" alt="" class="img-fluid"></i> <span><a class="mr-4" href="mailto:contact@eventnx.com">contact@eventnx.com</a></span>
+                        </p>
+                    </div>
+                    <ul class="social_ul">
+                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+                    </ul>
+
+                </div>
+                <div class="col-lg-9">
+                    <div class="form_area_new">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", maxlength = 80, @placeholder = "Your Name" })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    <span id="spanName" class="errormessage" style="display:none">Enter Name</span>
+                                    @*<input type="text" placeholder="Name" id="Name" name="Name" class="form-control">*@
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.Company, new { @class = "form-control", maxlength = 100, @placeholder = "Company" })
+                                    @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                                    <span id="spanCompany" class="errormessage" style="display:none">Enter Company</span>
+                                    @*<input type="text" placeholder="Company" id="Company" name="Company" class="form-control">*@
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.Designation, new { @class = "form-control", maxlength = 100, @placeholder = "Designation" })
+                                    @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+                                    <span id="spanDesignation" class="errormessage" style="display:none">Enter Designation</span>
+                                    @*<input type="text" placeholder="Designation" id="Designation" name="Designation" class="form-control">*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", maxlength = 15, @placeholder = "Your Phone Or Mobile Number" })
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                    <span id="spanPhone" class="errormessage" style="display:none">Enter Phone</span>
+                                    @*<input type="text" placeholder="Phone" id="Phone" name="Phone" class="form-control">*@
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Your E-mail Address" })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    <span id="spanEmail" class="errormessage" style="display:none">Enter Email</span>
+                                    @*<input type="text" placeholder="Email" id="Email" name="Email" class="form-control">*@
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    @Html.TextAreaFor(model => model.Message, new { @class = "form-control", @placeholder = "Your Message   " })
+                                    @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                                    @*<textarea id="Name" name="Name" cols="" rows="" class="form-control" placeholder="Message"></textarea>*@
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <div class="btn_paddtop text-right">
+                                    <a class="btn btn_white icon_arrow text_upper" onclick="Contactus()">Send</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- // end .section -->
+    <footer class="my-5">
+        <!-- Copyright removal is not prohibited! -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
+
+                    <small>
+                        <a href="#" class="m-2">PRESS</a>
+                        <a href="#" class="m-2">TERMS</a>
+                        <a href="@Url.Action("Privacy","Home")" class="m-2">PRIVACY</a>
+                    </small>
+                </div>
+                <div class="col-lg-9 col-md-8 copy_right">
+                    <p class="mb-2 fnt_capital">
+                        Copyright &copy; EventNX. All Rights Reserved. Powered by <a href="http://www.thetacttree.com" target="_blank">The Tacttree</a>
+                    </p>
+                    <!--<div class="logo_btm"><span>Power by</span><a href="http://www.thetacttree.com" target="_blank"><img src="~/images/logo_thetacttree.png" alt="" class="img-fluid"></a></div>-->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background:#117db5; color:#fff;">
+                    <h4 class="modal-title" style="color:#fff;">Thank You!</h4>
+                </div>
+                <div class="modal-body">
+                    <p style="color:#2d8600;">Form Submitted Successfully..</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- jQuery and Bootstrap -->
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugins JS -->
+    <script src="~/js/owl.carousel.min.js"></script>
+    <!-- Custom JS -->
+    <script src="~/js/jquery.ihavecookies.js"></script>
+    <script type="text/javascript">
+        var options = {
+            title: '&#x1F36A; Accept Cookies & Privacy Policy?',
+            message: 'EventNX uses analytical (non personal) cookies to gain insight into the usage of our website. Once you click “Accept”, you will receive an optimal and more personal experience on our website and give us permission to save cookies from additional parties.',
+            delay: 600,
+            expires: 1,
+            link: '#privacy',
+            onAccept: function () {
+                var myPreferences = $.fn.ihavecookies.cookie();
+                console.log('Yay! The following preferences were saved...');
+                console.log(myPreferences);
+            },
+            uncheckBoxes: true,
+            acceptBtnLabel: 'Accept Cookies',
+            moreInfoLabel: 'More information',
+            cookieTypesTitle: 'Select which cookies you want to accept',
+            fixedCookieTypeLabel: 'Essential',
+            fixedCookieTypeDesc: 'These are essential for the website to work correctly.'
+        }
+
+        $(document).ready(function () {
+
+            $('body').ihavecookies(options);
+
+            if ($.fn.ihavecookies.preference('marketing') === true) {
+                console.log('This should run because marketing is accepted.');
+            }
+
+            $('#ihavecookiesBtn').on('click', function () {
+                $('body').ihavecookies(options, 'reinit');
+            });
+        });
+
+    </script>
+    <script>
+        function ComfirmOk() {
+            $("#divsuccessmessge").hide();
+        }
+        function validate() {
+            var isvalid = true;
+            var Name = $("#Name").val();
+            var Company = $("#Company").val();
+            var Designation = $("#Designation").val();
+            var Phone = $("#Phone").val();
+            var Email = $("#Email").val();
+            if (Name == "" || Name == null) {
+                $("#spanName").show();
+                isvalid = false;
+            }
+            if (Company == "" || Company == null) {
+                $("#spanCompany").show();
+                isvalid = false;
+            }
+            if (Designation == "" || Designation == null) {
+                $("#spanDesignation").show();
+                isvalid = false;
+            }
+            if (Phone == "" || Phone == null) {
+                isvalid = false;
+                $("#spanPhone").show();
+            }
+            if (Email == "" || Email == null) {
+                $("#spanEmail").show();
+                isvalid = false;
+            }
+            return isvalid;
+        }
+        function Contactus() {
+            var Name = $("#Name").val();
+            var Company = $("#Company").val();
+            var Designation = $("#Designation").val();
+            var Phone = $("#Phone").val();
+            var Message = $("#Message").val();
+            var Email = $("#Email").val();
+            if (validate()) {
+                 $.ajax({
+                    method: "POST",
+                    url: '/Account/ContactUs',
+                    data: {
+                        Name: Name,
+                        Company: Company,
+                        Designation: Designation,
+                        Phone: Phone,
+                        Message: Message,
+                        Email: Email
+                    },
+                     success: function (response) {
+                         $('#myModal').modal('show');
+                         $("#Name").val("");
+                         $("#Company").val("");
+                         $("#Designation").val("");
+                         $("#Phone").val("");
+                         $("#Message").val("");
+                         $("#Email").val("");
+                         $("#spanName").hide();
+                         $("#spanCompany").hide();
+                         $("#spanDesignation").hide();
+                         $("#spanPhone").hide();
+                         $("#spanEmail").hide();
+                        @*alert("Thankyou!");
+                        window.location.href = '@Url.Content("~/Home/Index")';*@
+                    }
+                });
+            }
+        }
+        function ValidateQuote() {
+            var isvalid = true;
+            var FullName = $("#FullName").val();
+            var CompanyName = $("#CompanyName").val();
+            var PhoneNumber = $("#PhoneNumber").val();
+            var EmailAddress = $("#EmailAddress").val();
+            if (FullName == "" || FullName == null) {
+                $("#spanQuoteFullName").show();
+                isvalid = false;
+            }
+            if (CompanyName == "" || CompanyName == null) {
+                $("#spanQuoteCompanyName").show();
+                isvalid = false;
+            }
+            if (PhoneNumber == "" || PhoneNumber == null) {
+                $("#spanQuotePhoneNumber").show();
+                isvalid = false;
+            }
+            if (EmailAddress == "" || EmailAddress == null) {
+                isvalid = false;
+                $("#spanQuoteEmailAddress").show();
+            }
+            return isvalid;
+        }
+
+
+        function GetQuote() {
+            var FullName = $("#FullName").val();
+            var CompanyName = $("#CompanyName").val();
+            var PhoneNumber = $("#PhoneNumber").val();
+            var CreditsRequired = $("#CreditsRequired").val();
+            var EmailAddress = $("#EmailAddress").val();
+            if (ValidateQuote()) {
+                 $.ajax({
+                    method: "POST",
+                    url: '/Account/GetQuote',
+                    data: {
+                        FullName: FullName,
+                        CompanyName: CompanyName,
+                        PhoneNumber: PhoneNumber,
+                        CreditsRequired: CreditsRequired,
+                        EmailAddress: EmailAddress
+                    },
+                     success: function (response) {
+                         console.log("success");
+                       $('#myModal').modal('show');
+                         $("#FullName").val("");
+                         $("#CompanyName").val("");
+                         $("#PhoneNumber").val("");
+                         $("#CreditsRequired").val("");
+                         $("#EmailAddress").val("");
+                         $("#spanQuoteFullName").hide();
+                         $("#spanQuoteCompanyName").hide();
+                         $("#spanQuotePhoneNumber").hide();
+                         $("#spanQuoteEmailAddress").hide();
+                       // window.location.href = '@Url.Content("~/Home/Index")';
+                    }
+                });
+            }
+        }
+
+    </script>
+    <script src="~/js/script.js"></script>
+    <script src="~/js/script_price_slidr.js"></script>
+    <script src="~/js/jquery.mCustomScrollbar.js"></script>
+    <script>
+        (function ($) {
+            $(window).on("load", function () {
+                $("#content-1").mCustomScrollbar({
+                    theme: "minimal"
+                });
+
+            });
+        })(jQuery);
+
+    </script>
+</body>
+
+</html>

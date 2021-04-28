@@ -1,0 +1,990 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EventRegistrationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="EventRegistrationEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="GetDetails" ReturnType="Collection(EventRegistrationModel.GetDetails_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="alpha" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="UserPackages" EntityType="EventRegistrationModel.UserPackage" />
+    <FunctionImport Name="Packagedetails" ReturnType="Collection(EventRegistrationModel.Packagedetails_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="alpha" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetCustomerDetails" ReturnType="Collection(EventRegistrationModel.GetCustomerDetails_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="alpha" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Packagedetails1" ReturnType="Collection(EventRegistrationModel.Packagedetails1_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="alpha" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Adminsettings" EntityType="EventRegistrationModel.Adminsetting" />
+    <FunctionImport Name="AdminDetails" ReturnType="Collection(EventRegistrationModel.AdminDetails_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Transactions" EntityType="EventRegistrationModel.Transaction" />
+    <EntitySet Name="Orders" EntityType="EventRegistrationModel.Order" />
+    <EntitySet Name="Packages" EntityType="EventRegistrationModel.Package" />
+    <AssociationSet Name="FK__Order__PackageId__3864608B" Association="EventRegistrationModel.FK__Order__PackageId__3864608B">
+      <End Role="Package" EntitySet="Packages" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserPacka__Packa__3B75D760" Association="EventRegistrationModel.FK__UserPacka__Packa__3B75D760">
+      <End Role="Package" EntitySet="Packages" />
+      <End Role="UserPackage" EntitySet="UserPackages" />
+    </AssociationSet>
+    <EntitySet Name="Customers" EntityType="EventRegistrationModel.Customer" />
+    <EntitySet Name="CustomerRoles" EntityType="EventRegistrationModel.CustomerRole" />
+    <EntitySet Name="Roles" EntityType="EventRegistrationModel.Role" />
+    <AssociationSet Name="FK__Customerr__Custo__5AEE82B9" Association="EventRegistrationModel.FK__Customerr__Custo__5AEE82B9">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="CustomerRole" EntitySet="CustomerRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__CustomerI__4F7CD00D" Association="EventRegistrationModel.FK__Order__CustomerI__4F7CD00D">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__Custo__6383C8BA" Association="EventRegistrationModel.FK__Transacti__Custo__6383C8BA">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserPacka__Custo__3A81B327" Association="EventRegistrationModel.FK__UserPacka__Custo__3A81B327">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="UserPackage" EntitySet="UserPackages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerR__RoleI__43D61337" Association="EventRegistrationModel.FK__CustomerR__RoleI__43D61337">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="CustomerRole" EntitySet="CustomerRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__Transacti__34C8D9D1" Association="EventRegistrationModel.FK__Order__Transacti__34C8D9D1">
+      <End Role="Transaction" EntitySet="Transactions" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <FunctionImport Name="GetUserConnectionDetails" ReturnType="Collection(EventRegistrationModel.GetUserConnectionDetails_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="eventid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetOrderDetails" ReturnType="Collection(EventRegistrationModel.GetOrderDetails_Result)">
+      <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+      <Parameter Name="OrderId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="VisitorStates" EntityType="EventRegistrationModel.VisitorState" />
+    <EntitySet Name="UserConnections" EntityType="EventRegistrationModel.UserConnection" />
+    <EntitySet Name="countries" EntityType="EventRegistrationModel.country" />
+    <FunctionImport Name="GetPostEventDetails" ReturnType="Collection(EventRegistrationModel.GetPostEventDetails_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+      <Parameter Name="alpha" Mode="In" Type="String" />
+      <Parameter Name="searchtitle" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CustomerEmails" ReturnType="Collection(EventRegistrationModel.CustomerEmails_Result)" />
+    <EntitySet Name="EventUsers" EntityType="EventRegistrationModel.EventUser" />
+    <AssociationSet Name="FK__EventUser__Custo__6442E2C9" Association="EventRegistrationModel.FK__EventUser__Custo__6442E2C9">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="EventUser" EntitySet="EventUsers" />
+    </AssociationSet>
+    <FunctionImport Name="EventUserDetails" ReturnType="Collection(EventRegistrationModel.EventUserDetails_Result)">
+      <Parameter Name="event" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetRegisteredUserDetails" ReturnType="Collection(EventRegistrationModel.GetRegisteredUserDetails_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="alpha" Mode="In" Type="String" />
+      <Parameter Name="searchtitle" Mode="In" Type="String" />
+      <Parameter Name="domain" Mode="In" Type="String" />
+      <Parameter Name="event" Mode="In" Type="Int32" />
+      <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+      <Parameter Name="referralid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetTransactionsDetails" ReturnType="Collection(EventRegistrationModel.GetTransactionsDetails_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+      <Parameter Name="transactiontype" Mode="In" Type="String" />
+      <Parameter Name="status" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ManageEvents" ReturnType="Collection(EventRegistrationModel.ManageEvents_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="searchtitle" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="RegisteredUsers" EntityType="EventRegistrationModel.RegisteredUser" />
+    <AssociationSet Name="FK__UserConne__UserI__17F790F9" Association="EventRegistrationModel.FK__UserConne__UserI__17F790F9">
+      <End Role="RegisteredUser" EntitySet="RegisteredUsers" />
+      <End Role="UserConnection" EntitySet="UserConnections" />
+    </AssociationSet>
+    <EntitySet Name="EventMasters" EntityType="EventRegistrationModel.EventMaster" />
+    <AssociationSet Name="FK__EventMast__Custo__5CD6CB2B" Association="EventRegistrationModel.FK__EventMast__Custo__5CD6CB2B">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="EventMaster" EntitySet="EventMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EventUser__Event__30C33EC3" Association="EventRegistrationModel.FK__EventUser__Event__30C33EC3">
+      <End Role="EventMaster" EntitySet="EventMasters" />
+      <End Role="EventUser" EntitySet="EventUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registere__Event__164452B1" Association="EventRegistrationModel.FK__Registere__Event__164452B1">
+      <End Role="EventMaster" EntitySet="EventMasters" />
+      <End Role="RegisteredUser" EntitySet="RegisteredUsers" />
+    </AssociationSet>
+    <FunctionImport Name="eventwiseuser" ReturnType="Collection(EventRegistrationModel.eventwiseuser_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="alpha" Mode="In" Type="String" />
+      <Parameter Name="searchtitle" Mode="In" Type="String" />
+      <Parameter Name="domain" Mode="In" Type="String" />
+      <Parameter Name="event" Mode="In" Type="Int32" />
+      <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+      <Parameter Name="referralid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ReferralUserReport" ReturnType="Collection(EventRegistrationModel.ReferralUserReport_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="event" Mode="In" Type="Int32" />
+      <Parameter Name="customerid" Mode="In" Type="Int32" />
+      <Parameter Name="searchtitle" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="BounceUserReport" ReturnType="Collection(EventRegistrationModel.BounceUserReport_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="event" Mode="In" Type="Int32" />
+      <Parameter Name="customerid" Mode="In" Type="Int32" />
+      <Parameter Name="searchtitle" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetEventDetails" ReturnType="Collection(EventRegistrationModel.GetEventDetails_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+      <Parameter Name="alpha" Mode="In" Type="String" />
+      <Parameter Name="searchtitle" Mode="In" Type="String" />
+      <Parameter Name="manageevent" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserDetails" ReturnType="Collection(EventRegistrationModel.GetUserDetails_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="alpha" Mode="In" Type="String" />
+      <Parameter Name="searchtitle" Mode="In" Type="String" />
+      <Parameter Name="domain" Mode="In" Type="String" />
+      <Parameter Name="event" Mode="In" Type="Int32" />
+      <Parameter Name="referralid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="ZoomUserDetails" EntityType="EventRegistrationModel.ZoomUserDetail" />
+    <FunctionImport Name="AddZoomUserDetails">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="EventId" Mode="In" Type="Int32" />
+      <Parameter Name="RegisteredUserId" Mode="In" Type="Int32" />
+      <Parameter Name="SeniorityLevel" Mode="In" Type="String" />
+      <Parameter Name="PrimaryJobFunction" Mode="In" Type="String" />
+      <Parameter Name="NatureOfBusiness" Mode="In" Type="String" />
+      <Parameter Name="Country" Mode="In" Type="String" />
+      <Parameter Name="TopicOfIntrest" Mode="In" Type="String" />
+      <Parameter Name="AreyouRegistered" Mode="In" Type="String" />
+      <Parameter Name="OptInEmail" Mode="In" Type="Boolean" />
+      <Parameter Name="OptInPhone" Mode="In" Type="Boolean" />
+      <Parameter Name="OptInDirectEmail" Mode="In" Type="Boolean" />
+      <Parameter Name="OptInDGMEvents" Mode="In" Type="Boolean" />
+      <Parameter Name="CreatedDate" Mode="In" Type="DateTime" />
+      <Parameter Name="UpdatedDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="ZoomUserReport" ReturnType="Collection(EventRegistrationModel.ZoomUserReport_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="event" Mode="In" Type="Int32" />
+      <Parameter Name="customerid" Mode="In" Type="Int32" />
+      <Parameter Name="searchtitle" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SpGetEventToken" ReturnType="Collection(String)">
+      <Parameter Name="eventid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateZoomToken">
+      <Parameter Name="ZoomToken" Mode="In" Type="String" />
+      <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="BigMarkerUserDetails" EntityType="EventRegistrationModel.BigMarkerUserDetail" />
+    <FunctionImport Name="AddBigMarkerUserDetails">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="EventId" Mode="In" Type="Int32" />
+      <Parameter Name="RegisteredUserId" Mode="In" Type="Int32" />
+      <Parameter Name="SeniorityLevel" Mode="In" Type="String" />
+      <Parameter Name="PrimaryJobFunction" Mode="In" Type="String" />
+      <Parameter Name="NatureOfBusiness" Mode="In" Type="String" />
+      <Parameter Name="Country" Mode="In" Type="String" />
+      <Parameter Name="TopicOfIntrest" Mode="In" Type="String" />
+      <Parameter Name="AreyouRegistered" Mode="In" Type="String" />
+      <Parameter Name="OptInEmail" Mode="In" Type="Boolean" />
+      <Parameter Name="OptInPhone" Mode="In" Type="Boolean" />
+      <Parameter Name="OptInDirectEmail" Mode="In" Type="Boolean" />
+      <Parameter Name="OptInDGMEvents" Mode="In" Type="Boolean" />
+      <Parameter Name="CreatedDate" Mode="In" Type="DateTime" />
+      <Parameter Name="UpdatedDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="BigMarkerUserReport" ReturnType="Collection(EventRegistrationModel.BigMarkerUserReport_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="event" Mode="In" Type="Int32" />
+      <Parameter Name="customerid" Mode="In" Type="Int32" />
+      <Parameter Name="searchtitle" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateBigMarkerToken">
+      <Parameter Name="BigMarkerToken" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SpGetBigMarkerEventToken" ReturnType="Collection(String)">
+      <Parameter Name="eventid" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GetDetails_Result">
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="200" />
+  </ComplexType>
+  <EntityType Name="UserPackage">
+    <Key>
+      <PropertyRef Name="UserPackageId" />
+    </Key>
+    <Property Name="UserPackageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="PackageId" Type="Int32" Nullable="false" />
+    <Property Name="Purchasedate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsExpired" Type="Boolean" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updateddate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Package" Relationship="EventRegistrationModel.FK__UserPacka__Packa__3B75D760" FromRole="UserPackage" ToRole="Package" />
+    <NavigationProperty Name="Customer" Relationship="EventRegistrationModel.FK__UserPacka__Custo__3A81B327" FromRole="UserPackage" ToRole="Customer" />
+  </EntityType>
+  <ComplexType Name="Packagedetails_Result">
+    <Property Type="Int32" Name="PackageId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="GetCustomerDetails_Result">
+    <Property Type="Int32" Name="CustomerId" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Contactno" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="Date_of_Registration" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="No_of_events" Nullable="true" />
+    <Property Type="Decimal" Name="Availablecredits" Nullable="true" Precision="38" Scale="0" />
+  </ComplexType>
+  <ComplexType Name="Packagedetails1_Result">
+    <Property Type="Int32" Name="PackageId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Detail" Nullable="false" MaxLength="200" />
+    <Property Type="Decimal" Name="Cost" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="Validity" Nullable="false" />
+    <Property Type="Int32" Name="No_of_Registration" Nullable="false" />
+    <Property Type="Decimal" Name="Cost_per_Registration" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="No_of_Events" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Adminsetting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Taxpercent" Type="Int32" Nullable="false" />
+    <Property Name="Companyname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Address1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Adddress2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Pincode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Hostname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Smtpusername" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Smtpassword" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="portno" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Ismaintenance" Type="Boolean" />
+    <Property Name="CompanyWebsite" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Utm_Source" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Utm_Medium" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Utm_Campaign" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Utm_Content" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Utm_Term" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="AdminDetails_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="Taxpercent" Nullable="false" />
+    <Property Type="String" Name="Companyname" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Address1" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Adddress2" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Pincode" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="State" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="City" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Country" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Hostname" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Smtpusername" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Smtpassword" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="portno" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionType" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PaymentId1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PaymentId2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PaymentId3" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PaymentId4" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PaymentId5" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Isdeleted" Type="Boolean" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="PaymentMethod" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Customer" Relationship="EventRegistrationModel.FK__Transacti__Custo__6383C8BA" FromRole="Transaction" ToRole="Customer" />
+    <NavigationProperty Name="Orders" Relationship="EventRegistrationModel.FK__Order__Transacti__34C8D9D1" FromRole="Transaction" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="PackageId" Type="Int32" Nullable="false" />
+    <Property Name="OrderTotal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="TaxAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OrderTotalWithoutTax" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OrderStatus" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PurchasedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="OrderCompletedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Package" Relationship="EventRegistrationModel.FK__Order__PackageId__3864608B" FromRole="Order" ToRole="Package" />
+    <NavigationProperty Name="Customer" Relationship="EventRegistrationModel.FK__Order__CustomerI__4F7CD00D" FromRole="Order" ToRole="Customer" />
+    <Property Name="TransactionId" Type="Int32" />
+    <NavigationProperty Name="Transaction" Relationship="EventRegistrationModel.FK__Order__Transacti__34C8D9D1" FromRole="Order" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="Package">
+    <Key>
+      <PropertyRef Name="PackageId" />
+    </Key>
+    <Property Name="PackageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Detail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Cost" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Validity" Type="Int32" Nullable="false" />
+    <Property Name="No_of_Registration" Type="Int32" Nullable="false" />
+    <Property Name="No_of_Events" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updateddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Cost_per_Registration" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Orders" Relationship="EventRegistrationModel.FK__Order__PackageId__3864608B" FromRole="Package" ToRole="Order" />
+    <NavigationProperty Name="UserPackages" Relationship="EventRegistrationModel.FK__UserPacka__Packa__3B75D760" FromRole="Package" ToRole="UserPackage" />
+  </EntityType>
+  <Association Name="FK__Order__PackageId__3864608B">
+    <End Type="EventRegistrationModel.Package" Role="Package" Multiplicity="1" />
+    <End Type="EventRegistrationModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Package">
+        <PropertyRef Name="PackageId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="PackageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserPacka__Packa__3B75D760">
+    <End Type="EventRegistrationModel.Package" Role="Package" Multiplicity="1" />
+    <End Type="EventRegistrationModel.UserPackage" Role="UserPackage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Package">
+        <PropertyRef Name="PackageId" />
+      </Principal>
+      <Dependent Role="UserPackage">
+        <PropertyRef Name="PackageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Contactno" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Date_of_Registration" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updateddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ActivationCode" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="CustomerRoles" Relationship="EventRegistrationModel.FK__Customerr__Custo__5AEE82B9" FromRole="Customer" ToRole="CustomerRole" />
+    <NavigationProperty Name="Orders" Relationship="EventRegistrationModel.FK__Order__CustomerI__4F7CD00D" FromRole="Customer" ToRole="Order" />
+    <NavigationProperty Name="Transactions" Relationship="EventRegistrationModel.FK__Transacti__Custo__6383C8BA" FromRole="Customer" ToRole="Transaction" />
+    <NavigationProperty Name="UserPackages" Relationship="EventRegistrationModel.FK__UserPacka__Custo__3A81B327" FromRole="Customer" ToRole="UserPackage" />
+    <Property Name="Address1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Address2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Pincode" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EventUsers" Relationship="EventRegistrationModel.FK__EventUser__Custo__6442E2C9" FromRole="Customer" ToRole="EventUser" />
+    <NavigationProperty Name="EventMasters" Relationship="EventRegistrationModel.FK__EventMast__Custo__5CD6CB2B" FromRole="Customer" ToRole="EventMaster" />
+  </EntityType>
+  <EntityType Name="CustomerRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="EventRegistrationModel.FK__Customerr__Custo__5AEE82B9" FromRole="CustomerRole" ToRole="Customer" />
+    <NavigationProperty Name="Role" Relationship="EventRegistrationModel.FK__CustomerR__RoleI__43D61337" FromRole="CustomerRole" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="createddate" Type="DateTime" Precision="3" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="CustomerRoles" Relationship="EventRegistrationModel.FK__CustomerR__RoleI__43D61337" FromRole="Role" ToRole="CustomerRole" />
+  </EntityType>
+  <Association Name="FK__Customerr__Custo__5AEE82B9">
+    <End Type="EventRegistrationModel.Customer" Role="Customer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EventRegistrationModel.CustomerRole" Role="CustomerRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="CustomerRole">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__CustomerI__4F7CD00D">
+    <End Type="EventRegistrationModel.Customer" Role="Customer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EventRegistrationModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__Custo__6383C8BA">
+    <End Type="EventRegistrationModel.Customer" Role="Customer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EventRegistrationModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserPacka__Custo__3A81B327">
+    <End Type="EventRegistrationModel.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="EventRegistrationModel.UserPackage" Role="UserPackage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="UserPackage">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerR__RoleI__43D61337">
+    <End Type="EventRegistrationModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="EventRegistrationModel.CustomerRole" Role="CustomerRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="CustomerRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__Transacti__34C8D9D1">
+    <End Type="EventRegistrationModel.Transaction" Role="Transaction" Multiplicity="0..1" />
+    <End Type="EventRegistrationModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transaction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="TransactionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="GetUserConnectionDetails_Result">
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Country" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="DateOfRegistration" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+    <Property Type="Int32" Name="EventId" Nullable="false" />
+    <Property Type="String" Name="EventName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="DomainName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="ProfileId" Nullable="false" MaxLength="200" />
+    <Property Type="Boolean" Name="Ispaid" Nullable="true" />
+    <Property Type="Int32" Name="ConnectionCount" Nullable="false" />
+    <Property Type="Int32" Name="ReferralCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetOrderDetails_Result">
+    <Property Type="Int32" Name="OrderId" Nullable="false" />
+    <Property Type="Int32" Name="CustomerId" Nullable="false" />
+    <Property Type="Decimal" Name="OrderTotal" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="String" Name="OrderStatus" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="OrderCompletedDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="TransactionId" Nullable="true" />
+    <Property Type="String" Name="Remarks" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="200" />
+  </ComplexType>
+  <EntityType Name="VisitorState">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IPaddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ReferralId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserConnection">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ConnectionProfileId" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="RegisteredUser" Relationship="EventRegistrationModel.FK__UserConne__UserI__17F790F9" FromRole="UserConnection" ToRole="RegisteredUser" />
+  </EntityType>
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="GetPostEventDetails_Result">
+    <Property Type="Int32" Name="EventId" Nullable="false" />
+    <Property Type="Int32" Name="CustomerId" Nullable="false" />
+    <Property Type="String" Name="DomainName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="EventName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Description" Nullable="false" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+    <Property Type="String" Name="LogoUrl" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="EventStartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EventEndDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="ContactPersonName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="ContactPersonPhone" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="ContactPersonEmail" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="ProfileImage" Nullable="false" MaxLength="1" />
+    <Property Type="Int32" Name="TotalCount" Nullable="false" />
+    <Property Type="String" Name="ButtonURL" Nullable="true" MaxLength="300" />
+  </ComplexType>
+  <ComplexType Name="CustomerEmails_Result">
+    <Property Type="Int32" Name="CustomerId" Nullable="false" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="200" />
+  </ComplexType>
+  <EntityType Name="EventUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="Customer" Relationship="EventRegistrationModel.FK__EventUser__Custo__6442E2C9" FromRole="EventUser" ToRole="Customer" />
+    <NavigationProperty Name="EventMaster" Relationship="EventRegistrationModel.FK__EventUser__Event__30C33EC3" FromRole="EventUser" ToRole="EventMaster" />
+  </EntityType>
+  <Association Name="FK__EventUser__Custo__6442E2C9">
+    <End Type="EventRegistrationModel.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="EventRegistrationModel.EventUser" Role="EventUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="EventUser">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="EventUserDetails_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="EventId" Nullable="false" />
+    <Property Type="Int32" Name="CustomerId" Nullable="false" />
+    <Property Type="String" Name="EventName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="GetRegisteredUserDetails_Result">
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Country" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="DateOfRegistration" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+    <Property Type="Int32" Name="EventId" Nullable="false" />
+    <Property Type="String" Name="EventName" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="EventStartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EventEndDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="DomainName" Nullable="false" MaxLength="200" />
+    <Property Type="Boolean" Name="Ispaid" Nullable="true" />
+    <Property Type="String" Name="CRM_RegistrationId" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_FirstName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_LastName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_EmaiId" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_CompanyName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_JobTitle" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="ProfileImage" Nullable="true" />
+    <Property Type="Int32" Name="ReferralCount" Nullable="true" />
+    <Property Type="Int32" Name="ConnectionCount" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetTransactionsDetails_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="TransactionType" Nullable="false" MaxLength="200" />
+    <Property Type="Int32" Name="CustomerId" Nullable="false" />
+    <Property Type="Decimal" Name="Amount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="TransactionDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="PaymentMethod" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Remarks" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="ManageEvents_Result">
+    <Property Type="String" Name="EventName" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="EventStartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EventEndDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="401" />
+    <Property Type="Int32" Name="ReferredUsers" Nullable="true" />
+    <Property Type="Int32" Name="TotalCount" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="RegisteredUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="IsRegistered" Type="Boolean" />
+    <Property Name="Company" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="JobDesignation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ProfileLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProfileImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Ispaid" Type="Boolean" />
+    <Property Name="ReferalId" Type="Int32" />
+    <Property Name="ProfileId" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="AuthToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CRM_FirstName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CRM_LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CRM_EmaiId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CRM_CompanyName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CRM_JobTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CRM_RegistrationId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Source" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserConnections" Relationship="EventRegistrationModel.FK__UserConne__UserI__17F790F9" FromRole="RegisteredUser" ToRole="UserConnection" />
+    <NavigationProperty Name="EventMaster" Relationship="EventRegistrationModel.FK__Registere__Event__164452B1" FromRole="RegisteredUser" ToRole="EventMaster" />
+  </EntityType>
+  <Association Name="FK__UserConne__UserI__17F790F9">
+    <End Type="EventRegistrationModel.RegisteredUser" Role="RegisteredUser" Multiplicity="1" />
+    <End Type="EventRegistrationModel.UserConnection" Role="UserConnection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegisteredUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserConnection">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="EventMaster">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DomainName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="EventName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="ResponseURL" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="Commentary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ArticalUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ArticalTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="LogoUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="EventStartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EventEndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ContactPersonName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ContactPersonPhone" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ContactPersonEmail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FormBuilderCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EventKey" Type="Guid" />
+    <Property Name="ButtonURL" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="FbButtonURL" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="GoogleButtonURL" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Customer" Relationship="EventRegistrationModel.FK__EventMast__Custo__5CD6CB2B" FromRole="EventMaster" ToRole="Customer" />
+    <NavigationProperty Name="EventUsers" Relationship="EventRegistrationModel.FK__EventUser__Event__30C33EC3" FromRole="EventMaster" ToRole="EventUser" />
+    <NavigationProperty Name="RegisteredUsers" Relationship="EventRegistrationModel.FK__Registere__Event__164452B1" FromRole="EventMaster" ToRole="RegisteredUser" />
+    <Property Name="WebinarId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ZoomToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ZoomUUID" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="BigMarkerWebinairId" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="BigMarkerToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HeySummitWebinarId" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="HeySummitToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Channel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK__EventMast__Custo__5CD6CB2B">
+    <End Type="EventRegistrationModel.Customer" Role="Customer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EventRegistrationModel.EventMaster" Role="EventMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="EventMaster">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EventUser__Event__30C33EC3">
+    <End Type="EventRegistrationModel.EventMaster" Role="EventMaster" Multiplicity="1" />
+    <End Type="EventRegistrationModel.EventUser" Role="EventUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventMaster">
+        <PropertyRef Name="EventId" />
+      </Principal>
+      <Dependent Role="EventUser">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registere__Event__164452B1">
+    <End Type="EventRegistrationModel.EventMaster" Role="EventMaster" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EventRegistrationModel.RegisteredUser" Role="RegisteredUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventMaster">
+        <PropertyRef Name="EventId" />
+      </Principal>
+      <Dependent Role="RegisteredUser">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="eventwiseuser_Result">
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Country" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Source" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="DateOfRegistration" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+    <Property Type="Int32" Name="EventId" Nullable="false" />
+    <Property Type="String" Name="EventName" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="EventStartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EventEndDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="DomainName" Nullable="false" MaxLength="200" />
+    <Property Type="Boolean" Name="Ispaid" Nullable="true" />
+    <Property Type="String" Name="CRM_RegistrationId" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_FirstName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_LastName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_EmaiId" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_CompanyName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_JobTitle" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="ProfileImage" Nullable="true" />
+    <Property Type="Int32" Name="CustomerId" Nullable="true" />
+    <Property Type="Int32" Name="ReferralCount" Nullable="true" />
+    <Property Type="Int32" Name="VisitorCount" Nullable="true" />
+    <Property Type="Int32" Name="ConnectionCount" Nullable="false" />
+    <Property Type="String" Name="ReferredBy" Nullable="true" MaxLength="201" />
+  </ComplexType>
+  <ComplexType Name="ReferralUserReport_Result">
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="EventName" Nullable="false" MaxLength="200" />
+    <Property Type="Int32" Name="EventId" Nullable="true" />
+    <Property Type="Int32" Name="ReferalId" Nullable="true" />
+    <Property Type="String" Name="Source" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="RefferedBy" Nullable="false" MaxLength="201" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="DateOfRegistration" Nullable="false" Precision="23" />
+    <Property Type="String" Name="ProfileImage" Nullable="true" />
+    <Property Type="String" Name="CRM_CompanyName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_JobTitle" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="BounceUserReport_Result">
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="Int32" Name="EventId" Nullable="false" />
+    <Property Type="Int32" Name="ReferalId" Nullable="true" />
+    <Property Type="String" Name="EventName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="DateOfRegistration" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Source" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="RefferedBy" Nullable="false" MaxLength="201" />
+  </ComplexType>
+  <ComplexType Name="GetEventDetails_Result">
+    <Property Type="Int32" Name="EventId" Nullable="false" />
+    <Property Type="Int32" Name="CustomerId" Nullable="false" />
+    <Property Type="String" Name="DomainName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="EventName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Description" Nullable="false" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+    <Property Type="String" Name="LogoUrl" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="EventStartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EventEndDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="ContactPersonName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="ContactPersonPhone" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="ContactPersonEmail" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="ProfileImage" Nullable="false" MaxLength="1" />
+    <Property Type="Int32" Name="TotalCount" Nullable="false" />
+    <Property Type="Int32" Name="LinkedinUsers" Nullable="false" />
+    <Property Type="Int32" Name="FacebookUsers" Nullable="false" />
+    <Property Type="String" Name="ButtonURL" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="FbButtonURL" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="GoogleButtonURL" Nullable="true" MaxLength="300" />
+  </ComplexType>
+  <ComplexType Name="GetUserDetails_Result">
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Source" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Country" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="DateOfRegistration" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+    <Property Type="Int32" Name="EventId" Nullable="false" />
+    <Property Type="String" Name="EventName" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="EventStartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EventEndDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="DomainName" Nullable="false" MaxLength="200" />
+    <Property Type="Boolean" Name="Ispaid" Nullable="true" />
+    <Property Type="String" Name="CRM_RegistrationId" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_FirstName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_LastName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_EmaiId" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_CompanyName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_JobTitle" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="ProfileImage" Nullable="true" />
+    <Property Type="Int32" Name="ReferralCount" Nullable="true" />
+    <Property Type="Int32" Name="ConnectionCount" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="ZoomUserDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" />
+    <Property Name="RegisteredUserId" Type="Int32" />
+    <Property Name="SeniorityLevel" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryJobFunction" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NatureOfBusiness" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TopicOfIntrest" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="AreyouRegistered" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OptInEmail" Type="Boolean" />
+    <Property Name="OptInPhone" Type="Boolean" />
+    <Property Name="OptInDirectEmail" Type="Boolean" />
+    <Property Name="OptInDGMEvents" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <ComplexType Name="ZoomUserReport_Result">
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="EventName" Nullable="false" MaxLength="200" />
+    <Property Type="Int32" Name="EventId" Nullable="true" />
+    <Property Type="Int32" Name="ReferalId" Nullable="true" />
+    <Property Type="String" Name="Source" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="RefferedBy" Nullable="false" MaxLength="201" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="DateOfRegistration" Nullable="false" Precision="23" />
+    <Property Type="String" Name="ProfileImage" Nullable="true" />
+    <Property Type="String" Name="CRM_CompanyName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_JobTitle" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SeniorityLevel" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="PrimaryJobFunction" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="NatureOfBusiness" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Country" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="TopicOfIntrest" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="AreyouRegistered" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="OptInEmail" Nullable="true" />
+    <Property Type="Boolean" Name="OptInPhone" Nullable="true" />
+    <Property Type="Boolean" Name="OptInDirectEmail" Nullable="true" />
+    <Property Type="Boolean" Name="OptInDGMEvents" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UpdatedDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <EntityType Name="BigMarkerUserDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" />
+    <Property Name="RegisteredUserId" Type="Int32" />
+    <Property Name="SeniorityLevel" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryJobFunction" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NatureOfBusiness" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TopicOfIntrest" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="AreyouRegistered" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OptInEmail" Type="Boolean" />
+    <Property Name="OptInPhone" Type="Boolean" />
+    <Property Name="OptInDirectEmail" Type="Boolean" />
+    <Property Name="OptInDGMEvents" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <ComplexType Name="BigMarkerUserReport_Result">
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="EventName" Nullable="false" MaxLength="200" />
+    <Property Type="Int32" Name="EventId" Nullable="true" />
+    <Property Type="Int32" Name="ReferalId" Nullable="true" />
+    <Property Type="String" Name="Source" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="RefferedBy" Nullable="false" MaxLength="201" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="DateOfRegistration" Nullable="false" Precision="23" />
+    <Property Type="String" Name="ProfileImage" Nullable="true" />
+    <Property Type="String" Name="CRM_CompanyName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="CRM_JobTitle" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SeniorityLevel" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="PrimaryJobFunction" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="NatureOfBusiness" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Country" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="TopicOfIntrest" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="AreyouRegistered" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="OptInEmail" Nullable="true" />
+    <Property Type="Boolean" Name="OptInPhone" Nullable="true" />
+    <Property Type="Boolean" Name="OptInDirectEmail" Nullable="true" />
+    <Property Type="Boolean" Name="OptInDGMEvents" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UpdatedDate" Nullable="true" Precision="23" />
+  </ComplexType>
+</Schema>

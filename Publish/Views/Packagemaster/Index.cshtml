@@ -1,0 +1,17 @@
+@using DataLayer
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="mainBlock minheight500">
+    <div class="mainBlockTop">
+        <div class="mainBlockTopLeft">Package Details</div>
+        <div>
+            @*<a id="addToTable1" class="btn btnRed" href="@Url.Action("CreatePackage", "Packagemaster")"><i class="fa fa-plus"></i>&nbsp;Add Package</a>*@
+        </div>
+    </div>
+    @{Html.RenderAction("grid");}
+</div>
+
+

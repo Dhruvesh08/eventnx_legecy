@@ -1,0 +1,20 @@
+
+@using DataLayer
+@{
+    /**/
+
+
+    ViewBag.Title = "Index";
+}
+
+
+<div class="mainBlock minheight500">
+    <div class="mainBlockTop">
+        <div class="mainBlockTopLeft">Bounced Users</div>
+        @*<div class="top_btn_area">
+            
+        </div>*@
+    </div>
+
+    @{Html.RenderAction("Grid");}
+</div>

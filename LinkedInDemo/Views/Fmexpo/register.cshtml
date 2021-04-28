@@ -1,0 +1,544 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Event Nx - Events &amp; Exhibition Register</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="~/CustomEventAsset/css/plugins.css">-->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css'/>
+    <link rel="stylesheet" href="~/CustomEventAsset/css/style.css">
+    <script src='https://www.eventnx.com/eventscript/jquery-1.12.0.min.js'></script>  
+    <script src='https://www.eventnx.com/eventscript/eventproloader.js'></script>
+</head>
+<body style="background:none">
+    <div class="container paddbtm27">
+        <div class="header"><a href="#"><img src="~/CustomEventAsset/images/eventnx_logo.png" alt="" /></a></div>
+        <div class="bg_width register_page">
+            <h2 style="max-width: 50%;">Test Webinar: The 'new normal' during the COVID-19 Pandemic</h2>
+            <div class="formarea">
+                <form role="form" id="RegisterForm">
+            <div class="row">
+                <div class="col-lg-6 order-lg-2"><div class="img_banner">
+                    <img src="../images/banner_event.png" alt="" />
+                        </div></div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="row widthset1">
+                <div class="col-lg-4 col-md-3"><div class="img_orinal"><img id="profileimagelinked" src="../images/img_orinal.png" alt="" /></div></div>
+                <div class="col-lg-8 col-md-9">
+                    <div class="form-group">
+                                    <input type="text" id="txtFirstName" class="form-control" placeholder="First Name">
+                                </div>
+                    <div class="form-group">
+                                    <input type="text" id="txtLastName" class="form-control" placeholder="Last Name">
+                                </div></div>
+                </div>
+                <div class="form-group">
+                                    <input type="text" id="txtEmail" class="form-control" placeholder="Email Address">
+                                </div>
+            <div class="form-group">
+                                    <input type="text" id="txtPhone" class="form-control" placeholder="Phone">
+                                </div>
+                    <div class="form-group">
+                                    <input type="text" id="txtCompanyName" class="form-control" placeholder="Company">
+                                </div>
+                </div>
+            
+            </div>
+                 <div class="row">
+                    <div class="col-lg-4">
+                                <div class="form-group">
+                                    <input type="text" id="txtJobTitle" class="form-control" placeholder="Job Title">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <select class="js-select2" id="ddlSeniorityLevel">
+                                        <option>Seniority Level</option>
+                                        <option value="Chairman/Board Member">Chairman/Board Member</option>
+                                        <option value="President/CEO">President/CEO</option>
+                                        <option value="C-Level">C-Level</option>
+                                        <option value="Director/VP">Director/VP</option>
+                                        <option value="Senior Manager">Senior Manager</option>
+                                        <option value="Manager">Manager</option>
+                                        <option value="Technical/Engineer/Geo">Technical/Engineer/Geo</option>
+                                        <option value="Purchaser/Procurement">Purchaser/Procurement</option>
+                                        <option value="Trades/Equipment/Skilled Labour">Trades/Equipment/Skilled Labour</option>
+                                        <option value="Early Career Professional">Early Career Professional</option>
+                                    </select>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <select class="js-select2" id="ddlPrimaryJob">
+                                        <option>Primary Job Function</option>
+                                        <option value="Administration">Administration</option>
+                                        <option value="Consultant">Consultant</option>
+                                        <option value="Drilling/Completion/Production">Drilling/Completion/Production</option>
+                                        <option value="Education/Training">Education/Training</option>
+                                        <option value="Enhanced Recovery">Enhanced Recovery</option>
+                                        <option value="Environment">Environment</option>
+                                        <option value="Facilities">Facilities</option>
+                                        <option value="Field Operations">Field Operations</option>
+                                        <option value="Finance/Accounting">Finance/Accounting</option>
+                                        <option value="Health/Safety">Health/Safety</option>
+                                        <option value="Human Resources/Marketing/Communications">Human Resources/Marketing/Communications</option>
+                                        <option value="Information Technologies">Information Technologies</option>
+                                        <option value="Instrumentation/Systems">Instrumentation/Systems</option>
+                                        <option value="Land/Exploration">Land/Exploration</option>
+                                        <option value="Legal/Regulatory">Legal/Regulatory</option>
+                                        <option value="Logistics/Oilfield Transporation">Logistics/Oilfield Transporation</option>
+                                        <option value="Oil and Gas Marketing">Oil and Gas Marketing</option>
+                                        <option value="Oilfield Construction">Oilfield Construction</option>
+                                        <option value="Operations/Maintenance">Operations/Maintenance</option>
+                                        <option value="Pipeline/Hydrocarbon Transport">Pipeline/Hydrocarbon Transport</option>
+                                        <option value="Plant/Reginery/Upgrader">Plant/Reginery/Upgrader</option>
+                                        <option value="Research/Development">Research/Development</option>
+                                    </select>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <select class="js-select2" id="ddlNatureOfBusiness">
+                                        <option>Nature of Business</option>
+                                        <option value="Agent/distributor/supplier">Agent/distributor/supplier</option>
+                                        <option value="Construction">Construction</option>
+                                        <option value="Consultancy">Consultancy</option>
+                                        <option value="Education/Training">Education/Training</option>
+                                        <option value="EPC/FEED">EPC/FEED</option>
+                                        <option value="Exploration/Production">Exploration/Production</option>
+                                        <option value="Gas Production">Gas Production</option>
+                                        <option value="Government">Government</option>
+                                        <option value="Health/Safety/Environment">Health/Safety/Environment</option>
+                                        <option value="Instrumentation/Automation">Instrumentation/Automation</option>
+                                        <option value="Investment/Finance">Investment/Finance</option>
+                                        <option value="Land Services">Land Services</option>
+                                        <option value="Maintenance/Repair">Maintenance/Repair</option>
+                                        <option value="Manufacturer">Manufacturer</option>
+                                        <option value="National Oil Company">National Oil Company</option>
+                                        <option value="Owner/Operator">Owner/Operator</option>
+                                        <option value="Part Supplier">Part Supplier</option>
+                                        <option value="Petrochemicals/Refining">Petrochemicals/Refining</option>
+                                        <option value="Pipeline Operator">Pipeline Operator</option>
+                                        <option value="Pipeline Services">Pipeline Services</option>
+                                        <option value="Plants/Terminals">Plants/Terminals</option>
+                                        <option value="Power Generation">Power Generation</option>
+                                        <option value="Processing/Production">Processing/Production</option>
+                                        <option value="Renewable Energy">Renewable Energy</option>
+                                        <option value="Research/Development">Research/Development</option>
+                                        <option value="Security">Security</option>
+                                        <option value="Service">Service</option>
+                                        <option value="Trade Association">Trade Association</option>
+                                    </select>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <select class="js-select2" id="ddlCountry">
+                                        <option value="">Please select a country</option>
+                                        <option value="Afghanistan">Afghanistan</option>
+                                        <option value="Albania">Albania</option>
+                                        <option value="Algeria">Algeria</option>
+                                        <option value="American Samoa">American Samoa</option>
+                                        <option value="Andorra">Andorra</option>
+                                        <option value="Angola">Angola</option>
+                                        <option value="Anguilla">Anguilla</option>
+                                        <option value="Antarctica">Antarctica</option>
+                                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                        <option value="Argentina">Argentina</option>
+                                        <option value="Armenia">Armenia</option>
+                                        <option value="Aruba">Aruba</option>
+                                        <option value="Australia">Australia</option>
+                                        <option value="Austria">Austria</option>
+                                        <option value="Azerbaijan">Azerbaijan</option>
+                                        <option value="Bahamas">Bahamas</option>
+                                        <option value="Bahrain">Bahrain</option>
+                                        <option value="Bangladesh">Bangladesh</option>
+                                        <option value="Barbados">Barbados</option>
+                                        <option value="Belarus">Belarus</option>
+                                        <option value="Belgium">Belgium</option>
+                                        <option value="Belize">Belize</option>
+                                        <option value="Benin">Benin</option>
+                                        <option value="Bermuda">Bermuda</option>
+                                        <option value="Bhutan">Bhutan</option>
+                                        <option value="Bolivia, Plurinational State of">Bolivia, Plurinational State of</option>
+                                        <option value="Bonaire, Sint Eustatius and Saba">Bonaire, Sint Eustatius and Saba</option>
+                                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                        <option value="Botswana">Botswana</option>
+                                        <option value="Bouvet Island">Bouvet Island</option>
+                                        <option value="Brazil">Brazil</option>
+                                        <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                                        <option value="Brunei Darussalam">Brunei Darussalam</option>
+                                        <option value="Bulgaria">Bulgaria</option>
+                                        <option value="Burkina Faso">Burkina Faso</option>
+                                        <option value="Burundi">Burundi</option>
+                                        <option value="Cambodia">Cambodia</option>
+                                        <option value="Cameroon">Cameroon</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="Cape Verde">Cape Verde</option>
+                                        <option value="Cayman Islands">Cayman Islands</option>
+                                        <option value="Central African Republic">Central African Republic</option>
+                                        <option value="Chad">Chad</option>
+                                        <option value="Chile">Chile</option>
+                                        <option value="China">China</option>
+                                        <option value="Christmas Island">Christmas Island</option>
+                                        <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+                                        <option value="Colombia">Colombia</option>
+                                        <option value="Comoros">Comoros</option>
+                                        <option value="Congo">Congo</option>
+                                        <option value="Congo, The Democratic Republic of the">Congo, The Democratic Republic of the</option>
+                                        <option value="Cook Islands">Cook Islands</option>
+                                        <option value="Costa Rica">Costa Rica</option>
+                                        <option value="Croatia">Croatia</option>
+                                        <option value="Cuba">Cuba</option>
+                                        <option value="Curaçao">Curaçao</option>
+                                        <option value="Cyprus">Cyprus</option>
+                                        <option value="Czech Republic">Czech Republic</option>
+                                        <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                                        <option value="Denmark">Denmark</option>
+                                        <option value="Djibouti">Djibouti</option>
+                                        <option value="Dominica">Dominica</option>
+                                        <option value="Dominican Republic">Dominican Republic</option>
+                                        <option value="Ecuador">Ecuador</option>
+                                        <option value="Egypt">Egypt</option>
+                                        <option value="El Salvador">El Salvador</option>
+                                        <option value="Equatorial Guinea">Equatorial Guinea</option>
+                                        <option value="Eritrea">Eritrea</option>
+                                        <option value="Estonia">Estonia</option>
+                                        <option value="Ethiopia">Ethiopia</option>
+                                        <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+                                        <option value="Faroe Islands">Faroe Islands</option>
+                                        <option value="Fiji">Fiji</option>
+                                        <option value="Finland">Finland</option>
+                                        <option value="France">France</option>
+                                        <option value="French Guiana">French Guiana</option>
+                                        <option value="French Polynesia">French Polynesia</option>
+                                        <option value="French Southern Territories">French Southern Territories</option>
+                                        <option value="Gabon">Gabon</option>
+                                        <option value="Gambia">Gambia</option>
+                                        <option value="Georgia">Georgia</option>
+                                        <option value="Germany">Germany</option>
+                                        <option value="Ghana">Ghana</option>
+                                        <option value="Gibraltar">Gibraltar</option>
+                                        <option value="Greece">Greece</option>
+                                        <option value="Greenland">Greenland</option>
+                                        <option value="Grenada">Grenada</option>
+                                        <option value="Guadeloupe">Guadeloupe</option>
+                                        <option value="Guam">Guam</option>
+                                        <option value="Guatemala">Guatemala</option>
+                                        <option value="Guernsey">Guernsey</option>
+                                        <option value="Guinea">Guinea</option>
+                                        <option value="Guinea-Bissau">Guinea-Bissau</option>
+                                        <option value="Guyana">Guyana</option>
+                                        <option value="Haiti">Haiti</option>
+                                        <option value="Heard Island and McDonald Islands">Heard Island and McDonald Islands</option>
+                                        <option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
+                                        <option value="Honduras">Honduras</option>
+                                        <option value="Hungary">Hungary</option>
+                                        <option value="Iceland">Iceland</option>
+                                        <option value="India">India</option>
+                                        <option value="Indonesia">Indonesia</option>
+                                        <option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
+                                        <option value="Iraq">Iraq</option>
+                                        <option value="Ireland">Ireland</option>
+                                        <option value="Isle of Man">Isle of Man</option>
+                                        <option value="Israel">Israel</option>
+                                        <option value="Italy">Italy</option>
+                                        <option value="Jamaica">Jamaica</option>
+                                        <option value="Japan">Japan</option>
+                                        <option value="Jersey">Jersey</option>
+                                        <option value="Jordan">Jordan</option>
+                                        <option value="Kazakhstan">Kazakhstan</option>
+                                        <option value="Kenya">Kenya</option>
+                                        <option value="Kiribati">Kiribati</option>
+                                        <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+                                        <option value="Korea, Republic of">Korea, Republic of</option>
+                                        <option value="Kuwait">Kuwait</option>
+                                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                                        <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+                                        <option value="Latvia">Latvia</option>
+                                        <option value="Lebanon">Lebanon</option>
+                                        <option value="Lesotho">Lesotho</option>
+                                        <option value="Liberia">Liberia</option>
+                                        <option value="Libya">Libya</option>
+                                        <option value="Liechtenstein">Liechtenstein</option>
+                                        <option value="Lithuania">Lithuania</option>
+                                        <option value="Luxembourg">Luxembourg</option>
+                                        <option value="Macedonia, Republic of">Macedonia, Republic of</option>
+                                        <option value="Madagascar">Madagascar</option>
+                                        <option value="Malawi">Malawi</option>
+                                        <option value="Malaysia">Malaysia</option>
+                                        <option value="Maldives">Maldives</option>
+                                        <option value="Mali">Mali</option>
+                                        <option value="Malta">Malta</option>
+                                        <option value="Marshall Islands">Marshall Islands</option>
+                                        <option value="Martinique">Martinique</option>
+                                        <option value="Mauritania">Mauritania</option>
+                                        <option value="Mauritius">Mauritius</option>
+                                        <option value="Mayotte">Mayotte</option>
+                                        <option value="Mexico">Mexico</option>
+                                        <option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+                                        <option value="Moldova, Republic of">Moldova, Republic of</option>
+                                        <option value="Monaco">Monaco</option>
+                                        <option value="Mongolia">Mongolia</option>
+                                        <option value="Montenegro">Montenegro</option>
+                                        <option value="Montserrat">Montserrat</option>
+                                        <option value="Morocco">Morocco</option>
+                                        <option value="Mozambique">Mozambique</option>
+                                        <option value="Myanmar">Myanmar</option>
+                                        <option value="Namibia">Namibia</option>
+                                        <option value="Nauru">Nauru</option>
+                                        <option value="Nepal">Nepal</option>
+                                        <option value="Netherlands">Netherlands</option>
+                                        <option value="New Caledonia">New Caledonia</option>
+                                        <option value="New Zealand">New Zealand</option>
+                                        <option value="Nicaragua">Nicaragua</option>
+                                        <option value="Niger">Niger</option>
+                                        <option value="Nigeria">Nigeria</option>
+                                        <option value="Niue">Niue</option>
+                                        <option value="Norfolk Island">Norfolk Island</option>
+                                        <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                                        <option value="Norway">Norway</option>
+                                        <option value="Oman">Oman</option>
+                                        <option value="Pakistan">Pakistan</option>
+                                        <option value="Palau">Palau</option>
+                                        <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
+                                        <option value="Panama">Panama</option>
+                                        <option value="Papua New Guinea">Papua New Guinea</option>
+                                        <option value="Paraguay">Paraguay</option>
+                                        <option value="Peru">Peru</option>
+                                        <option value="Philippines">Philippines</option>
+                                        <option value="Pitcairn">Pitcairn</option>
+                                        <option value="Poland">Poland</option>
+                                        <option value="Portugal">Portugal</option>
+                                        <option value="Qatar">Qatar</option>
+                                        <option value="Romania">Romania</option>
+                                        <option value="Russian Federation">Russian Federation</option>
+                                        <option value="Rwanda">Rwanda</option>
+                                        <option value="Réunion">Réunion</option>
+                                        <option value="Saint Barthélemy">Saint Barthélemy</option>
+                                        <option value="Saint Helena, Ascension and Tristan da Cunha">Saint Helena, Ascension and Tristan da Cunha</option>
+                                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                        <option value="Saint Lucia">Saint Lucia</option>
+                                        <option value="Saint Martin (French part)">Saint Martin (French part)</option>
+                                        <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+                                        <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                                        <option value="Samoa">Samoa</option>
+                                        <option value="San Marino">San Marino</option>
+                                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                        <option value="Saudi Arabia">Saudi Arabia</option>
+                                        <option value="Senegal">Senegal</option>
+                                        <option value="Serbia">Serbia</option>
+                                        <option value="Seychelles">Seychelles</option>
+                                        <option value="Sierra Leone">Sierra Leone</option>
+                                        <option value="Singapore">Singapore</option>
+                                        <option value="Sint Maarten (Dutch part)">Sint Maarten (Dutch part)</option>
+                                        <option value="Slovakia">Slovakia</option>
+                                        <option value="Slovenia">Slovenia</option>
+                                        <option value="Solomon Islands">Solomon Islands</option>
+                                        <option value="Somalia">Somalia</option>
+                                        <option value="South Africa">South Africa</option>
+                                        <option value="South Georgia and the South Sandwich Islands">South Georgia and the South Sandwich Islands</option>
+                                        <option value="South Sudan">South Sudan</option>
+                                        <option value="Spain">Spain</option>
+                                        <option value="Sri Lanka">Sri Lanka</option>
+                                        <option value="Sudan">Sudan</option>
+                                        <option value="Suriname">Suriname</option>
+                                        <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+                                        <option value="Swaziland">Swaziland</option>
+                                        <option value="Sweden">Sweden</option>
+                                        <option value="Switzerland">Switzerland</option>
+                                        <option value="Syrian Arab Republic">Syrian Arab Republic</option>
+                                        <option value="Tajikistan">Tajikistan</option>
+                                        <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+                                        <option value="Thailand">Thailand</option>
+                                        <option value="Timor-Leste">Timor-Leste</option>
+                                        <option value="Togo">Togo</option>
+                                        <option value="Tokelau">Tokelau</option>
+                                        <option value="Tonga">Tonga</option>
+                                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                        <option value="Tunisia">Tunisia</option>
+                                        <option value="Turkey">Turkey</option>
+                                        <option value="Turkmenistan">Turkmenistan</option>
+                                        <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+                                        <option value="Tuvalu">Tuvalu</option>
+                                        <option value="Uganda">Uganda</option>
+                                        <option value="Ukraine">Ukraine</option>
+                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                        <option value="United Kingdom">United Kingdom</option>
+                                        <option value="United States">United States</option>
+                                        <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                                        <option value="Uruguay">Uruguay</option>
+                                        <option value="Uzbekistan">Uzbekistan</option>
+                                        <option value="Vanuatu">Vanuatu</option>
+                                        <option value="Venezuela, Bolivarian Republic of">Venezuela, Bolivarian Republic of</option>
+                                        <option value="Viet Nam">Viet Nam</option>
+                                        <option value="Virgin Islands, British">Virgin Islands, British</option>
+                                        <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
+                                        <option value="Wallis and Futuna">Wallis and Futuna</option>
+                                        <option value="Western Sahara">Western Sahara</option>
+                                        <option value="Yemen">Yemen</option>
+                                        <option value="Zambia">Zambia</option>
+                                        <option value="Zimbabwe">Zimbabwe</option>
+                                        <option value="Åland Islands">Åland Islands</option>
+                                    </select>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                    </div>   
+            
+                    <div class="maxwidth572">
+                        <div class="row">
+			    <div id='eventregistration' class='eventregistration'></div>
+                            @*<div class="col-lg-12">
+                                <div class="form-group">
+                                    <input type="text" id="txtTopicsofInterest" class="form-control" placeholder="Topics you're interested in required">
+                                </div>
+                            </div>*@
+                         
+                            @*<div class="col-lg-12">
+                                <div class="form-group">
+                                    <select class="js-select2" id="ddlRegisteredForGlobal">
+                                        <option>Are you registered for the Global Energy Show 2021?</option>
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>*@
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 privacy_area">
+                            <h4>Privacy Notice</h4>
+
+                            <h6>Marketing Permission</h6>
+                            <p>Marketing Permission Your personal data will be held in accordance with these T&Cs, and will be processed in accordance with dmg events https://www.dmgevents.com/privacy-policy privacy notices.</p>
+                            
+                            <table class="table_line">
+                                <tr>
+                                    <td style="width: 25px;"><div class="check_box" style="width: 25px;"><input id="checkbox1" type="checkbox" name="checkbox"><span></span></div></td>
+                                    <td>No, I do not want to be contacted by dmg events</td>
+                                </tr>
+                            </table>
+
+                            <h6>Marketing Permission</h6>
+                            <p>From time to time we would like to contact you about our products and services, as well as other content that may be of interest to you. You will receive marketing communications from us if you have requested information from us or purchased services from us and you have not opted out of receiving that marketing. Where you opt out of receiving these marketing messages, this will not apply to personal data provided to us as a result of a service purchase, service experience or other transactions. dmg events will hold your personal data in accordance with these T&Cs and our Privacy Notice. Your personal data will be held in accordance with these T&Cs, and will be processed in accordance with dmg events privacy notices. You have the right to withdraw consent to marketing at any time by emailing - privacy@dmgevents.com OR by following the opt-out links on any marketing message sent to you.</p>
+                            <p><strong>Privacy Policy</strong></p>
+                            <table class="table_line" style="margin-top:0px;">
+                                <tr>
+                                    <td style="width: 25px;"><div class="check_box" style="width: 25px;"><input id="checkbox1" type="checkbox" name="checkbox"><span></span></div></td>
+                                    <td>I have read the privacy policy*</td>
+                                </tr>
+                            </table>
+
+                            <h6>Marketing Permission</h6>
+                            <p>Your personal data will be held in accordance with these T&Cs, and will be processed in accordance with dmg events https://www.dmgevents.com/privacy-policy privacy notices</p>
+                            <table class="table_line" style="margin-top:0px;">
+                                <tr>
+                                    <td style="width: 25px;"><div class="check_box" style="width: 25px;"><input id="checkbox1" type="checkbox" name="checkbox"><span></span></div></td>
+                                    <td>No, I do not want to be contacted by dmg events</td>
+                                </tr>
+                            </table>
+                            <div class="btn_area">
+                                <a href="#" class="btn_bule eventformsubmit">Submit</a>
+                            </div>
+                            <p style="margin-top:20px;">We use BigMarker as our webinar platform. By clicking Register, you acknowledge that the information you provide will be transferred to BigMarker processing in accordance with their <a href="https://www.bigmarker.com/terms" target="_blan">Terms of Service</a> and <a href="https://www.bigmarker.com/privacy" target="_blank">Privacy Policy.</a></p>
+                            @* <p>From time to time we would like to contact you about our products and services, as well as other content that may be of interest to you.</p>
+                            <p>You will receive marking communications from us if you have requested information from us or purchased services from us and you have not opted out of receiving that marking. Where you opt out of receiving these marketing messages, this will not apply to personal data provided to us as a result of a service purchase. service experience or other transactions.</p>
+                            <table class="table_line">
+                                <tr>
+                                    <td><div class="check_box"><input id="checkbox1" type="checkbox" name="checkbox"><span></span></div></td>
+                                    <td>I would like to opt out from receiving email updates from Event Name.</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="check_box"><input id="checkbox2" type="checkbox" name="checkbox"><span></span></div></td>
+                                    <td>I would like to opt out from receiving telephone calls from Event Name.</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="check_box"><input id="checkbox3" type="checkbox" name="checkbox"><span></span></div></td>
+                                    <td>I would like to opt out from receiving direct mail from Event Name.</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="check_box"><input id="checkbox4" type="checkbox" name="checkbox"><span></span></div></td>
+                                    <td>I would like to opt out from receiving communication & updates from all of DMG events as well as products &amp; services offered by 3rd parties related to those events.</td>
+                                </tr>
+                            </table>
+                            <p class="padd14">Your events will hold your personal data in accordance with these T&amp;Cs and our Privacy Notice.</p>
+                            <p class="padd14">Your personal data will be held in accordance with these T&amp;Cs, and will be processed in accordance with Your events.</p>
+                            <p>You have the right to withdraw consent to marketing at my time by emailing - <a href="mailto:privacy@yourevents.com">privacy@yourevents.com</a> OR by following the opt-out link on any marketing message</p>
+                            <div class="btn_area">
+                                <a href="#" class="btn_bule eventformsubmit">Submit</a>
+                            </div> *@
+                        </div>
+                    </div>
+
+                </form>
+                <div id='divwhoisgoing' style='display: none; max-width:600px;'></div>
+                <div id="thankbox" style="display:none;">
+                    <h3>THANK YOU FOR REGISTERING.</h3>
+                    <p style="text-align:left; max-width:600px;">Your registration is confirmed. You will receive an email from zoom explaining how you will access the webinar.
+Looking forward to meet you during the virtual event.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="footer_area"></div>
+</body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="~/CustomEventAsset/js/plugins.js"></script>
+<script src="~/CustomEventAsset/js/custom.js"></script>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $('#txtFirstName').val($('#hidFirstName').val());
+            $('#txtLastName').val($('#hidLastName').val());
+            $('#txtEmail').val($('#hidEmail').val());
+            $('#profileimagelinked').attr("src", $('#hidProfileImage').val());
+        }, 5000)
+
+        $('.eventformsubmit').click(function () {
+            var script = document.createElement("script");
+            script.src = "https://www.eventnx.com/eventscript/submitdatatoeventpro.js";
+            script.setAttribute("id", "submitdatatoeventpro");
+            script.setAttribute("data-eventprouserid", $('#hidEventProUserId').val());
+            script.setAttribute("data-firstname", $('#txtFirstName').val());
+            script.setAttribute("data-lastname", $('#txtLastName').val());
+            script.setAttribute("data-emailid", $('#txtEmail').val());
+            script.setAttribute("data-companyname", $('#txtCompanyName').val());
+            script.setAttribute("data-jobtitle", $('#txtJobTitle').val());
+            script.setAttribute("data-phone", $('#txtPhone').val());
+            script.setAttribute("data-senioritylevel", $('#ddlSeniorityLevel').val());
+            script.setAttribute("data-primaryjob", $('#ddlPrimaryJob').val());
+            script.setAttribute("data-natureofbusiness", $('#ddlNatureOfBusiness').val());
+            script.setAttribute("data-country", $('#ddlCountry').val());
+            script.setAttribute("data-topicofinterest", $('#txtTopicsofInterest').val());
+            script.setAttribute("data-registeredforglobal", $('#ddlRegisteredForGlobal').val());
+            script.setAttribute("data-checkbox1", $('#checkbox1').prop("checked"));
+            script.setAttribute("data-checkbox2", $('#checkbox2').prop("checked"));
+            script.setAttribute("data-checkbox3", $('#checkbox3').prop("checked"));
+            script.setAttribute("data-checkbox4", $('#checkbox4').prop("checked"));
+            script.setAttribute("data-iszoomevent", true);
+            script.setAttribute("data-isbigmarkerevent", false);
+            script.setAttribute("data-crmregid", 123);
+            document.head.appendChild(script);
+            alert("Thankyou for your registration")
+            $('#RegisterForm').hide();
+            $('#thankbox').show();
+        });
+    });
+</script>

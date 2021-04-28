@@ -1,0 +1,652 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EventRegistrationModelStoreContainer" CdmEntityContainer="EventRegistrationEntities">
+    <FunctionImportMapping FunctionImportName="GetDetails" FunctionName="EventRegistrationModel.Store.GetDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.GetDetails_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="UserPackages">
+      <EntityTypeMapping TypeName="EventRegistrationModel.UserPackage">
+        <MappingFragment StoreEntitySet="UserPackage">
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsExpired" ColumnName="IsExpired" />
+          <ScalarProperty Name="Purchasedate" ColumnName="Purchasedate" />
+          <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="UserPackageId" ColumnName="UserPackageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetCustomerDetails" FunctionName="EventRegistrationModel.Store.GetCustomerDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.GetCustomerDetails_Result">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Contactno" ColumnName="Contactno" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Date_of_Registration" ColumnName="Date_of_Registration" />
+          <ScalarProperty Name="No_of_events" ColumnName="No_of_events" />
+          <ScalarProperty Name="Availablecredits" ColumnName="Availablecredits" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Packagedetails1" FunctionName="EventRegistrationModel.Store.Packagedetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.Packagedetails1_Result">
+          <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="Validity" ColumnName="Validity" />
+          <ScalarProperty Name="No_of_Registration" ColumnName="No_of_Registration" />
+          <ScalarProperty Name="Cost_per_Registration" ColumnName="Cost_per_Registration" />
+          <ScalarProperty Name="No_of_Events" ColumnName="No_of_Events" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Adminsettings">
+      <EntityTypeMapping TypeName="EventRegistrationModel.Adminsetting">
+        <MappingFragment StoreEntitySet="Adminsetting">
+          <ScalarProperty Name="Utm_Term" ColumnName="Utm_Term" />
+          <ScalarProperty Name="Utm_Content" ColumnName="Utm_Content" />
+          <ScalarProperty Name="Utm_Campaign" ColumnName="Utm_Campaign" />
+          <ScalarProperty Name="Utm_Medium" ColumnName="Utm_Medium" />
+          <ScalarProperty Name="Utm_Source" ColumnName="Utm_Source" />
+          <ScalarProperty Name="CompanyEmail" ColumnName="CompanyEmail" />
+          <ScalarProperty Name="CompanyWebsite" ColumnName="CompanyWebsite" />
+          <ScalarProperty Name="Ismaintenance" ColumnName="Ismaintenance" />
+          <ScalarProperty Name="portno" ColumnName="portno" />
+          <ScalarProperty Name="Smtpassword" ColumnName="Smtpassword" />
+          <ScalarProperty Name="Smtpusername" ColumnName="Smtpusername" />
+          <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="Adddress2" ColumnName="Adddress2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Companyname" ColumnName="Companyname" />
+          <ScalarProperty Name="Taxpercent" ColumnName="Taxpercent" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AdminDetails" FunctionName="EventRegistrationModel.Store.AdminDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.AdminDetails_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Taxpercent" ColumnName="Taxpercent" />
+          <ScalarProperty Name="Companyname" ColumnName="Companyname" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Adddress2" ColumnName="Adddress2" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+          <ScalarProperty Name="Smtpusername" ColumnName="Smtpusername" />
+          <ScalarProperty Name="Smtpassword" ColumnName="Smtpassword" />
+          <ScalarProperty Name="portno" ColumnName="portno" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="EventRegistrationModel.Transaction">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="PaymentId5" ColumnName="PaymentId5" />
+          <ScalarProperty Name="PaymentId4" ColumnName="PaymentId4" />
+          <ScalarProperty Name="PaymentId3" ColumnName="PaymentId3" />
+          <ScalarProperty Name="PaymentId2" ColumnName="PaymentId2" />
+          <ScalarProperty Name="PaymentId1" ColumnName="PaymentId1" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="EventRegistrationModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="OrderCompletedDate" ColumnName="OrderCompletedDate" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="PurchasedDate" ColumnName="PurchasedDate" />
+          <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+          <ScalarProperty Name="OrderTotalWithoutTax" ColumnName="OrderTotalWithoutTax" />
+          <ScalarProperty Name="TaxAmount" ColumnName="TaxAmount" />
+          <ScalarProperty Name="OrderTotal" ColumnName="OrderTotal" />
+          <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Packages">
+      <EntityTypeMapping TypeName="EventRegistrationModel.Package">
+        <MappingFragment StoreEntitySet="Package">
+          <ScalarProperty Name="Cost_per_Registration" ColumnName="Cost_per_Registration" />
+          <ScalarProperty Name="Updateddate" ColumnName="Updateddate" />
+          <ScalarProperty Name="Createddate" ColumnName="Createddate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="No_of_Events" ColumnName="No_of_Events" />
+          <ScalarProperty Name="No_of_Registration" ColumnName="No_of_Registration" />
+          <ScalarProperty Name="Validity" ColumnName="Validity" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="EventRegistrationModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Date_of_Registration" ColumnName="Date_of_Registration" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Contactno" ColumnName="Contactno" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerRoles">
+      <EntityTypeMapping TypeName="EventRegistrationModel.CustomerRole">
+        <MappingFragment StoreEntitySet="CustomerRole">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="EventRegistrationModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetUserConnectionDetails" FunctionName="EventRegistrationModel.Store.GetUserConnectionDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.GetUserConnectionDetails_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="DomainName" ColumnName="DomainName" />
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+          <ScalarProperty Name="Ispaid" ColumnName="Ispaid" />
+          <ScalarProperty Name="ConnectionCount" ColumnName="ConnectionCount" />
+          <ScalarProperty Name="ReferralCount" ColumnName="ReferralCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetOrderDetails" FunctionName="EventRegistrationModel.Store.GetOrderDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.GetOrderDetails_Result">
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="OrderTotal" ColumnName="OrderTotal" />
+          <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+          <ScalarProperty Name="OrderCompletedDate" ColumnName="OrderCompletedDate" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="VisitorStates">
+      <EntityTypeMapping TypeName="EventRegistrationModel.VisitorState">
+        <MappingFragment StoreEntitySet="VisitorState">
+          <ScalarProperty Name="ReferralId" ColumnName="ReferralId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IPaddress" ColumnName="IPaddress" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserConnections">
+      <EntityTypeMapping TypeName="EventRegistrationModel.UserConnection">
+        <MappingFragment StoreEntitySet="UserConnection">
+          <ScalarProperty Name="ConnectionProfileId" ColumnName="ConnectionProfileId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="countries">
+      <EntityTypeMapping TypeName="EventRegistrationModel.country">
+        <MappingFragment StoreEntitySet="country">
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CustomerEmails" FunctionName="EventRegistrationModel.Store.CustomerEmails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.CustomerEmails_Result">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="EventUsers">
+      <EntityTypeMapping TypeName="EventRegistrationModel.EventUser">
+        <MappingFragment StoreEntitySet="EventUser">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="EventUserDetails" FunctionName="EventRegistrationModel.Store.EventUserDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.EventUserDetails_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetRegisteredUserDetails" FunctionName="EventRegistrationModel.Store.GetRegisteredUserDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.GetRegisteredUserDetails_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventStartDate" ColumnName="EventStartDate" />
+          <ScalarProperty Name="EventEndDate" ColumnName="EventEndDate" />
+          <ScalarProperty Name="DomainName" ColumnName="DomainName" />
+          <ScalarProperty Name="Ispaid" ColumnName="Ispaid" />
+          <ScalarProperty Name="CRM_RegistrationId" ColumnName="CRM_RegistrationId" />
+          <ScalarProperty Name="CRM_FirstName" ColumnName="CRM_FirstName" />
+          <ScalarProperty Name="CRM_LastName" ColumnName="CRM_LastName" />
+          <ScalarProperty Name="CRM_EmaiId" ColumnName="CRM_EmaiId" />
+          <ScalarProperty Name="CRM_CompanyName" ColumnName="CRM_CompanyName" />
+          <ScalarProperty Name="CRM_JobTitle" ColumnName="CRM_JobTitle" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="ReferralCount" ColumnName="ReferralCount" />
+          <ScalarProperty Name="ConnectionCount" ColumnName="ConnectionCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetTransactionsDetails" FunctionName="EventRegistrationModel.Store.GetTransactionsDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.GetTransactionsDetails_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ManageEvents" FunctionName="EventRegistrationModel.Store.ManageEvents">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.ManageEvents_Result">
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventStartDate" ColumnName="EventStartDate" />
+          <ScalarProperty Name="EventEndDate" ColumnName="EventEndDate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ReferredUsers" ColumnName="ReferredUsers" />
+          <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="RegisteredUsers">
+      <EntityTypeMapping TypeName="EventRegistrationModel.RegisteredUser">
+        <MappingFragment StoreEntitySet="RegisteredUser">
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="CRM_RegistrationId" ColumnName="CRM_RegistrationId" />
+          <ScalarProperty Name="CRM_JobTitle" ColumnName="CRM_JobTitle" />
+          <ScalarProperty Name="CRM_CompanyName" ColumnName="CRM_CompanyName" />
+          <ScalarProperty Name="CRM_EmaiId" ColumnName="CRM_EmaiId" />
+          <ScalarProperty Name="CRM_LastName" ColumnName="CRM_LastName" />
+          <ScalarProperty Name="CRM_FirstName" ColumnName="CRM_FirstName" />
+          <ScalarProperty Name="AuthToken" ColumnName="AuthToken" />
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+          <ScalarProperty Name="ReferalId" ColumnName="ReferalId" />
+          <ScalarProperty Name="Ispaid" ColumnName="Ispaid" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="ProfileLink" ColumnName="ProfileLink" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="JobDesignation" ColumnName="JobDesignation" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="IsRegistered" ColumnName="IsRegistered" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventMasters">
+      <EntityTypeMapping TypeName="EventRegistrationModel.EventMaster">
+        <MappingFragment StoreEntitySet="EventMaster">
+          <ScalarProperty Name="Channel" ColumnName="Channel" />
+          <ScalarProperty Name="HeySummitToken" ColumnName="HeySummitToken" />
+          <ScalarProperty Name="HeySummitWebinarId" ColumnName="HeySummitWebinarId" />
+          <ScalarProperty Name="BigMarkerToken" ColumnName="BigMarkerToken" />
+          <ScalarProperty Name="BigMarkerWebinairId" ColumnName="BigMarkerWebinairId" />
+          <ScalarProperty Name="ZoomUUID" ColumnName="ZoomUUID" />
+          <ScalarProperty Name="ZoomToken" ColumnName="ZoomToken" />
+          <ScalarProperty Name="WebinarId" ColumnName="WebinarId" />
+          <ScalarProperty Name="GoogleButtonURL" ColumnName="GoogleButtonURL" />
+          <ScalarProperty Name="FbButtonURL" ColumnName="FbButtonURL" />
+          <ScalarProperty Name="ButtonURL" ColumnName="ButtonURL" />
+          <ScalarProperty Name="EventKey" ColumnName="EventKey" />
+          <ScalarProperty Name="FormBuilderCode" ColumnName="FormBuilderCode" />
+          <ScalarProperty Name="ContactPersonEmail" ColumnName="ContactPersonEmail" />
+          <ScalarProperty Name="ContactPersonPhone" ColumnName="ContactPersonPhone" />
+          <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
+          <ScalarProperty Name="EventEndDate" ColumnName="EventEndDate" />
+          <ScalarProperty Name="EventStartDate" ColumnName="EventStartDate" />
+          <ScalarProperty Name="LogoUrl" ColumnName="LogoUrl" />
+          <ScalarProperty Name="ArticalTitle" ColumnName="ArticalTitle" />
+          <ScalarProperty Name="ArticalUrl" ColumnName="ArticalUrl" />
+          <ScalarProperty Name="Commentary" ColumnName="Commentary" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="ResponseURL" ColumnName="ResponseURL" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="DomainName" ColumnName="DomainName" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="eventwiseuser" FunctionName="EventRegistrationModel.Store.eventwiseuser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.eventwiseuser_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventStartDate" ColumnName="EventStartDate" />
+          <ScalarProperty Name="EventEndDate" ColumnName="EventEndDate" />
+          <ScalarProperty Name="DomainName" ColumnName="DomainName" />
+          <ScalarProperty Name="Ispaid" ColumnName="Ispaid" />
+          <ScalarProperty Name="CRM_RegistrationId" ColumnName="CRM_RegistrationId" />
+          <ScalarProperty Name="CRM_FirstName" ColumnName="CRM_FirstName" />
+          <ScalarProperty Name="CRM_LastName" ColumnName="CRM_LastName" />
+          <ScalarProperty Name="CRM_EmaiId" ColumnName="CRM_EmaiId" />
+          <ScalarProperty Name="CRM_CompanyName" ColumnName="CRM_CompanyName" />
+          <ScalarProperty Name="CRM_JobTitle" ColumnName="CRM_JobTitle" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="ReferralCount" ColumnName="ReferralCount" />
+          <ScalarProperty Name="VisitorCount" ColumnName="VisitorCount" />
+          <ScalarProperty Name="ConnectionCount" ColumnName="ConnectionCount" />
+          <ScalarProperty Name="ReferredBy" ColumnName="ReferredBy" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ReferralUserReport" FunctionName="EventRegistrationModel.Store.ReferralUserReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.ReferralUserReport_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="ReferalId" ColumnName="ReferalId" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="RefferedBy" ColumnName="RefferedBy" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="CRM_CompanyName" ColumnName="CRM_CompanyName" />
+          <ScalarProperty Name="CRM_JobTitle" ColumnName="CRM_JobTitle" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="BounceUserReport" FunctionName="EventRegistrationModel.Store.BounceUserReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.BounceUserReport_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="ReferalId" ColumnName="ReferalId" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="RefferedBy" ColumnName="RefferedBy" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetEventDetails" FunctionName="EventRegistrationModel.Store.GetEventDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.GetEventDetails_Result">
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="DomainName" ColumnName="DomainName" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="LogoUrl" ColumnName="LogoUrl" />
+          <ScalarProperty Name="EventStartDate" ColumnName="EventStartDate" />
+          <ScalarProperty Name="EventEndDate" ColumnName="EventEndDate" />
+          <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
+          <ScalarProperty Name="ContactPersonPhone" ColumnName="ContactPersonPhone" />
+          <ScalarProperty Name="ContactPersonEmail" ColumnName="ContactPersonEmail" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+          <ScalarProperty Name="LinkedinUsers" ColumnName="LinkedinUsers" />
+          <ScalarProperty Name="FacebookUsers" ColumnName="FacebookUsers" />
+          <ScalarProperty Name="ButtonURL" ColumnName="ButtonURL" />
+          <ScalarProperty Name="FbButtonURL" ColumnName="FbButtonURL" />
+          <ScalarProperty Name="GoogleButtonURL" ColumnName="GoogleButtonURL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetUserDetails" FunctionName="EventRegistrationModel.Store.GetUserDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.GetUserDetails_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventStartDate" ColumnName="EventStartDate" />
+          <ScalarProperty Name="EventEndDate" ColumnName="EventEndDate" />
+          <ScalarProperty Name="DomainName" ColumnName="DomainName" />
+          <ScalarProperty Name="Ispaid" ColumnName="Ispaid" />
+          <ScalarProperty Name="CRM_RegistrationId" ColumnName="CRM_RegistrationId" />
+          <ScalarProperty Name="CRM_FirstName" ColumnName="CRM_FirstName" />
+          <ScalarProperty Name="CRM_LastName" ColumnName="CRM_LastName" />
+          <ScalarProperty Name="CRM_EmaiId" ColumnName="CRM_EmaiId" />
+          <ScalarProperty Name="CRM_CompanyName" ColumnName="CRM_CompanyName" />
+          <ScalarProperty Name="CRM_JobTitle" ColumnName="CRM_JobTitle" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="ReferralCount" ColumnName="ReferralCount" />
+          <ScalarProperty Name="ConnectionCount" ColumnName="ConnectionCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="ZoomUserDetails">
+      <EntityTypeMapping TypeName="EventRegistrationModel.ZoomUserDetail">
+        <MappingFragment StoreEntitySet="ZoomUserDetails">
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="OptInDGMEvents" ColumnName="OptInDGMEvents" />
+          <ScalarProperty Name="OptInDirectEmail" ColumnName="OptInDirectEmail" />
+          <ScalarProperty Name="OptInPhone" ColumnName="OptInPhone" />
+          <ScalarProperty Name="OptInEmail" ColumnName="OptInEmail" />
+          <ScalarProperty Name="AreyouRegistered" ColumnName="AreyouRegistered" />
+          <ScalarProperty Name="TopicOfIntrest" ColumnName="TopicOfIntrest" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="NatureOfBusiness" ColumnName="NatureOfBusiness" />
+          <ScalarProperty Name="PrimaryJobFunction" ColumnName="PrimaryJobFunction" />
+          <ScalarProperty Name="SeniorityLevel" ColumnName="SeniorityLevel" />
+          <ScalarProperty Name="RegisteredUserId" ColumnName="RegisteredUserId" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AddZoomUserDetails" FunctionName="EventRegistrationModel.Store.AddZoomUserDetails" />
+    <FunctionImportMapping FunctionImportName="ZoomUserReport" FunctionName="EventRegistrationModel.Store.ZoomUserReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.ZoomUserReport_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="ReferalId" ColumnName="ReferalId" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="RefferedBy" ColumnName="RefferedBy" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="CRM_CompanyName" ColumnName="CRM_CompanyName" />
+          <ScalarProperty Name="CRM_JobTitle" ColumnName="CRM_JobTitle" />
+          <ScalarProperty Name="SeniorityLevel" ColumnName="SeniorityLevel" />
+          <ScalarProperty Name="PrimaryJobFunction" ColumnName="PrimaryJobFunction" />
+          <ScalarProperty Name="NatureOfBusiness" ColumnName="NatureOfBusiness" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="TopicOfIntrest" ColumnName="TopicOfIntrest" />
+          <ScalarProperty Name="AreyouRegistered" ColumnName="AreyouRegistered" />
+          <ScalarProperty Name="OptInEmail" ColumnName="OptInEmail" />
+          <ScalarProperty Name="OptInPhone" ColumnName="OptInPhone" />
+          <ScalarProperty Name="OptInDirectEmail" ColumnName="OptInDirectEmail" />
+          <ScalarProperty Name="OptInDGMEvents" ColumnName="OptInDGMEvents" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SpGetEventToken" FunctionName="EventRegistrationModel.Store.SpGetEventToken" />
+    <FunctionImportMapping FunctionImportName="UpdateZoomToken" FunctionName="EventRegistrationModel.Store.UpdateZoomToken" />
+    <EntitySetMapping Name="BigMarkerUserDetails">
+      <EntityTypeMapping TypeName="EventRegistrationModel.BigMarkerUserDetail">
+        <MappingFragment StoreEntitySet="BigMarkerUserDetails">
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="OptInDGMEvents" ColumnName="OptInDGMEvents" />
+          <ScalarProperty Name="OptInDirectEmail" ColumnName="OptInDirectEmail" />
+          <ScalarProperty Name="OptInPhone" ColumnName="OptInPhone" />
+          <ScalarProperty Name="OptInEmail" ColumnName="OptInEmail" />
+          <ScalarProperty Name="AreyouRegistered" ColumnName="AreyouRegistered" />
+          <ScalarProperty Name="TopicOfIntrest" ColumnName="TopicOfIntrest" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="NatureOfBusiness" ColumnName="NatureOfBusiness" />
+          <ScalarProperty Name="PrimaryJobFunction" ColumnName="PrimaryJobFunction" />
+          <ScalarProperty Name="SeniorityLevel" ColumnName="SeniorityLevel" />
+          <ScalarProperty Name="RegisteredUserId" ColumnName="RegisteredUserId" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AddBigMarkerUserDetails" FunctionName="EventRegistrationModel.Store.AddBigMarkerUserDetails" />
+    <FunctionImportMapping FunctionImportName="BigMarkerUserReport" FunctionName="EventRegistrationModel.Store.BigMarkerUserReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EventRegistrationModel.BigMarkerUserReport_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="ReferalId" ColumnName="ReferalId" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="RefferedBy" ColumnName="RefferedBy" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="CRM_CompanyName" ColumnName="CRM_CompanyName" />
+          <ScalarProperty Name="CRM_JobTitle" ColumnName="CRM_JobTitle" />
+          <ScalarProperty Name="SeniorityLevel" ColumnName="SeniorityLevel" />
+          <ScalarProperty Name="PrimaryJobFunction" ColumnName="PrimaryJobFunction" />
+          <ScalarProperty Name="NatureOfBusiness" ColumnName="NatureOfBusiness" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="TopicOfIntrest" ColumnName="TopicOfIntrest" />
+          <ScalarProperty Name="AreyouRegistered" ColumnName="AreyouRegistered" />
+          <ScalarProperty Name="OptInEmail" ColumnName="OptInEmail" />
+          <ScalarProperty Name="OptInPhone" ColumnName="OptInPhone" />
+          <ScalarProperty Name="OptInDirectEmail" ColumnName="OptInDirectEmail" />
+          <ScalarProperty Name="OptInDGMEvents" ColumnName="OptInDGMEvents" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UpdateBigMarkerToken" FunctionName="EventRegistrationModel.Store.UpdateBigMarkerToken" />
+    <FunctionImportMapping FunctionImportName="SpGetBigMarkerEventToken" FunctionName="EventRegistrationModel.Store.SpGetBigMarkerEventToken" />
+  </EntityContainerMapping>
+</Mapping>

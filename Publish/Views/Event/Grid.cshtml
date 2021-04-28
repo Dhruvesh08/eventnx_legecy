@@ -1,0 +1,934 @@
+@model IEnumerable<LinkedInDemo.Models.EventMasterModel>
+@using DataLayer
+@{
+    Layout = null;
+}
+
+<div id="grddata">
+    <div class="col-md-12 col-sm-12 padrightzero">
+
+        <div class="searchareamain">
+            <ul>
+                <li class="min_width250">
+                    <input name="txtSearchTitle" type="text" maxlength="100" class="form-control" id="txtSearchTitle" style="width: 100%;" placeholder="Search">
+                    <button id="searchid" onclick="GetData(1,@ViewBag.CurrentPageIndex,'@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'',@ViewBag.SearchRecords,'','@ViewBag.Domain','@ViewBag.Event')">x</button>
+                </li>
+
+                <li>  <input type="submit" name="btnSearch" value="Search" id="btnSearch" onclick="javascript:FunSearchRecord();" class="btn btnRed"></li>
+            </ul>
+        </div>
+    </div>
+    <div></div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="pad-top">
+                @if (ViewBag.StatusMessage.ToString() == "SuccessAdd")
+                {
+                    <div class="alert alert-success margintop20">
+                        <div class="tick">
+                            Event Added Successfully.
+                        </div>
+                    </div>
+
+                }
+                @if (ViewBag.StatusMessage.ToString() == "SuccessUpdate")
+                {
+                    <div class="alert alert-success margintop20">
+                        <div class="tick">
+                            Event Updated Successfully.
+                        </div>
+                    </div>
+
+                }
+                @if (ViewBag.StatusMessage.ToString() == "SuccessDelete")
+                {
+                    <div class="alert alert-success margintop20">
+                        <div class="tick">
+                            Event Deleted Successfully.
+                        </div>
+                    </div>
+
+                }
+                @if (ViewBag.StatusMessage.ToString() == "formSaved")
+                {
+                    <div class="alert alert-success margintop20">
+                        <div class="tick">
+                            Event form saved successfully
+                        </div>
+                    </div>
+                }
+                @if (ViewBag.StatusMessage.ToString() == "Error")
+                {
+
+                    <div class=" alert alert-danger margintop20">
+                        <div class="cross">
+                            Error... Please Try Again.
+                        </div>
+                    </div>
+
+                }
+                @if (ViewBag.StatusMessage.ToString() == "NoItem")
+                {
+                    <div class=" alert alert-danger margintop20">
+                        <div class="cross">
+                            No records found
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="row search-areamain marleftzero">
+        <div class=" col-md-4 col-sm-5 padleftzero">
+            @if (Model.Count() > 0)
+            {
+                <div class="center_div">
+                    @{
+                        ViewBag.TotalRecords = ViewBag.TotalEvent;
+                        Html.RenderPartial("_PageSize");
+                    }
+                </div>
+
+            }
+        </div>
+        @*<div class="col-md-8 col-sm-7 padrightzero">
+
+                <div class="searchareamain">
+                    <ul>
+                            <li class="min_width250">
+                                <input name="txtSearchTitle" type="text" maxlength="100" class="form-control" id="txtSearchTitle" style="width: 100%;" placeholder="Search">
+                                <button id="searchid" onclick="GetData(1,@ViewBag.CurrentPageIndex,'@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'',@ViewBag.SearchRecords,'','@ViewBag.Domain','@ViewBag.Event')">x</button>
+                            </li>
+
+                            <li>  <input type="submit" name="btnSearch" value="Search" id="btnSearch" onclick="javascript:FunSearchRecord();" class="btn btnRed"></li>
+                    </ul>
+                </div>
+            </div>*@
+
+        <div class="clear"></div>
+
+    </div>
+    @if (Model.Count() > 0)
+    {
+        <div class="datatable">
+
+            <div class="table-responsive">
+                <table class="table borderbtm">
+                    <tbody>
+                        <tr>
+                            <th><a onclick="javascript:FunSortData('EventName');">Event Details</a></th>
+                            <th class="text-center"><a>Total Referrals</a></th>
+                            <th class="text-center"><a onclick="javascript:FunSortData('RegisteredUsers');">Total Registrations</a></th>
+                            @*<th class="text-center">LinkedIn Registrations</th>
+                            <th class="text-center">Facebook Registrations</th>*@
+                            <th width="26%" class="text-center">Actions</th>
+                            <th class="text-center">Details</th>
+                        </tr>
+                        @foreach (var e in Model)
+                        {
+                            <tr>
+                                <input type="hidden" id="downloadeventid" name="downloadeventid" value="@e.EventId" />
+
+                                @if (e.ImageName == null || e.ImageName == "")
+                                {
+                                    <td>
+                                        <div class="detail_and_img">
+                                            <span class="img_round">
+                                                <img src="/Content/images/img_eventlogo.jpg" width="50px" height="50px" />
+                                            </span>
+                                            <span>
+                                                <b> @e.EventName</b><br /> <text style="font-weight:normal"> From: </text> @e.EventStartDate &nbsp;<text style="font-weight:normal"> <br>To: </text>@e.EventEndDate
+                                            </span>
+                                        </div>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <div class="detail_and_img">
+                                            <span class="img_round">
+                                                <img src="@e.Image" alt="" width="50" height="auto">
+                                            </span>
+                                            <span>
+                                                <b> @e.EventName</b><br /> <text style="font-weight:normal"> From: </text> @e.EventStartDate &nbsp;<text style="font-weight:normal"> <br>To: </text>@e.EventEndDate
+                                            </span>
+                                        </div>
+                                    </td>
+                                }
+                                <td class="text-center">
+                                    <center><a href=@Url.Action("Index", "ReferralUserReport", new { EventId = @e.EventId })>@e.Referralusers.ToString("#,##0")</a></center>
+                                </td>
+                                @if (e.RegisteredUsers > 0)
+                                {
+                                    <td class="text-center"><a href=@Url.Action("Index", "UserMaster", new { EventId = @e.EventId })>@e.RegisteredUsers.ToString("#,##0")</a></td>
+                                }
+                                else
+                                {
+                                    <td class="text-center"> @e.RegisteredUsers.ToString("#,##0")</td>
+                                }
+                                @*<td class="text-center">@e.Linkedinusers</td>
+                                <td class="text-center">@e.Facebookusers</td>*@
+                                <td class="text-center link_multi">
+                                    <a href="@Url.Action("Edit", "Event", new { EventId = e.EventId })" data-toggle="tooltip" data-placement="top" title="Edit Event">Edit</a>&nbsp;
+                                    <a onclick="ShowModel(@e.EventId);" data-toggle="modal" data-target="#eventCodeModal" data-placement="top" title="Generate Script">Code</a>&nbsp;
+                                    <a onclick="SetEventId(@e.EventId,'@e.ButtonURL','@e.FbButtonURL','@e.GoogleButtonURL');" data-toggle="modal" data-target="#linkedinbuttonModal" data-placement="top" title="Linkedin Buttons">Buttons</a>&nbsp;
+                                    <a onclick="Delete(@e.EventId);" data-toggle="tooltip" data-placement="top" title="Delete Event">Archive</a>
+                                    @if (e.CustomerId == ViewBag.CustomerId)
+                                    {
+                                        <a href="@Url.Action("InviteUser", "Event", new { EventId = e.EventId })" data-toggle="tooltip" data-placement="top" title="Edit Event">Users</a>
+                                    }
+
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btnRed padd_set" href="@Url.Action("Index", "RegisteredUser", new { EventId = e.EventId })" class="on-default edit-row iconbtn" data-toggle="tooltip" data-placement="top" title="Details">Details</a>
+
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    }
+    <div class="row mar_top_15">
+        @{
+            Html.RenderPartial("_Pagination");
+        }
+    </div>
+</div>
+
+<div class="modal fade" id="eventCodeModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Event code</h3>
+            </div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="set_1a special_btn_area">
+                <a onclick="CopyToClipboard()">Copy</a>
+                <a data-toggle="modal" data-target="#ModelEmail" data-placement="top" title="Linkedin Buttons">Send Email</a>
+                @*<a href="@Url.Action("DownloadcodePDF", "RegisteredUser", new { EventId = })">Download code</a>*@
+                <a onclick="Downloadcode()"> Download Code</a>
+            </div>
+            <div class="modal-body" id="modelbody">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ModelEmail" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="max-width:600px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Send Email To Developer</h3>
+            </div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body" id="modelbutttonbody">
+                <input type="hidden" name="CodeEventId" id="CodeEventId" />
+                <div class="col-lg-12 col-md-12">
+                    <div class="linkdinbox">
+
+                        <div class="alert alert-success" id="emailsuccessmsgbox" style="display:none">
+                            <div class="tick">
+                                <label id="buttonsuccessmsg"></label>
+                            </div>
+                        </div>
+                        <div id="divdeveloperemail" style="max-width:300px; width:100%;">
+                            <div class="form-group">
+                                <input type="text" id="txtemail" name="txtemail" class="form-control" placeholder="Please Enter Email" />
+                                <span id="divemailvalidation" style="display:none; color:red"></span>
+                            </div>
+                            <div class="form-group">
+                                <div class="set_tow_btn">
+                                    <a class="btn btnRed" onclick="EmailToDeveloperSubmit()" style="color:#fff;">Submit</a>
+                                    @*<a class="btn btnblack" onclick="EmailToDeveloperCancel()">Cancel</a>*@
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="linkedinbuttonModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="max-width:850px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Linkedin Buttons</h3>
+            </div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body" id="modelbutttonbody">
+                @using (Html.BeginForm("Updatebutton", "Event", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                <div class="col-lg-12 col-md-12">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                        Linked In Button
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div class="linkdinbox">
+                                        <input type="hidden" name="EventId" id="EventId" />
+                                        <ul>
+                                            <li>
+                                                <div class="alert alert-success" id="msgbox" style="display:none">
+                                                    <div class="tick">
+                                                        <label id="buttonmsg"></label>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li style="margin-bottom:15px;">
+                                                <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/connect1.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/connect1.png" /></span>
+                                                <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/connect2.png" /><img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/connect2.png" /></span>
+                                                <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/connect3.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/connect3.png" /></span>
+                                            </li>
+                                            <li>
+                                                <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button1_2.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button1_2.png" /></span>
+                                                <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button1_1.png" /><img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button1_1.png" /></span>
+                                                <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button1.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button1.png" /></span>
+                                            </li>
+                                            <li>
+                                                <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button3_2.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button3_2.png" /></span>
+                                                <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button3_1.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button3_1.png" /></span>
+                                                <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button3.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button3.png" /></span>
+                                            </li>
+                                            <li>
+                                                <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button4_2.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button4_2.png" /></span>
+                                                <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button4_1.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button4_1.png" /></span>
+                                                <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button4.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button4.png" /></span>
+                                            </li>
+                                            <li>
+                                                <hr />
+                                                <p> Or upload your own Login Button. </p>
+                                                <span class="inputBlock">
+                                                    <div class="form-group marginbtmnone">
+                                                        <div class="uploadresume">
+                                                            <div class="input-group">
+                                                                <input type="text" id="tempbtnfile" value="" class="form-control"
+                                                                       readonly placeholder="Choose File">
+                                                                <span class="input-group-btn btn-primary btn-none btn_greay">
+                                                                    <span class="btn btn-file career_btn" id="tempbtnfile">
+                                                                        Browse
+                                                                        <input type="file" class="custom-file-input" name="file" id="file" onchange="readbtnURL(this);" style="width: 100%;" accept=".png,.jpg">
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                            <span class="text-danger" id="filebtnerror" style="display:none;">
+                                                                Please upload Linkedin button
+                                                            </span>
+                                                            <div class="set_2" id="filemsg"></div>
+                                                        </div>
+                                                    </div>
+                                                </span>
+
+                                                <div class="eventlobgomainbox">
+                                                    <span id="spanbtnlogo" style="display:none">
+                                                        <img alt="" id="btnlogo">
+                                                        <a class="btn_delete" id="btnbuttonremove"><i class="fa fa-trash"></i></a>
+                                                    </span>
+                                                </div>
+
+                                            </li>
+                                            <li class="full_li">
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                                        Facebook Button
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse2" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="linkdinbox">
+                                        <ul>
+                                            <li style="margin-bottom:15px;">
+                                                <span><input type="radio" name="facebookradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/connect1.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/connect1.png" /></span>
+                                                <span><input type="radio" name="facebookradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/connect2.png" /><img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/connect2.png" /></span>
+                                                <span><input type="radio" name="facebookradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/connect3.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/connect3.png" /></span>
+                                            </li>
+                                            <li>
+                                                <span><input type="radio" name="facebookradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button1_2.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button1_2.png" /></span>
+                                                <span><input type="radio" name="facebookradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button1_1.png" /><img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button1_1.png" /></span>
+                                                <span><input type="radio" name="facebookradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button1.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button1.png" /></span>
+                                            </li>
+                                            <li>
+                                                <span><input type="radio" name="facebookradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button3_2.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button3_2.png" /></span>
+                                                <span><input type="radio" name="facebookradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button3_1.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button3_1.png" /></span>
+                                                <span><input type="radio" name="facebookradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button3.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button3.png" /></span>
+                                            </li>
+                                            <li>
+                                                <span><input type="radio" name="facebookradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button4_2.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button4_2.png" /></span>
+                                                <span><input type="radio" name="facebookradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button4_1.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button4_1.png" /></span>
+                                                <span><input type="radio" name="facebookradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button4.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/fb/button4.png" /></span>
+                                            </li>
+                                            <li>
+                                                <hr />
+                                                <p> Or upload your own Login Button. </p>
+                                                <span class="inputBlock">
+                                                    <div class="form-group marginbtmnone">
+                                                        <div class="uploadresume">
+                                                            <div class="input-group">
+                                                                <input type="text" id="tempbtnfilefb" value="" class="form-control"
+                                                                       readonly placeholder="Choose File">
+                                                                <span class="input-group-btn btn-primary btn-none btn_greay">
+                                                                    <span class="btn btn-file career_btn" id="tempbtnfilefb">
+                                                                        Browse
+                                                                        <input type="file" class="custom-file-input" name="file" id="filefb" onchange="readbtnURLFb(this);" style="width: 100%;" accept=".png,.jpg">
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                            <span class="text-danger" id="filebtnerrorfb" style="display:none;">
+                                                                Please upload Facebook button
+                                                            </span>
+                                                            <div class="set_2" id="filemsg"></div>
+                                                        </div>
+                                                    </div>
+                                                </span>
+
+                                                <div class="eventlobgomainbox">
+                                                    <span id="spanbtnlogofb" style="display:none">
+                                                        <img alt="" id="btnlogofb">
+                                                        <a class="btn_delete" id="btnbuttonremovefb"><i class="fa fa-trash"></i></a>
+                                                    </span>
+                                                </div>
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                                        Google Button
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse3" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="linkdinbox">
+                                        <ul>
+                                            <li style="margin-bottom:15px;">
+                                                <span><input type="radio" name="googleradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/connect1.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/connect1.png" /></span>
+                                                <span><input type="radio" name="googleradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/connect2.png" /><img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/connect2.png" /></span>
+                                                <span><input type="radio" name="googleradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/connect3.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/connect3.png" /></span>
+                                            </li>
+                                            <li>
+                                                <span><input type="radio" name="googleradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button1_2.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button1_2.png" /></span>
+                                                <span><input type="radio" name="googleradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button1_1.png" /><img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button1_1.png" /></span>
+                                                <span><input type="radio" name="googleradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button1.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button1.png" /></span>
+                                            </li>
+                                            <li>
+                                                <span><input type="radio" name="googleradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button3_2.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button3_2.png" /></span>
+                                                <span><input type="radio" name="googleradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button3_1.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button3_1.png" /></span>
+                                                <span><input type="radio" name="googleradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button3.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button3.png" /></span>
+                                            </li>
+                                            <li>
+                                                <span><input type="radio" name="googleradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button4_2.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button4_2.png" /></span>
+                                                <span><input type="radio" name="googleradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button4_1.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button4_1.png" /></span>
+                                                <span><input type="radio" name="googleradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button4.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/gb/button4.png" /></span>
+                                            </li>
+                                            <li>
+                                                <hr />
+                                                <p> Or upload your own Login Button. </p>
+                                                <span class="inputBlock">
+                                                    <div class="form-group marginbtmnone">
+                                                        <div class="uploadresume">
+                                                            <div class="input-group">
+                                                                <input type="text" id="tempbtnfilegb" value="" class="form-control"
+                                                                       readonly placeholder="Choose File">
+                                                                <span class="input-group-btn btn-primary btn-none btn_greay">
+                                                                    <span class="btn btn-file career_btn" id="tempbtnfilegb">
+                                                                        Browse
+                                                                        <input type="file" class="custom-file-input" name="file" id="filegb" onchange="readbtnURLGb(this);" style="width: 100%;" accept=".png,.jpg">
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                            <span class="text-danger" id="filebtnerrorgb" style="display:none;">
+                                                                Please upload Google button
+                                                            </span>
+                                                            <div class="set_2" id="filemsg"></div>
+                                                        </div>
+                                                    </div>
+                                                </span>
+
+                                                <div class="eventlobgomainbox">
+                                                    <span id="spanbtnlogogb" style="display:none">
+                                                        <img alt="" id="btnlogogb">
+                                                        <a class="btn_delete" id="btnbuttonremovefb"><i class="fa fa-trash"></i></a>
+                                                    </span>
+                                                </div>
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    </div>
+                    <div class="text-center">
+                        <button id="linkedinbutton" class="btnblack">Save</button>
+                        <a class="btnblack btngreay1" href="@Url.Action("Index", "Event")">Cancel</a>
+                    </div>
+                </div>
+                }
+             </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        document.getElementById('SelectRecords').value = @ViewBag.PageSize;
+        $("#searchid").hide();
+    });
+    var top=0;
+    function FunSortData(SortData)//Grid header sorting
+    {
+        GetData(0,@ViewBag.CurrentPageIndex, SortData,@ViewBag.AscVal,@ViewBag.PageSize,'@ViewBag.Alpha',@ViewBag.SearchRecords,'@ViewBag.SearchTitle','@ViewBag.ManageEvent');
+    }
+    function FunPageIndex(pageindex)//grid pagination
+    {
+        GetData(0,pageindex, '@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'@ViewBag.Alpha',@ViewBag.SearchRecords,'@ViewBag.SearchTitle','@ViewBag.ManageEvent');
+    }
+
+
+    function FunPageRecord(PageRecord)//Grid Page per record
+    {
+        GetData(0,1, '@ViewBag.OrderByVal',@ViewBag.IsAscVal,PageRecord,'@ViewBag.Alpha',@ViewBag.SearchRecords,'@ViewBag.SearchTitle','@ViewBag.ManageEvent');
+    }
+
+    function FunSearchRecord()//Search
+    {
+        var element_txtSearchTitle = document.getElementById('txtSearchTitle').value;
+        GetData(1,1,'@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'','',element_txtSearchTitle,'@ViewBag.ManageEvent');
+    }
+    function UpcomingEvents()
+    {
+        console.log($('#btnUpcominEvents'));
+        $('#btnUpcominEvents').addClass("tab_active");
+        $('#btnPastEvents').removeClass("tab_active");
+        GetData(1,1,'@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'','','@ViewBag.SearchTitle','upcoming');
+    }
+
+    function PastEvents()
+    {
+        $('#btnPastEvents').addClass("tab_active");
+        $('#btnUpcominEvents').removeClass("tab_active");
+        GetData(1,1,'@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'','','@ViewBag.SearchTitle','past');
+    }
+
+    function GetData(IsBindData_val,PageIndex,orderby_val,isAsc_val,PageSize_val,alpha_val,SearchRecords_val,SearchTitle_val,ManageEvent_val)
+    {
+        $.ajax({
+            url: '/Event/Grid',
+            data: { IsBindData: IsBindData_val, currentPageIndex: PageIndex, orderby: orderby_val.trim(), IsAsc: isAsc_val, PageSize: PageSize_val, SearchRecords: SearchRecords_val, Alpha: alpha_val, SearchTitle: SearchTitle_val, ManageEvent: ManageEvent_val },
+            beforeSend: function () {  },
+            success: function (response) {
+                $('#grddata').empty();
+                $('#grddata').append(response);
+                $('[name=txtSearchTitle]').val(SearchTitle_val);
+                if($('[name=txtSearchTitle]').val() != '')
+                {
+                    $("#searchid").show();
+                }
+                else{
+                    $("#searchid").hide();
+            }
+            }
+
+        });
+    }
+
+    function FunWithSelected() {
+
+        var e = document.getElementById("SelectedRecord");
+        var strUser = e.options[e.selectedIndex].value;
+
+        var suc=0;
+
+        if (strUser != "") {
+            $('#SelectedRecord').css("border-color", "#cdcdcd");
+            $('#SelectedRecord').css("background", "#FFFFFF");
+            if(strUser==1)
+            {
+                var check = confirm("Are you sure you want to Delete selected all record?");
+                if (check == true) {
+
+                    var checkboxes = document.getElementsByName('chk');
+                    for(var i=0, n=checkboxes.length;i<n;i++) {
+                        if(checkboxes[i].checked==true)
+                        {
+                            Delete(checkboxes[i].value);
+                        }
+                    }
+                    suc=1;
+
+                }
+            }
+
+            if(suc==1)
+            {
+                GetData(1,@ViewBag.CurrentPageIndex, '@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize, '@ViewBag.Alpha',@ViewBag.SearchRecords, '@ViewBag.SearchTitle','@ViewBag.ManageEvent');
+                return true;
+            }
+            else{
+                return false;
+            }
+
+
+        }
+        else {
+            $('#SelectedRecord').css("border-color", "#FF0000");
+            $('#SelectedRecord').css("background", "#f9e8e8");
+            return false;
+        }
+    }
+
+    function Delete(id) {
+        var check = confirm("Are you sure you want to Delete this record?");
+        if (check == true) {
+            $.ajax({
+                method: "POST",
+                url: '/Event/Delete',
+                data: { eventid: id },
+                success: function (response) {
+                    console.log(response);
+                    $('#grddata').empty();
+                    $('#grddata').append(response);
+                }
+            });
+        }
+    }
+
+    function SetEventId(EventId, buttonUrl, FbButtonURL, GoogleButtonURL)
+    {
+        $('#EventId').val(EventId);
+        $('msgbox').hide();
+        $('#spanbtnlogo').show();
+        $('#spanbtnlogofb').show();
+        $('#spanbtnlogogb').show();
+        $('#btnlogo').attr("src", buttonUrl);
+        $('#btnlogofb').attr("src", FbButtonURL);
+        $('#btnlogogb').attr("src", GoogleButtonURL);
+        $("input[name=linkedinradio][value='" + buttonUrl + "']").prop('checked', true);
+        $("input[name=facebookradio][value='" + FbButtonURL + "']").prop('checked', true);
+        $("input[name=googleradio][value='" + GoogleButtonURL + "']").prop('checked', true);
+    }
+    function ShowModel(eventid) {
+        $('#CodeEventId').val(eventid);
+        $.ajax({
+            method: "POST",
+            url: '@Url.Content("~/Event/GetEventKey")',
+            data: { EventId: eventid },
+            success: function (response) {
+                if (response.status == "success") {
+                    var key = response.EventKey;
+                    var codeblock = "<h2>Setting Up Login Button:</h2><br>";
+                    codeblock = codeblock + "Place below code in header section only if you do not have jquery installed on your webpage<br>";
+                    codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/jquery-1.12.0.min.js'&gt;&lt;/script&gt;</code> <br>";
+                    codeblock = codeblock + "Place below script in head section of your webpage  </br>";
+                    codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/eventproloader.js'&gt;&lt;/script&gt;</code> <br>";
+                    codeblock = codeblock + "Place below code on webpage where you want to show LinkedIn login button  </br>";
+                    codeblock = codeblock + "<code>&lt;div class='linkedinlogin' id='linkedinlogin_" + key + "'&gt;&lt;/div&gt;&lt;div id='divallowpost'&gt;";
+                    codeblock = codeblock + "&lt;input type='checkbox' id='AllowPost' checked='checked' /&gt;Let my social network know that I am attending the event. This gives us permission to post to your profile about your attendance. It also allows other registered visitors to see that you�re registered to attend.";
+                    codeblock = codeblock + "&lt;/div&gt;</code> <br><br>";
+                    codeblock = codeblock + "<h2>Setting Up Event Registration Form:</h2><br>Place below code in header section only if you do not have jquery installed on your webpage </br>";
+                    codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/jquery-1.12.0.min.js'&gt;&lt;/script&gt;</code> <br>";
+                    codeblock = codeblock + "Place below script in header section of your webpage  </br>";
+                    codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/eventproloader.js'&gt;&lt;/script&gt;</code> <br>";
+                    codeblock = codeblock + "Use below hidden fields value to autofill form with LinkedIn data</br>";
+                    codeblock = codeblock + "hidEventProUserId</br>hidProfileImage</br>hidFirstName</br>hidLastName</br>hidEmail<br><br>";
+                    codeblock = codeblock + "Place below div tag in Registration Form</br>";
+                    codeblock = codeblock + "<code>&lt;div id='eventregistration' class='eventregistration' &gt; &lt;/div &gt;</code><br><br>";
+                    codeblock = codeblock + "<h2>Setting Up Confirmation Page:</h2><br>Place below code in header section only if you do not have jquery installed on your webpage  </br>";
+                    codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/jquery-1.12.0.min.js'&gt;&lt;/script&gt;</code> <br>";
+                    codeblock = codeblock + "Place below script in header section of your webpage </br>";
+                    codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/eventproloader.js'&gt;&lt;/script&gt;</code> <br><br>";
+                    codeblock = codeblock + "After successful registration, render below script with CRM parameters.  </br>";
+                    codeblock = codeblock + "<code>&lt;script id='submitdatatoeventpro' src= 'https://www.eventnx.com/eventscript/submitdatatoeventpro.js'";
+                    codeblock = codeblock + " data-firstname='Your_system_firstname_param'";
+                    codeblock = codeblock + " data-lastname='Your_system_lastname_param'";
+                    codeblock = codeblock + " data-emailid='Your_system_emailid_param'";
+                    codeblock = codeblock + " data-companyname='Your_system_companyname_param'";
+                    codeblock = codeblock + " data-jobtitle='Your_system_jobtitle_param'";
+                    codeblock = codeblock + " data-crmregid='Your_system_crmregid_param'&gt;</code><br><br>";
+                    codeblock = codeblock + "Below script will display a sharable link on the confirmation page which registered user can copy and share on social media.</br>";
+                    codeblock = codeblock + "<code>&lt;div id='divsuccessmessage' style='display: none;'&gt; &lt;/div &gt;</code><br>";
+                    codeblock = codeblock + "Below script lists all the socially registered users in a grid manner.</br>";
+                    codeblock = codeblock + "<code>&lt;div id='divwhoisgoing' style='display: none;'&gt; &lt;/div &gt; </code><br><br>";
+                    codeblock = codeblock + "<h2>Embed Code  </br>";
+                    codeblock = codeblock + "<code>&lt;a id=&quot;btnLinkedIn&quot; target=&quot;blank&quot; ";
+                    codeblock = codeblock + "href=&quot;https://www.linkedin.com/oauth/v2/authorization?response_type=code&amp;amp;client_id=81wyrvvax51otg&amp;amp;scope=r_emailaddress%20w_share%20r_basicprofile%20r_liteprofile%20rw_company_admin%20w_member_social&amp;amp;redirect_uri=https%3A%2F%2Fwww.eventnx.com%2F%3Feid%3D" + key +"%26r%3D0&quot;&gt";
+                    codeblock = codeblock + "&lt;img src=&quot;https://www.eventnx.com/Content/images/button4.png&quot;&gt;"
+                    codeblock = codeblock + "&lt;/a&gt;</code>";
+                    $('#modelbody').html(codeblock);
+                }
+                else {
+                    $('#modelbody').html("<h3>Please create event registration form to generate code</h2>");
+                }
+            }
+        });
+    }
+
+    function EmailToDeveloperSubmit() {
+        var email = $("#txtemail").val();
+        var codeblock = "<h2>Setting Up Login Button:</h2><br>";
+        var emailvalidation = ValidateEmail(email);
+        if (email != null && email != "") {
+            $("#divemailvalidation").hide();
+            if (emailvalidation) {
+                var eventid = $('#CodeEventId').val();
+            $.ajax({
+                method: "POST",
+                url: '@Url.Content("~/Event/GetEventKey")',
+                data: { EventId: eventid },
+
+                success: function (response) {
+                    if (response.status == "success") {
+                        var key = response.EventKey;
+                        var codeblock = "<h2>Setting Up Login Button:</h2><br>";
+                        codeblock = codeblock + "Place below code in header section only if you do not have jquery installed on your webpage<br>";
+                        codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/jquery-1.12.0.min.js'&gt;&lt;/script&gt;</code> <br>";
+                        codeblock = codeblock + "Place below script in head section of your webpage  </br>";
+                        codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/eventproloader.js'&gt;&lt;/script&gt;</code> <br>";
+                        codeblock = codeblock + "Place below code on webpage where you want to show LinkedIn login button  </br>";
+                        codeblock = codeblock + "<code>&lt;div class='linkedinlogin' id='linkedinlogin_" + key + "'&gt;&lt;/div&gt;&lt;div id='divallowpost'&gt;";
+                        codeblock = codeblock + "&lt;input type='checkbox' id='AllowPost' checked='checked' /&gt;Let my social network know that I am attending the event. This gives us permission to post to your profile about your attendance. It also allows other registered visitors to see that you�re registered to attend.";
+                        codeblock = codeblock + "&lt;/div&gt;</code> <br><br>";
+                        codeblock = codeblock + "<h2>Setting Up Event Registration Form:</h2><br>Place below code in header section only if you do not have jquery installed on your webpage </br>";
+                        codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/jquery-1.12.0.min.js'&gt;&lt;/script&gt;</code> <br>";
+                        codeblock = codeblock + "Place below script in header section of your webpage  </br>";
+                        codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/eventproloader.js'&gt;&lt;/script&gt;</code> <br>";
+                        codeblock = codeblock + "Use below hidden fields value to autofill form with LinkedIn data</br>";
+                        codeblock = codeblock + "hidEventProUserId<br>hidProfileImage<br>hidFirstName<br>hidLastName<br>hidEmail<br><br>";
+                        codeblock = codeblock + "Place below div tag in Registration Form</br>";
+                        codeblock = codeblock + "<code>&lt;div id='eventregistration' class='eventregistration' &gt; &lt;/div &gt;</code><br><br>";
+                        codeblock = codeblock + "<h2>Setting Up Confirmation Page:</h2><br>Place below code in header section only if you do not have jquery installed on your webpage  </br>";
+                        codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/jquery-1.12.0.min.js'&gt;&lt;/script&gt;</code> <br>";
+                        codeblock = codeblock + "<p>Place below script in header section of your webpage </p></br>";
+                        codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/eventproloader.js'&gt;&lt;/script&gt;</code> <br><br>";
+                        codeblock = codeblock + "After successful registration, render below script with CRM parameters.  </br>";
+                        codeblock = codeblock + "<code>&lt;script src= 'https://www.eventnx.com/eventscript/submitdatatoeventpro.js'";
+                        codeblock = codeblock + " data-eventprouserid='Eventpro_system_userid'";
+                        codeblock = codeblock + " data-firstname='Your_system_firstname_param'";
+                        codeblock = codeblock + " data-lastname='Your_system_lastname_param'";
+                        codeblock = codeblock + " data-emailid='Your_system_emailid_param'";
+                        codeblock = codeblock + " data-companyname='Your_system_companyname_param'";
+                        codeblock = codeblock + " data-jobtitle='Your_system_jobtitle_param'";
+                        codeblock = codeblock + " data-crmregid='Your_system_crmregid_param'&gt;</code><br><br>";
+                        codeblock = codeblock + "<p>Below script will display a sharable link on the confirmation page which registered user can copy and share on social media.</p></br>";
+                        codeblock = codeblock + "<code>&lt;div id='divsuccessmessage' style='display: none;'&gt; &lt;/div &gt;</code><br>";
+                        codeblock = codeblock + "<p>Below script lists all the socially registered users in a grid manner.</p></br>";
+                        codeblock = codeblock + "<code>&lt;div id='divwhoisgoing' style='display: none;'&gt; &lt;/div &gt; </code><br><br>";
+                        codeblock = codeblock + "<h2>Embed Code  </br>";
+                        codeblock = codeblock + "<code>&lt;a id=&quot;btnLinkedIn&quot; target=&quot;blank&quot; ";
+                        codeblock = codeblock + "href=&quot;https://www.linkedin.com/oauth/v2/authorization?response_type=code&amp;amp;client_id=81wyrvvax51otg&amp;amp;scope=r_emailaddress%20w_share%20r_basicprofile%20r_liteprofile%20rw_company_admin%20w_member_social&amp;amp;redirect_uri=https%3A%2F%2Fwww.eventnx.com%2F%3Feid%3D" + key + "%26r%3D0&quot;&gt";
+                        codeblock = codeblock + "&lt;img src=&quot;https://www.eventnx.com/Content/images/button4.png&quot;&gt;"
+                        codeblock = codeblock + "&lt;/a&gt;</code>";
+                            $.ajax({
+                                method: "POST",
+                                url: '/Event/EmailToDeveloper',
+                                //data: { Email: email, EventCode: eventcode },
+                                data: { Email: email, EventCode: codeblock, EventId: eventid },
+                                success: function (response) {
+                                    if (response.status) {
+                                        $("#divdeveloperemail").hide();
+                                        $("#buttonsuccessmsg").html(response.message);
+                                        $("#emailsuccessmsgbox").show();
+                                    }
+                                    else {
+                                        $("#emailsuccessmsgbox").show();
+
+                                    }
+                                }
+                            });
+                    }
+                    else {
+                        $('#modelbody').html("<h3>Place create event registration form to generate code</h2>");
+                    }
+                }
+            });
+        }
+        else {
+                $("#divemailvalidation").show();
+                $("#divemailvalidation").html("Please Enter Valid Email");
+        }
+        }
+        else {
+            $("#divemailvalidation").show();
+            $("#divemailvalidation").html("Please Enter Email");
+        }
+
+
+
+    }
+    function ValidateEmail(mail) {
+        if (/^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+            return (true)
+        }
+        return (false)
+    }
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+    function FunCheck() {
+        checkboxes = document.getElementsByName('chk');
+
+        if (document.getElementById("CdkSelect").checked == true) {
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = true;
+            }
+        }
+        else {
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = false;
+            }
+        }
+    }
+
+
+  function myFunction() {
+  var copyText = document.getElementById("myInput");
+        copyText.select();
+        document.execCommand("copy");
+        alert("Copied the text: " + copyText.value);
+    }
+
+    function CopyToClipboard() {
+        var elm = document.getElementById("modelbody");
+        // for Internet Explorer
+
+        if (document.body.createTextRange) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(elm);
+            range.select();
+            document.execCommand("Copy");
+            //alert("Copied div content to clipboard");
+        }
+        else if (window.getSelection) {
+            // other browsers
+
+            var selection = window.getSelection();
+            var range = document.createRange();
+            range.selectNodeContents(elm);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand("Copy");
+            //alert("Copied div content to clipboard");
+        }
+    }
+    function Downloadcode() {
+        window.location.href = '@Url.Content("~/RegisteredUser/DownloadcodePDF")' + '?EventId='+$('#CodeEventId').val();
+    }
+
+    function readbtnURL(input) {
+        var _URL = window.URL || window.webkitURL;
+        var file, img;
+        if ((file = input.files[0])) {
+            img = new Image();
+            img.onload = function () {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#spanbtnlogo').show();
+                        $('#btnlogo')
+                            .attr('src', e.target.result);
+                        $('#filebtnerror').hide();
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            };
+            img.src = _URL.createObjectURL(file);
+        }
+    }
+    function readbtnURLFb(input) {
+        var _URL = window.URL || window.webkitURL;
+        var file, img;
+        if ((file = input.files[0])) {
+            img = new Image();
+            img.onload = function () {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#spanbtnlogofb').show();
+                        $('#btnlogofb')
+                            .attr('src', e.target.result);
+                        $('#filebtnerrorfb').hide();
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            };
+            img.src = _URL.createObjectURL(file);
+        }
+    }
+    function readbtnURLGb(input) {
+        var _URL = window.URL || window.webkitURL;
+        var file, img;
+        if ((file = input.files[0])) {
+            img = new Image();
+            img.onload = function () {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#spanbtnlogogb').show();
+                        $('#btnlogogb')
+                            .attr('src', e.target.result);
+                        $('#filebtnerrorgb').hide();
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            };
+            img.src = _URL.createObjectURL(file);
+        }
+    }
+    $('#btnbuttonremove').click(function () {
+        $('#tempbtnfile').val('');
+        $('#filebtn').val('');
+        $('#spanbtnlogo').hide();
+        $('#btnlogo').attr('src', '');
+    });
+    $('#btnbuttonremovefb').click(function () {
+        $('#tempbtnfilefb').val('');
+        $('#filebtnfb').val('');
+        $('#spanbtnlogofb').hide();
+        $('#btnlogofb').attr('src', '');
+    });
+</script>

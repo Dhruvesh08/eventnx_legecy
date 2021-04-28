@@ -1,0 +1,89 @@
+@model LinkedInDemo.Models.OrderModel
+@using DataLayer
+@{
+    ViewBag.Title = "Confirm Total";
+    var customerId = ViewBag.CustomerId;
+}
+<div class="mainBlock minheight500">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+        if (ViewBag.Message != null)
+        {
+            <div class="form-group">
+                <div class="col-lg-12 col-md-12">
+                    <div class="mainBlockTop">
+                     </div>
+                    <div style="display:none" class="print_show"><img src="~/Content/images/logo_eventnx.jpg" class="img-fluid image" alt="logo"></div>
+                    <div class="print_tital" style="display:none">Tax Invoice</div>
+                    <div class="payment_details_area">
+                        <div class="tital"><strong>@ViewBag.Message</strong></div>
+                        <div class="payment_area_box">
+                            <p class="hide_print">Thank you for Payment....</p>
+                            <a id="addToTable1" class="btn btnblack" href="@Url.Action("Index", "Dashboard")">&nbsp;Go To Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+
+            <div class="form-group">
+                <div class="col-lg-6 col-md-10">
+                    @*<input type="hidden" id="CustomerId" name="CustomerId" value="@Model.CustomerId" />
+                    <div class="mainBlockTop">
+                        <div class="mainBlockTopLeft">Confirm Order</div>
+                    </div>*@
+                    <ul class="formTop">
+                        @*<li>
+
+                            <span class="lableBlock">
+                                <label class="labelBox" for="inputDefault">Amount*</label>
+                            </span>
+                            <span class="inputBlock">
+                                $ @Model.OrderTotalWithoutTax
+                                @Html.HiddenFor(model => model.OrderTotalWithoutTax)
+
+                            </span>
+
+                        </li>
+
+                        <li>
+                            <span class="lableBlock">
+                                <label class="labelBox" for="inputDefault">Tax Amount*</label>
+                            </span>
+                            <span class="inputBlock">
+                                $ @Model.TaxAmount
+                                @Html.HiddenFor(model => model.TaxAmount)
+
+                            </span>
+                        </li>
+                        <li>
+                            <span class="lableBlock">
+                                <label class="labelBox" for="inputDefault">Total Order*</label>
+                            </span>
+                            <span class="inputBlock">
+                                $  @Model.OrderTotal
+                                @Html.HiddenFor(model => model.OrderTotal)
+
+
+                            </span>
+                        </li>*@
+
+                        <li>
+                            <div class="offset_30per">
+                                <button class="btn btnblack" style="text-align:center">Confirm Payment</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+            </div>
+        }
+    }
+</div>
+   

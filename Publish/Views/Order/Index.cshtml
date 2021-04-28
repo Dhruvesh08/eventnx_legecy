@@ -1,0 +1,16 @@
+﻿
+
+@using DataLayer
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="mainBlock minheight500">
+    <div class="mainBlockTop">
+        <div class="mainBlockTopLeft">Order Details</div>
+
+    </div>
+
+    @{Html.RenderAction("Grid");}
+</div>

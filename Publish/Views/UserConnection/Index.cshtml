@@ -1,0 +1,17 @@
+﻿
+@using DataLayer
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="mainBlock minheight500">
+    <div class="mainBlockTop">
+        <div class="mainBlockTopLeft">User Connections</div>
+        @*<div>
+                <a id="addToTable1" class="btn btnRed" href="@Url.Action("Create", "Event")"><i class="fa fa-plus"></i>&nbsp;Add Event</a>
+            </div>*@
+    </div>
+
+    @{Html.RenderAction("UserGrid");}
+</div>

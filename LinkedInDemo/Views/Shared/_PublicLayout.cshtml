@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="~/Content/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/global.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/login/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/login/themify-icons.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/login/style.css" />
+    <script src="~/Content/js/login/jquery-3.2.1.min.js"></script>
+</head>
+
+<body data-spy="scroll" data-target="#navbar" data-offset="30">
+
+    <div class="nav-menu fixed-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-dark navbar-expand-lg">
+                        <a class="navbar-brand" href="@Url.Action("Index","Home")"><img src="~/images/logo_eventnx1.png" class="img-fluid" alt="Event nx"></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+                        <div class="collapse navbar-collapse" id="navbar">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index","Home")#about_us">ABOUT US</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index","Home")#whyus">WHY US</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index","Home")#benefits">BENEFITS</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index","Home")#features">FEATURES</a> </li>
+                                <!--<li class="nav-item"> <a class="nav-link" href="#gallery">GALLERY</a> </li>-->
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index","Home")#pricing">PRICING</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index","ContactUs")">CONTACT</a> </li>
+                                <li class="nav-item"><a href="@Url.Action("Login","Account")" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">Login</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <!--<div class="light-bg py-5" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-center text-lg-left">
+                    <p class="mb-2"> <span class="ti-location-pin mr-2"></span> 4th Floor, Aarna One, Kalali, Vadodara, Gujarat, India.</p>
+                    <div class=" d-block d-sm-inline-block">
+                        <p class="mb-2">
+                            <span class="ti-email mr-2"></span> <a class="mr-4" href="mailto:contact@eventnx.com">contact@eventnx.com</a>
+                        </p>
+                    </div>
+                    <div class="d-block d-sm-inline-block">
+                        <p class="mb-0">
+                            <span class="ti-headphone-alt mr-2"></span> <a href="tel:+919726188777">+91 97261 88777</a>
+                        </p>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </div>-->
+    <!-- // end .section -->
+    <footer class="my-5">
+        <!-- Copyright removal is not prohibited! -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8"><p class="mb-2 fnt_capital"><small>Copyrigh &copy; 2019. All Rights Reserved. Event nx</small></p>
+        <small>
+            <a href="#" class="m-2">PRESS</a>
+            <a href="#" class="m-2">TERMS</a>
+            <a href="@Url.Action("Privacy","Home")" class="m-2">PRIVACY</a>
+        </small></div>
+                <div class="col-lg-4 col-md-4"><div class="logo_btm"><span>Power by</span><a href="http://www.thetacttree.com" target="_blank"><img src="~/images/logo_thetacttree.png" alt="" class="img-fluid"></a></div></div>
+                </div>
+        </div>
+    </footer>
+</body>
+<script src="~/Content/js/login/bootstrap.bundle.min.js"></script>
+<script src="~/Content/js/login/script.js"></script>
+</html>

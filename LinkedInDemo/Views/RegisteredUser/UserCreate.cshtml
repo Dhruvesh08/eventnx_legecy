@@ -1,0 +1,170 @@
+@model LinkedInDemo.Models.RegisteredUserModel
+
+@{
+    ViewBag.Title = "UserCreate";
+}
+
+@using (Html.BeginForm("UserCreate", "RegisteredUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="mainBlock minheight500">
+        <div class="mainBlockTop">
+            <div><a id="addtotable1" href="@Url.Action("Index", "RegisteredUser")" style="color:#33353f"><i class="fa fa-chevron-left"></i>&nbsp;Back</a></div>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal form-bordered innerform">
+                @Html.ValidationSummary(true)
+                <div>
+                    <div class="pad-top">
+
+                        @if (ViewBag.StatusMessage == "SuccessAdd")
+                        {
+                            <div class="alert alert-success">
+                                <div class="tick">
+                                    <span>Record Added Successful.</span>
+                                </div>
+                            </div>
+                        }
+
+                        @if (ViewBag.StatusMessage == "Exists")
+                        {
+                            <div class=" alert alert-danger">
+                                <div class="cross">
+                                    <span>@ViewBag.Message </span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-10">
+                        <ul class="formTop">
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">First Name*</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", maxlength = 100, @placeholder = "First Name" })
+                                    @Html.ValidationMessageFor(model => model.FirstName)
+                                </span>
+                            </li>
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Last Name *</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", maxlength = 100, @placeholder = "Last Name" })
+                                    @Html.ValidationMessageFor(model => model.LastName)
+                                </span>
+                            </li>
+
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Email *</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", maxlength = 100, @placeholder = "Email" })
+                                    @Html.ValidationMessageFor(model => model.Email)
+                                </span>
+                            </li>
+
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Country *</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.Country, new { @class = "form-control", maxlength = 100, @placeholder = "Country",})
+                                    @Html.ValidationMessageFor(model => model.Country)
+                                </span>
+                            </li>
+
+                           
+                            <li>
+                                <span class="lableBlock">
+                                    <label class="labelBox" for="inputDefault">Date Of Registration *</label>
+                                </span>
+                                <span class="inputBlock">
+                                    @Html.TextBoxFor(model => model.DateOfRegistration, new { @class = "form-control", maxlength = 100, @placeholder = "Date Of Registration" })
+                                    @Html.ValidationMessageFor(model => model.DateOfRegistration)
+                                </span>
+                            </li>
+                           
+                            <li>
+                                <div class="offset_30per">
+                                    <button class="btnblack">Save</button>
+                                    <a class="btnblack btngreay" href="@Url.Action("UserCreate", "RegisteredUser")">Reset</a>
+                                    <a class="btnblack btngreay1" href="@Url.Action("Index", "RegisteredUser")">Cancel</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*<div class="form-horizontal">
+        @Html.ValidationSummary(true,"", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(Model => Model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+
+
+        <div class="col-md-10">
+            @Html.EditorFor(Model => Model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+
+            @Html.ValidationMessageFor(Model => Model.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+
+
+        <div class="col-md-10">
+            @Html.EditorFor(Model => Model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+
+            @Html.ValidationMessageFor(Model => Model.LastName, "", new { @class = "text-danger" })
+        </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.Email,htmlAttributes: new {@class= "control-label col-md-2" })
+
+            <div class="col-md-10">
+             @Html.EditorFor(Model => Model.Email , new {htmlAttributes = new {@class="form-control"} })
+
+            @Html.ValidationMessageFor(Model => Model.Email, "", new {@class="text-danger"})
+        </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.Country,htmlAttributes: new {@class="control-label col-md-2" })
+            <div class="col-md-10">
+              @Html.EditorFor(Model => Model.Country, new { htmlAttributes = new { @class = "form-control" } })
+
+             @Html.ValidationMessageFor(Model => Model.Country, "", new { @class = "text-danger" })
+         </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.DateOfRegistration, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(Model => Model.DateOfRegistration, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(Model => Model.DateOfRegistration, "", new { @class = "text-danger" })
+        </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>*@
+
+}

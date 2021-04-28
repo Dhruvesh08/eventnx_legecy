@@ -1,0 +1,122 @@
+@model RegisterCustomerModel
+@using LinkedInDemo.Models
+@{
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <section class="login_bg set_popup">
+            <div class="mainBlock ">
+                <h2>Register</h2>
+                @*<div class="">*@ @*login_form*@
+
+                <div id="diverror" style="display:none">
+                    <label id="lblerrormsg"  style="display:none"></label>
+                </div>
+                <div class="login_form widthset_register">
+                   
+                    @if (@ViewBag.message != null)
+                    {
+                        <div ><h5 class="text-green text-center" style="margin-bottom:0px;">@ViewBag.message </h5> <br/></div>
+
+                        <div class="form-group">
+                            <div style="text-align:center">                               
+                                <a class="btn_pinkcolor" href="@Url.Action("Login", "Account")">Login</a>
+                            </div>
+                        </div>
+                    }
+
+                    else
+                    {
+                        <div class="register_popup">
+                            @Html.ValidationSummary()
+                            <form>
+                                <div>
+                                    <ul class="formTop" style="margin-bottom: 0px;">
+                                        <li>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", maxlength = 80, @placeholder = "First Name" })
+                                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", maxlength = 100, @placeholder = "Last Name" })
+                                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </li>
+                                        <li class="width100">
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", maxlength = 100, @placeholder = "Email" })
+                                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                            </div>
+                                        </li>
+                                        <li class="width100">
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.Contactno, new { @class = "form-control", maxlength = 15, @placeholder = "Contact No." })
+                                                @Html.ValidationMessageFor(model => model.Contactno, "", new { @class = "text-danger" })
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group">
+                                                @Html.PasswordFor(model => model.Password, new { @class = "form-control", maxlength = 100, @placeholder = "Password" })
+                                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group">
+                                                @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", maxlength = 100, @placeholder = "Confirm Password" })
+                                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                            </div>
+                                        </li>
+                                        <li class="width100">
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.CompanyName, new { @class = "form-control", maxlength = 100, @placeholder = "Company Name" })
+                                                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </li>
+                                        <li class="width100 sinup_checbox"><div class="form-group">
+                            <p class="left" style="padding:0px;margin:0px;">
+                                <label class="container" style="margin-bottom:0px">
+                                    By Clicking Sign up, You agree to <a href="@Url.Action("Privacy","Home")" target="_blank">Our Terms</a>.
+                                    @Html.CheckBoxFor(model => model.AgreeTerms, new { @name = "AgreeTerms", @checked = "checked" })
+                                    <span class="checkmark"></span>
+                                </label>
+                                @Html.ValidationMessageFor(model => model.AgreeTerms, "", new { @class = "text-danger" })
+                                                @Html.HiddenFor(x => Model.isTrue)
+                            </p>
+                        </div></li>
+                                        <!--<li class="width100 sinup_checbox"><div class="form-group">
+                                            <span class="c_1"></span>
+                                            <span class="c_1">
+                                            
+                                            </span>
+                                     <div class="clear"></div>
+                                            </div></li>-->
+                                        <li class="width100">
+                                            <div class="form-group margintop10">
+                                                @*<button class="btn btnRed">Sign Up</button>*@
+                                                <input class="btn_pinkcolor" type="submit" value="Sign Up" onclick="javascript:return AcceptTermAndcondition();" />
+                                                @*<input type="button" id="btncheck" value="Sign Up" />*@
+                                            </div>
+                                        </li>
+                                        <li class="width100">
+                                            <div class="form-group w100 sign_login" style="margin-bottom:0px;">
+                                                <p> <span>Already have an account?</span> &nbsp;&nbsp; <a href="@Url.Action("Login", "Account")">Login</a></p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </form>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </section>
+   
+}
+   
+   

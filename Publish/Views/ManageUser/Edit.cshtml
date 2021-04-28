@@ -1,0 +1,205 @@
+@model LinkedInDemo.Models.CustomerModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("Edit", "ManageUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="mainBlock minheight500">
+        <div class="mainBlockTop">
+            <div class="mainBlockTopLeft">Edit Customer Details </div>
+            <div class="back_btn_ara">
+                <a style="color:#33353f" id="addtotable1" href="@Url.Action("Index", "ManageUser")"><i class="fa fa-chevron-left"></i>&nbsp;Back</a></div>
+        </div>
+      
+        <div class="panel-body">
+            <div class="form-horizontal form-bordered innerform">
+                @Html.ValidationSummary(true)
+                <div>
+                    <div class="pad-top">
+
+                        @if (ViewBag.StatusMessage == "SuccessUpdate")
+                        {
+                            <div class="alert alert-success">
+                                <div class="tick">
+                                    <span>Record Updated Successfully.</span>
+                                </div>
+                            </div>
+                        }
+
+                        @if (ViewBag.StatusMessage == "Exists")
+                        {
+                            <div class=" alert alert-danger">
+                                <div class="cross">
+                                    <span>@ViewBag.Message </span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="alert alert-success" style="display:none" id="passmsg">
+                        <div class="tick">
+                            <label id="rsult"></label>
+                        </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="CustomerId" name="CustomerId" value="@Model.CustomerId" />
+                    <input type="hidden" id="Date_of_Registration" name="Date_of_Registration" value="@Model.Date_of_Registration" />
+                    <div class="row">
+                        <div class="col-lg-12 col-md-10">
+                            <ul class="formTop">
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">First Name*</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", maxlength = 100, @placeholder = "First Name" })
+                                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">Last Name *</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", maxlength = 100, @placeholder = "LastName" })
+                                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">Email *</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", maxlength = 100, @placeholder = "Email" })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">Contact No *</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.Contactno, new { @class = "form-control", maxlength = 15, @placeholder = "Contactno" })
+                                        @Html.ValidationMessageFor(model => model.Contactno, "", new { @class = "text-danger" })
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">Username *</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", maxlength = 100, @placeholder = "Username" })
+                                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                                    </span>
+                                </li>
+                                <li class="passwordbox">
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">Password *</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", maxlength = 100, @placeholder = "Password" })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </span>
+                                    <span class="btnchangepass">
+                                        <a class="btnblack" id="changepass" href="#">Change Password</a>
+
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">Company Name *</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.CompanyName, new { @class = "form-control", maxlength = 100, @placeholder = "CompanyName" })
+                                        @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">Date of Registration *</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Model.Date_of_Registration.ToString("dd-MMM-yyyy")
+                                    </span>
+                                </li>
+
+                                <li class="checkbox_box">
+                                    <div class="">
+                                        <input type="checkbox" @((Model.AccountStatus == false) ? "" : "checked='checked'") name="IsActive" id="IsActive" />
+                                        <input type="hidden" id="AccountStatus" name="AccountStatus" />
+                                        @if (Model.AccountStatus)
+                                        {
+                                            <span>Active</span>
+                                        }
+                                        else
+                                        {
+                                            <span>InActive</span>
+                                        }
+                                    </div>
+                                </li>
+                                <li class="width100">
+                                    <div class="offset_30per">
+                                        <button class="btnblack" id="btnsaveuser">Save</button>
+                                        <a class="btn btngreay" href="@Url.Action("Index", "ManageUser")">Cancel</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        @*<div class="col-lg-6 col-md-10">
+                    Place this tag into <code>&lt;head&gt;&lt;/head&gt;</code> section of your webpage<br />
+                    <code>&lt;script src="jquery-1.12.0.min.js"&gt;&lt;/script&gt;</code><br>
+                    <code>&lt;script src="eventregistration.renderer.js"&gt;&lt;/script&gt;</code><br>
+                    <code>&lt;script src="eventregistration.js"&gt;&lt;/script&gt;</code><br>
+                    Place below div where you want LinkedIn button to apper <br />
+                    <code>&lt;div class="eventregistration" id="eventid_@ViewBag.EventId"&gt;&lt;/div&gt;</code><br>
+
+                </div>*@
+                    </div>
+                </div>
+        </div>
+    </div>
+}
+<script>
+    $(document).ready(function () {
+
+        $('#IsActive').change(function () {
+            if ($('#IsActive').prop("checked")) {
+                $('#AccountStatus').val('True');
+            }
+            else {
+                $('#AccountStatus').val('False');
+            }
+        })
+
+        $('#changepass').click(function () {
+           
+            $.ajax({
+              
+                type: "POST",
+                url: "ChangePassword",
+                data: {
+                    'CustomerId': $('#CustomerId').val(),
+                    'Password': $('#Password').val()
+                },
+                success: function (data) {
+                   
+                    $('#passmsg').show();
+
+                    $('#rsult').text(data);
+
+                }
+            });
+        });
+        
+
+    });
+  
+</script>
+
+

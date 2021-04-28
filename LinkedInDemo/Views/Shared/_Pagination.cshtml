@@ -1,0 +1,47 @@
+﻿@{ 
+    Layout = null;
+}
+<div class="pagenation-main">
+    <ul class="pagination">
+        @if (ViewBag.LastPageIndex > 1)
+        {
+            <li class="page-item"><a class="page-link" id="btnPageFirst" onclick="javascript:FunPageIndex(1);" href="#"><<</a></li>
+            <li class="page-item"><a id="btnPagePrevious" class="page-link" onclick="javascript:FunPageIndex(@ViewBag.CurrentPageIndex-1);" href="#"><</a></li>
+
+            int PageIndex = 3;
+            int StartPageIndex = ViewBag.CurrentPageIndex - PageIndex;
+            int EndPageIndex = ViewBag.CurrentPageIndex + PageIndex;
+
+            if (StartPageIndex < 1)
+            {
+                EndPageIndex = EndPageIndex - StartPageIndex;
+            }
+
+            if (EndPageIndex > ViewBag.LastPageIndex)
+            {
+                StartPageIndex = (StartPageIndex - (EndPageIndex - ViewBag.LastPageIndex)) + 1;
+            }
+
+
+            for (int i = 1; i <= @ViewBag.LastPageIndex; i++)
+            {
+
+                if ((StartPageIndex < i && EndPageIndex > i))
+                {
+                    if (ViewBag.CurrentPageIndex == i)
+                    {
+                        <li class="page-item active"><a id="btnnum" class="page-link" onclick="javascript:FunPageIndex(@i);" class="PaginationDisable active" href="#">@i</a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item"><a class="page-link" id="btnnum" onclick="javascript:FunPageIndex(@i);" href="#">@i</a></li>
+                    }
+                }
+            }
+
+            <li class="page-item"><a class="page-link" id="btnPageNext" onclick="javascript:FunPageIndex(@ViewBag.CurrentPageIndex    +1);" href="#">></a></li>
+            <li class="page-item"><a class="page-link" id="btnPageLast" onclick="javascript:FunPageIndex(@ViewBag.LastPageIndex);">>></a></li>
+
+        }
+    </ul>
+</div>

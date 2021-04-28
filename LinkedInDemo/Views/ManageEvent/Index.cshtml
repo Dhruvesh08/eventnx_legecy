@@ -1,0 +1,17 @@
+@model LinkedInDemo.Models.ManageEventModel
+
+@using DataLayer
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="mainBlock minheight500">
+    <div class="mainBlockTop">
+        <div class="mainBlockTopLeft">Manage Events</div>
+        <div class="">
+            @*<a id="addToTable1" class="btn btnRed" href="@Url.Action("Create", "ManageUser")"><i class="fa fa-plus"></i>&nbsp;Add Customer</a>*@
+        </div>
+    </div>
+    @{Html.RenderAction("Grid");}
+</div>

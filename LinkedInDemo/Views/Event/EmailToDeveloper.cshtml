@@ -1,0 +1,79 @@
+﻿@model LinkedInDemo.Models.EmailToDeveloperModel
+@{
+    Layout = null;
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Eventnx</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/global.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/design.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+        <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+        <style>
+            .alert-danger {
+                color: #ff0000;
+            }
+        </style>
+    </head>
+    <body>
+        <section class=" login_bg">
+            <div class="mainBlock">
+                <span><img src="~/Content/images/logo_eventnx.jpg" class="img-fluid image" alt="logo"></span>
+                @*<div class="">*@ @*login_form*@
+                <div class="login_form">
+                    @if (ViewBag.success != null)
+                    {
+                        <div class="alert alert-success">
+                            <div class="tick text-center" style="color:green">
+                                @ViewBag.success
+                            </div>
+                        </div>
+                    }
+                    @if (ViewBag.error != null)
+                    {
+                        <div class="alert alert-danger">
+                            <div class="tick text-center">
+                                @ViewBag.error
+                            </div>
+                        </div>
+
+
+                        @*<div class="form-group" style=" text-align:center">
+                            <div class="col-md-offset-2 col-md-5" style="text-align:center">
+                                <p style="text-align:center; padding:5px 0px 10px 0px;"> Click here to Login</p>
+                                <a class="btn btnRed" href="@Url.Action("Login", "Account")">Login</a>
+                            </div>
+                        </div>*@
+                    }
+                    else
+                    {
+                        <div>
+                            <form>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", maxlength = 80, @placeholder = "Email Id" })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <div class="set_tow_btn">
+                                        <button class="btn btnRed">Submit</button>
+                                        <a class="btn btnblack" href="@Url.Action("UserGrid", "RegisteredUser")">Cancel</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
+}

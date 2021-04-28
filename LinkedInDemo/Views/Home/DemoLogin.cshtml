@@ -1,0 +1,289 @@
+﻿
+@{
+    ViewBag.Title = "DemoLogin";
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+}
+
+@model LinkedInDemo.Models.ContactUsModel
+@{
+Layout = null;
+ViewBag.Title = "Share";
+}
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>EVENTNX - Event and Trade Show Attendee Acquisition and Growth through Referral Marketing</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="EventNX is an event marketing platform essential to grow audience at your event. With EventNX, you can plug and play social registration, automatic social posting and personalized tracking of attendee acquisition through referrals. You can expand your social reach and increase your event attendance by word of mouth from existing attendees.">
+    <meta name="keywords" content="HTML5, bootstrap, mobile, app, landing, ios, android, responsive">
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- Font -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <!-- Themify Icons -->
+    <link rel="stylesheet" href="~/css/themify-icons.css">
+    <!-- Owl carousel -->
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <!-- Main css -->
+    <link href="~/css/jquery.mCustomScrollbar.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <script src="~/js/jquery-3.2.1.min.js"></script>
+</head>
+
+<body data-spy="scroll" data-target="#navbar" data-offset="30">
+    <!-- Nav Menu -->
+    <!--<div class="nav-menu fixed-top bg_with">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-dark navbar-expand-lg">
+                        <a class="navbar-brand" href="index.html"><img src="images/logo_eventnx.png" class="img-fluid" alt="Event nx"></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon ti-menu"></span> </button>
+                        <div class="collapse navbar-collapse" id="navbar">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item"> <a class="nav-link active" href="#home">HOME <span class="sr-only">(current)</span></a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#features">FEATURES</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#gallery">GALLERY</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#pricing">PRICING</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#contact">CONTACT</a> </li>
+                                <li class="nav-item"><a href="#" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">Download</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div class="nav-menu fixed-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-dark navbar-expand-lg">
+                        <a class="navbar-brand" href="@Url.Action("Index","Home")"><img src="~/images/logo_eventnx1.png" class="img-fluid" alt="Event nx"></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+                        <div class="collapse navbar-collapse" id="navbar">
+                            <ul class="navbar-nav ml-auto">
+                                <!--<li class="nav-item"> <a class="nav-link active" href="#home">HOME <span class="sr-only">(current)</span></a> </li>-->
+                                <li class="nav-item"> <a class="nav-link" href="#about_us">ABOUT US</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#whyus">WHY US</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#benefits">BENEFITS</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#features">FEATURES</a> </li>
+                                <!--<li class="nav-item"> <a class="nav-link" href="#gallery">GALLERY</a> </li>-->
+                                <li class="nav-item"> <a class="nav-link" href="#pricing">PRICING</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#contact">CONTACT</a> </li>
+                                <li class="nav-item"><a href="@Url.Action("Login","Account")" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">Login</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header class="bg-gradient" id="home">
+        <div class="container mt-5">
+            <div class="banner_area" style="min-height:5px;">
+                
+            </div>
+        </div>
+    </header>
+    
+    
+    <div class="light-bg py-5" id="contact">
+        <div class="container">
+            
+            <div class="section-title">
+                <h1>Checkout How EventNX Works.</h1>
+                <h3>It's super easy to integrate social login and start getting attendees through referrals.</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="socialbox" style="border:1px solid #ccc; padding:30px;">
+                        <h3 class="text-center"><b>Register Socially</b></h3>
+                        <p class="text-center" style="line-height:20px;">Click on the below button to register through Linkedin</p>
+                        <div class="socialbuttons" style="text-align:center">
+                            @*<a class="btnlinkdinbig btnsocial"><span class="socialiconbox"><svg class="" width="25" height="25" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"></path></svg></span><span class="socialtext">Continue</span></a>*@
+                            <div class='linkedinlogin' id='linkedinlogin_ecc66c2e-5d71-4a3c-8b40-aaebcdc58268'></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <p>
+                        Conveniently customize your event registration process on your event website with simple embeddable code and get insightful real-time reports of attendee acquisition. Attendees can use their social credentials to register for your event. Once registered, attendees will get a personalized sharing URL to post on their social profiles and also to invite their peers – making them promoters of your event. Event Attendees can also see who all are attending the same event. Organizers can see reports regarding referral marketing activities carried out by attendees.
+                        An awesome way to build trust and attract more attendees.
+                    </p>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- // end .section -->
+    <footer class="my-5">
+        <!-- Copyright removal is not prohibited! -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8">
+                    <p class="mb-2 fnt_capital"><small>Copyrigh &copy; 2019. All Rights Reserved. Event nx</small></p>
+                    <small>
+                        <a href="#" class="m-2">PRESS</a>
+                        <a href="#" class="m-2">TERMS</a>
+                        <a href="@Url.Action(" Privacy","Home")" class="m-2">PRIVACY</a>
+                    </small>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="logo_btm"><span>Power by</span><a href="http://www.thetacttree.com" target="_blank"><img src="~/images/logo_thetacttree.png" alt="" class="img-fluid"></a></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery and Bootstrap -->
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugins JS -->
+    <script src="~/js/owl.carousel.min.js"></script>
+    <!-- Custom JS -->
+    <script src="~/js/jquery.ihavecookies.js"></script>
+    <script type="text/javascript">
+        var options = {
+            title: '&#x1F36A; Accept Cookies & Privacy Policy?',
+            message: 'EventNX uses analytical (non personal) cookies to gain insight into the usage of our website. Once you click “Accept”, you will receive an optimal and more personal experience on our website and give us permission to save cookies from additional parties.',
+            delay: 600,
+            expires: 1,
+            link: '#privacy',
+            onAccept: function() {
+                var myPreferences = $.fn.ihavecookies.cookie();
+                console.log('Yay! The following preferences were saved...');
+                console.log(myPreferences);
+            },
+            uncheckBoxes: true,
+            acceptBtnLabel: 'Accept Cookies',
+            moreInfoLabel: 'More information',
+            cookieTypesTitle: 'Select which cookies you want to accept',
+            fixedCookieTypeLabel: 'Essential',
+            fixedCookieTypeDesc: 'These are essential for the website to work correctly.'
+        }
+
+        $(document).ready(function() {
+            $('body').ihavecookies(options);
+
+            if ($.fn.ihavecookies.preference('marketing') === true) {
+                console.log('This should run because marketing is accepted.');
+            }
+
+            $('#ihavecookiesBtn').on('click', function() {
+                $('body').ihavecookies(options, 'reinit');
+            });
+        });
+
+    </script>
+    <script>
+        function Contactus() {
+            var Name = $("#Name").val();
+            var Company = $("#Company").val();
+            var Designation = $("#Designation").val();
+            var Phone = $("#Phone").val();
+            var Message = $("#Message").val();
+            var Email = $("#Email").val();
+            $.ajax({
+                method: "POST",
+                url: '/Account/ContactUs',
+                data: {
+                    Name: Name,
+                    Company: Company,
+                    Designation: Designation,
+                    Phone: Phone,
+                    Message: Message,
+                    Email: Email
+                },
+                success: function(response) {
+                    window.location.href = '@Url.Content("~/Home/Index")';
+                }
+            });
+
+        }
+        function GetQuote() {
+            var Name = $("#Name").val();
+            var Company = $("#Company").val();
+            var Phone = $("#Phone").val();
+            var CreditsRequired = $("#CreditsRequired").val();
+            var Email = $("#Email").val();
+            $.ajax({
+                method: "POST",
+                url: '/Account/GetQuote',
+                data: {
+                    Name: Name,
+                    Company: Company,
+                    Phone: Phone,
+                    CreditsRequired: CreditsRequired,
+                    Email: Email
+                },
+                success: function(response) {
+                    window.location.href = '@Url.Content("~/Home/Index")';
+                }
+            });
+
+        }
+
+    </script>
+    <script src="~/js/script.js"></script>
+    <script src="~/js/script_price_slidr.js"></script>
+    <script src="~/js/jquery.mCustomScrollbar.js"></script>
+    <script>
+        (function($) {
+            $(window).on("load", function() {
+                $("#content-1").mCustomScrollbar({
+                    theme: "minimal"
+                });
+
+            });
+        })(jQuery);
+
+    </script>
+</body>
+
+</html>
+
+<script src="https://www.eventnx.com/eventscript/jquery-1.12.0.min.js"></script>
+<script src='https://www.eventnx.com/eventscript/eventproloader.js'></script>
+@*<div class='linkedinlogin' id='linkedinlogin_ecc66c2e-5d71-4a3c-8b40-aaebcdc58268'></div>*@
+@*<div class='linkedinlogin' id='linkedinlogin_ca8b9bb7-8f03-4f85-8088-a6163480a13c'></div>*@
+@*<div id='divallowpost' style='display:none;'><input type='checkbox' id='AllowPost' checked='checked' />Let people know i am going to the event</div>*@
+@*<div id='divallowpost' style='display:none;'><input type='checkbox' id='AllowPost' checked='checked' />Let my social network know that I am attending the event. This gives us permission to post to your profile about your attendance. It also allows other registered visitors to see that youï¿½re registered to attend.</div>*@
+
+<script>
+    $(document).ready(function () {
+
+        setTimeout(function () {
+
+            $('#txtFirstName').val($('#hidFirstName').val());
+            $('#txtLastName').val($('#hidLastName').val());
+            $('#txtEmail').val($('#hidEmail').val());
+            $('#profileimagelinked').attr("src", $('#hidProfileImage').val());
+        }, 2000)
+
+        $('.eventformsubmit').click(function () {
+
+            var script = document.createElement("script");
+            script.src = "https://www.eventnx.com/eventscript/submitdatatoeventpro.js";
+            script.setAttribute("data-eventprouserid", $('#hidEventProUserId').val());
+            script.setAttribute("data-firstname", $('#hidFirstName').val());
+            script.setAttribute("data-lastname", $('#hidLastName').val());
+            script.setAttribute("data-emailid", $('#hidEmail').val());
+            script.setAttribute("data-companyname", "MeghTech");
+            script.setAttribute("data-jobtitle", "Team Leader");
+            script.setAttribute("data-crmregid", 123);
+            script.setAttribute("data-allowpost", $('#hidAllowPost').val());
+            document.head.appendChild(script);
+            alert('Thankyou !');
+        });
+    });
+</script>
+

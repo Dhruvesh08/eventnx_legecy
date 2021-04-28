@@ -1,0 +1,329 @@
+@model IEnumerable<LinkedInDemo.Models.UserMasterModel>
+@using DataLayer
+@{
+    Layout = null;
+}
+
+<div id="grddata">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="pad-top">
+
+                @if (ViewBag.StatusMessage.ToString() == "SuccessDelete")
+                {
+                    <div class="alert alert-success">
+                        <div class="tick">
+                            Record Deleted Successfully.
+                        </div>
+                    </div>
+
+                }
+                @if (ViewBag.StatusMessage.ToString() == "Error")
+                {
+
+                    <div class=" alert alert-danger">
+                        <div class="cross">
+                            Error... Please Try Again.
+                        </div>
+                    </div>
+
+                }
+                @if (ViewBag.StatusMessage.ToString() == "NoItem")
+                {
+                    <div class=" alert alert-danger">
+                        <div class="cross">
+                            There are no registered users.
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row search-areamain marleftzero pead_767_none">
+       <div class=" col-md-4 padleftzero">
+        @if (Model.Count() > 0)
+        {
+            
+                <div class="center_div center_div767">
+                    @{
+                        ViewBag.TotalRecords = ViewBag.TotalRegistration;
+                        Html.RenderPartial("_PageSize");
+                    }
+                </div>            
+        }
+           </div>
+        <div class="col-md-8 padrightzero">
+
+            <div class="searchareamain">
+                <ul>
+
+                    <li> <input name="txtSearchTitle" type="text" maxlength="100" class="form-control" id="txtSearchTitle" style="width: 100%;" placeholder="Search">
+                         <button id="searchid" onclick="GetData(1,@ViewBag.CurrentPageIndex,'@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'',@ViewBag.SearchRecords,'','@ViewBag.Domain','@ViewBag.Event')">x</button>
+                    </li>
+
+                    <li> @Html.DropDownList("ddlevent", (List<SelectListItem>)ViewBag.eventlist)</li>
+                   
+                    <li> <input type="submit" name="btnSearch" value="Search" id="btnSearch" onclick="javascript:FunSearchRecord();" class="btn btn-primary "></li>
+                    @if (Model.Count() > 0)
+                    {
+                        <li><a id="addToTable1" class="btn btnRed width_auto" href="@Url.Action("ExporttoExcel", "UserMaster")"><i class="fa fa-file-excel-o"></i></a></li>
+
+                    }
+                </ul>
+
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+        <div class="datatable">
+            <div class="table-responsive">
+                    <table class="borderbtm">
+                        <tbody>
+                            <tr>
+                                <th class="text-left" width="25"><a onclick="javascript:FunSortData('UserId');">Id </a></th>
+                                <th class="text-center" width="7%"><a onclick="javascript:FunSortData('CRM_RegistrationId');">CRM Id </a></th>
+                                <th class="text-capitalize"><a onclick="javascript:FunSortData('FirstName');">Name</a></th>
+                                <th class="text-capitalize" width="10%"><a onclick="javascript:FunSortData('Referred By');">Referred By</a></th>
+                                <th class="text-left"><a onclick="javascript:FunSortData('Email');">Email</a></th>
+                                <th class="text-left"><a onclick="javascript:FunSortData('EventName');">Event Name</a></th>
+                                <th class="text-center" width="8%"><a onclick="javascript:FunSortData('DateOfRegistration');">Date Of Registration</a></th>
+                                @*<th class="text-center">Company Name</th>
+        <th class="text-center">Job Title</th>*@
+                                <th class="text-left"><a onclick="javascript:FunSortData('Source');">Source</a></th>
+                                <th class="text-center" width="6%"><a onclick="javascript:FunSortData('ReferralCount');">Referral Visitors</a></th>
+                                <th class="text-center" width="6%"><a onclick="javascript:FunSortData('VisitorCount');">Referral Clicks</a></th>
+                                <th class="text-center" width="6%"><a onclick="javascript:FunSortData('Channel');">Channel</a></th>
+
+                                @*<th class="text-center">Connection Count</th>
+        <th class="text-center" width="10%">Action</th>*@
+                            </tr>
+                           
+                                @foreach (var e in Model)
+                                {
+                            <tr>
+                                <td class="text-left">@e.UserId</td>
+                                <td class="text-center">@e.CRM_RegistrationId</td>
+                                <td class="text-left">
+                                    <div class="flex_div">
+                                        <span class="img_round">
+                                            @if (e.ProfileImage == null || e.ProfileImage == "")
+                                            {
+                                                <img src="~/Content/images/icon_user.jpg" alt="" width="50" height="auto" />
+                                            }
+                                            else
+                                            {
+                                                <img src="@e.ProfileImage" alt="" width="50" height="auto" />
+
+                                            }
+                                        </span> <span>
+                                            @e.FirstName @e.LastName
+                                            <br />@e.CRM_CompanyName
+                                            <br />@e.CRM_JobTitle
+                                            @*<br />@e.Email
+                    <br />@e.DateOfRegistration.ToString("dd-MM-yyyy")*@
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>@e.ReferredBy</td>
+                                <td>
+                                    @e.Email
+                                </td>
+
+                                <td class="text-left">@e.EventName</td>
+                                <td class="text-center">
+                                    @e.DateOfRegistration.ToString("dd-MM-yyyy")
+                                </td>
+                                @*<td class="text-center">@e.CRM_CompanyName</td>
+        <td class="text-center">@e.CRM_JobTitle</td>*@
+                                <td class="text-center">@e.Source</td>
+                                @if (e.ReferralCount > 0)
+                                {
+                                    <td class="text-center"><a target="_blank" href=@Url.Action("Index", "RegisteredUser", new { UserId = @e.UserId, EventId = @e.EventId })>@e.ReferralCount.Value.ToString("#,##0")</a></td>
+                                }
+                                else
+                                {
+                                    <td class="text-center"> @e.ReferralCount.Value.ToString("#,##0")</td>
+                                }
+                                <td class="text-center"> @e.visitorcount </td>
+
+                                @*@if (e.ConnectionCount > 0)
+        {
+            <td class="text-center"><a href=@Url.Action("Index", "UserConnection", new { UserId = @e.UserId , EventId = @e.EventId })>@e.ConnectionCount.ToString("#,##0") </a></td>
+        }
+        else
+        {
+            <td class="text-center"> @e.ConnectionCount.ToString("#,##0")</td>
+        }
+        <td class="text-center">
+            <a onclick="Delete(@e.UserId);" class="fa fa-remove iconbtn" data-toggle="tooltip" data-placement="top" title="Delete"></a>
+        </td>*@
+                            </tr>
+                                    @*<input type="hidden" value="@e.EventId"/>*@
+                                }
+                          
+                            </tbody>
+                    </table>
+            </div>
+        </div>
+
+ 
+    <div class="row mar_top_15">
+        @{
+            Html.RenderPartial("_Pagination");
+        }
+    </div>
+
+
+</div>
+
+
+<script>
+   
+    var top=0;
+
+    function FunPageIndex(pageindex)//grid pagination
+    {
+        GetData(0,pageindex, '@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'@ViewBag.Alpha',@ViewBag.SearchRecords,'@ViewBag.SearchTitle');
+    }
+    function FunSortData(SortData)//Grid header sorting
+    {
+        GetData(0,@ViewBag.CurrentPageIndex, SortData,@ViewBag.AscVal,@ViewBag.PageSize,'@ViewBag.Alpha',@ViewBag.SearchRecords,'@ViewBag.SearchTitle');
+    }
+
+    function FunPageRecord(PageRecord)//Grid Page per record
+    {
+        GetData(0,1, '@ViewBag.OrderByVal',@ViewBag.IsAscVal,PageRecord,'@ViewBag.Alpha',@ViewBag.SearchRecords,'@ViewBag.SearchTitle');
+    }
+
+    function FunSearchRecord()//Search
+    {
+        var domain = $("#ddldomain").val();
+        var event = $("#ddlevent").val();
+
+        var element_txtSearchTitle = document.getElementById('txtSearchTitle').value;
+        GetData(1, 1, '@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize, '', '', element_txtSearchTitle, domain, event);
+    }
+
+    function GetData(IsBindData_val, PageIndex, orderby_val, isAsc_val, PageSize_val, alpha_val, SearchRecords_val, SearchTitle_val, domain_val, event_val)
+    {
+        $.ajax({
+            url: '/UserMaster/Grid',
+            data: { IsBindData: IsBindData_val, currentPageIndex: PageIndex, orderby: orderby_val.trim(), IsAsc: isAsc_val, PageSize: PageSize_val, SearchRecords: SearchRecords_val, Alpha: alpha_val, SearchTitle: SearchTitle_val, Domain: domain_val ,Event:event_val },
+            beforeSend: function () {  },
+            success: function (response) {
+                $('#grddata').empty();
+                $('#grddata').append(response);
+                $('[name=txtSearchTitle]').val(SearchTitle_val);
+                if ($('[name=txtSearchTitle]').val() != '') {
+                    $("#searchid").show();
+                }
+                else {
+                    $("#searchid").hide();
+                }
+            }
+        });
+    }
+    
+    function FunWithSelected() {
+
+        var e = document.getElementById("SelectedRecord");
+        var strUser = e.options[e.selectedIndex].value;
+
+        var suc=0;
+
+        if (strUser != "") {
+            $('#SelectedRecord').css("border-color", "#cdcdcd");
+            $('#SelectedRecord').css("background", "#FFFFFF");
+            if(strUser==1)
+            {
+                var check = confirm("Are you sure you want to Delete selected all record?");
+                if (check == true) {
+
+                    var checkboxes = document.getElementsByName('chk');
+                    for(var i=0, n=checkboxes.length;i<n;i++) {
+                        if(checkboxes[i].checked==true)
+                        {
+                            Delete(checkboxes[i].value);
+                        }
+                    }
+                    suc=1;
+
+                }
+            }
+
+            if(suc==1)
+            {
+                GetData(1,@ViewBag.CurrentPageIndex,'@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'@ViewBag.Alpha',@ViewBag.SearchRecords,'@ViewBag.SearchTitle','@ViewBag.Domain','@ViewBag.Event');
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }
+        else {
+            $('#SelectedRecord').css("border-color", "#FF0000");
+            $('#SelectedRecord').css("background", "#f9e8e8");
+            return false;
+        }
+    }
+
+    function Delete(id) {
+
+        $.ajax({
+            method:"POST",
+            url: '/RegisteredUser/Delete',
+            data: { UserId: id},
+            success: function (response) {
+                $('#grddata').empty();
+                $('#grddata').append(response);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $("#searchid").hide();
+        if (@ViewBag.TotalCount> 0) {
+            document.getElementById('SelectRecords').value = @ViewBag.PageSize;
+        }
+        if ('@ViewBag.Event' == '') {
+            $('#ddlevent').val('0');
+        }
+        else {
+            $('#ddlevent').val('@ViewBag.Event');
+        }
+        $('#ddldomain').val('@ViewBag.Domain');
+    });
+</script>
+
+
+<script type="text/javascript">
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+    function FunCheck() {
+        checkboxes = document.getElementsByName('chk');
+
+        if (document.getElementById("CdkSelect").checked == true) {
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = true;
+            }
+        }
+        else {
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = false;
+            }
+        }
+    }
+
+</script>
+

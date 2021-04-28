@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EventRegistrationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Adminsetting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Taxpercent" Type="int" Nullable="false" />
+    <Property Name="Companyname" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="200" />
+    <Property Name="Adddress2" Type="nvarchar" MaxLength="200" />
+    <Property Name="Pincode" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="200" />
+    <Property Name="City" Type="varchar" MaxLength="200" />
+    <Property Name="Country" Type="varchar" MaxLength="200" />
+    <Property Name="Hostname" Type="nvarchar" MaxLength="200" />
+    <Property Name="Smtpusername" Type="nvarchar" MaxLength="200" />
+    <Property Name="Smtpassword" Type="nvarchar" MaxLength="200" />
+    <Property Name="portno" Type="nvarchar" MaxLength="200" />
+    <Property Name="Ismaintenance" Type="bit" />
+    <Property Name="CompanyWebsite" Type="varchar" MaxLength="200" />
+    <Property Name="CompanyEmail" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Contactno" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Date_of_Registration" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+    <Property Name="updateddate" Type="datetime" Nullable="false" />
+    <Property Name="ActivationCode" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="200" />
+    <Property Name="Pincode" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CustomerRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EventMaster">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DomainName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="EventName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="ResponseURL" Type="varchar" MaxLength="300" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="Commentary" Type="varchar" MaxLength="200" />
+    <Property Name="ArticalUrl" Type="varchar" MaxLength="200" />
+    <Property Name="ArticalTitle" Type="varchar" MaxLength="200" />
+    <Property Name="LogoUrl" Type="varchar" MaxLength="200" />
+    <Property Name="EventStartDate" Type="datetime" Nullable="false" />
+    <Property Name="EventEndDate" Type="datetime" Nullable="false" />
+    <Property Name="ContactPersonName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ContactPersonPhone" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ContactPersonEmail" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="FormBuilderCode" Type="nvarchar(max)" />
+    <Property Name="EventKey" Type="uniqueidentifier" />
+    <Property Name="ButtonURL" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="PackageId" Type="int" Nullable="false" />
+    <Property Name="OrderTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TaxAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="OrderTotalWithoutTax" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="OrderStatus" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="PurchasedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="OrderCompletedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="TransactionId" Type="int" />
+  </EntityType>
+  <EntityType Name="Package">
+    <Key>
+      <PropertyRef Name="PackageId" />
+    </Key>
+    <Property Name="PackageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Detail" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Cost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Validity" Type="int" Nullable="false" />
+    <Property Name="No_of_Registration" Type="int" Nullable="false" />
+    <Property Name="No_of_Events" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Createddate" Type="datetime" Nullable="false" />
+    <Property Name="Updateddate" Type="datetime" Nullable="false" />
+    <Property Name="Cost_per_Registration" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="RegisteredUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventId" Type="int" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Country" Type="varchar" MaxLength="200" />
+    <Property Name="DateOfRegistration" Type="datetime" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="IsRegistered" Type="bit" />
+    <Property Name="Company" Type="varchar" MaxLength="200" />
+    <Property Name="JobDesignation" Type="varchar" MaxLength="200" />
+    <Property Name="MobileNumber" Type="varchar" MaxLength="200" />
+    <Property Name="ProfileLink" Type="varchar(max)" />
+    <Property Name="ProfileImage" Type="varchar(max)" />
+    <Property Name="Ispaid" Type="bit" />
+    <Property Name="ReferalId" Type="int" />
+    <Property Name="ProfileId" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="AuthToken" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="createddate" Type="datetime" />
+    <Property Name="updateddate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="TransactionType" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Remarks" Type="varchar" MaxLength="200" />
+    <Property Name="PaymentId1" Type="varchar" MaxLength="200" />
+    <Property Name="PaymentId2" Type="varchar" MaxLength="200" />
+    <Property Name="PaymentId3" Type="varchar" MaxLength="200" />
+    <Property Name="PaymentId4" Type="varchar" MaxLength="200" />
+    <Property Name="PaymentId5" Type="varchar" MaxLength="200" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="Isdeleted" Type="bit" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="PaymentMethod" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GetEventPro.dbo.UserConnection' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UserConnection">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="ConnectionProfileId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ConnectionProfileId" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserPackage">
+    <Key>
+      <PropertyRef Name="UserPackageId" />
+    </Key>
+    <Property Name="UserPackageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="PackageId" Type="int" Nullable="false" />
+    <Property Name="Purchasedate" Type="datetime" Nullable="false" />
+    <Property Name="IsExpired" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+    <Property Name="updateddate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Customerr__Custo__5AEE82B9">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CustomerRole" Type="Self.CustomerRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="CustomerRole">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerR__RoleI__22AA2996">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="CustomerRole" Type="Self.CustomerRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="CustomerRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EventMast__Custo__5CD6CB2B">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="EventMaster" Type="Self.EventMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="EventMaster">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__CustomerI__4F7CD00D">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__PackageId__25869641">
+    <End Role="Package" Type="Self.Package" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Package">
+        <PropertyRef Name="PackageId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="PackageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__Transacti__34C8D9D1">
+    <End Role="Transactions" Type="Self.Transactions" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transactions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="TransactionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registere__Event__164452B1">
+    <End Role="EventMaster" Type="Self.EventMaster" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RegisteredUser" Type="Self.RegisteredUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventMaster">
+        <PropertyRef Name="EventId" />
+      </Principal>
+      <Dependent Role="RegisteredUser">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__Custo__6383C8BA">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserConne__UserI__48CFD27E">
+    <End Role="RegisteredUser" Type="Self.RegisteredUser" Multiplicity="1" />
+    <End Role="UserConnection" Type="Self.UserConnection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegisteredUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserConnection">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserPacka__Custo__286302EC">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="UserPackage" Type="Self.UserPackage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="UserPackage">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserPacka__Packa__29572725">
+    <End Role="Package" Type="Self.Package" Multiplicity="1" />
+    <End Role="UserPackage" Type="Self.UserPackage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Package">
+        <PropertyRef Name="PackageId" />
+      </Principal>
+      <Dependent Role="UserPackage">
+        <PropertyRef Name="PackageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="AdminDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetCustomerDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="alpha" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="alpha" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetEventDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="CustomerId" Type="int" Mode="In" />
+    <Parameter Name="alpha" Type="varchar" Mode="In" />
+    <Parameter Name="searchtitle" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetOrderDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CustomerId" Type="int" Mode="In" />
+    <Parameter Name="OrderId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetTransactionsDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="CustomerId" Type="int" Mode="In" />
+    <Parameter Name="transactiontype" Type="varchar" Mode="In" />
+    <Parameter Name="status" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetUserConnectionDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="eventid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetUserDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="alpha" Type="varchar" Mode="In" />
+    <Parameter Name="searchtitle" Type="varchar" Mode="In" />
+    <Parameter Name="domain" Type="varchar" Mode="In" />
+    <Parameter Name="event" Type="int" Mode="In" />
+    <Parameter Name="referralid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Packagedetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="alpha" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="EventRegistrationModelStoreContainer">
+    <EntitySet Name="Adminsetting" EntityType="Self.Adminsetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerRole" EntityType="Self.CustomerRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventMaster" EntityType="Self.EventMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Package" EntityType="Self.Package" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegisteredUser" EntityType="Self.RegisteredUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserPackage" EntityType="Self.UserPackage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserConnection" EntityType="Self.UserConnection" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UserConnection].[UserId] AS [UserId], 
+    [UserConnection].[ConnectionProfileId] AS [ConnectionProfileId]
+    FROM [dbo].[UserConnection] AS [UserConnection]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Customerr__Custo__5AEE82B9" Association="Self.FK__Customerr__Custo__5AEE82B9">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="CustomerRole" EntitySet="CustomerRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerR__RoleI__22AA2996" Association="Self.FK__CustomerR__RoleI__22AA2996">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="CustomerRole" EntitySet="CustomerRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EventMast__Custo__5CD6CB2B" Association="Self.FK__EventMast__Custo__5CD6CB2B">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="EventMaster" EntitySet="EventMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__CustomerI__4F7CD00D" Association="Self.FK__Order__CustomerI__4F7CD00D">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__PackageId__25869641" Association="Self.FK__Order__PackageId__25869641">
+      <End Role="Package" EntitySet="Package" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__Transacti__34C8D9D1" Association="Self.FK__Order__Transacti__34C8D9D1">
+      <End Role="Transactions" EntitySet="Transactions" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registere__Event__164452B1" Association="Self.FK__Registere__Event__164452B1">
+      <End Role="EventMaster" EntitySet="EventMaster" />
+      <End Role="RegisteredUser" EntitySet="RegisteredUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__Custo__6383C8BA" Association="Self.FK__Transacti__Custo__6383C8BA">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserConne__UserI__48CFD27E" Association="Self.FK__UserConne__UserI__48CFD27E">
+      <End Role="RegisteredUser" EntitySet="RegisteredUser" />
+      <End Role="UserConnection" EntitySet="UserConnection" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserPacka__Custo__286302EC" Association="Self.FK__UserPacka__Custo__286302EC">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="UserPackage" EntitySet="UserPackage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserPacka__Packa__29572725" Association="Self.FK__UserPacka__Packa__29572725">
+      <End Role="Package" EntitySet="Package" />
+      <End Role="UserPackage" EntitySet="UserPackage" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

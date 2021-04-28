@@ -1,0 +1,365 @@
+@model IEnumerable<LinkedInDemo.Models.TransactionsModel>
+
+@using DataLayer
+@{
+    Layout = null;
+}
+<div id="grddata">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="pad-top">
+                @if (ViewBag.StatusMessage.ToString() == "SuccessDelete")
+                {
+                    <div class="alert alert-success">
+                        <div class="tick">
+                            Record Deleted Successfully.
+                        </div>
+                    </div>
+
+                }
+                @if (ViewBag.StatusMessage.ToString() == "Error")
+                {
+
+                    <div class=" alert alert-danger">
+                        <div class="cross">
+                            Error... Please Try Again.
+                        </div>
+                    </div>
+
+                }
+                @if (ViewBag.StatusMessage.ToString() == "NoItem")
+                {
+                    <div class=" alert alert-danger">
+                        <div class="cross">
+                            There are no items to show in this view.
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </div>
+    @if (ViewBag.Success == "true")
+    {
+        <div class="alert alert-success">
+            <div class="tick">
+                @ViewBag.Message
+            </div>
+        </div>
+    }
+    else
+    {
+        if (ViewBag.Success == "false")
+        {
+        <div class="alert alert-danger">
+            <div class="cross">
+                @ViewBag.Message
+            </div>
+        </div>
+        }
+
+    }
+
+    <div class="row search-areamain marleftzero pead_767_none">
+        <div class=" col-md-4 col-sm-5 padleftzero">
+            <div class="center_div center_div767">
+                @{
+                    ViewBag.TotalRecords = ViewBag.transactionscount;
+                    Html.RenderPartial("_PageSize");
+                }
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-7 padrightzero">
+
+            @*<div id="msgdiv" style="display:none;">Credit approved successfully.</div>*@
+            <div class="searchareamain">
+                <ul>
+
+                    @*<li> @Html.DropDownList("ddltransactiontype", (List<SelectListItem>)ViewBag.list)</li>*@
+
+                    <li>
+                        @Html.DropDownList("ddlstatus", new List<SelectListItem>
+                      {
+                               new SelectListItem{Text="--Select Status--",Value=""},
+                               new SelectListItem{ Text="Approved", Value ="Approved" },
+                               new SelectListItem{ Text="Pending", Value = "Pending"},
+                               new SelectListItem{ Text="Rejected", Value = "Rejected"}
+
+                      })
+                    </li>
+                    <li> <input type="submit" name="btnsearch" value="Search" id="btnsearch" onclick="javascript:FunSearchRecord();" class="btn btn-primary"></li>
+                    <li>
+                        @if (User.IsInRole("User"))
+                        {
+                            <div class="top_btn_area">
+                                <a id="addToTable1" class="btn btnRed" href="@Url.Action("AddCredit", "Transactions")">&nbsp;Request Credits</a>
+                                <a id="addToTable1" class="btn btnRed width_auto height40" href="@Url.Action("ExporttoExcel", "Wallet")"><i class="fa fa-file-excel-o"></i></a>
+                            </div>
+                        }
+                        else
+                        { <a id="addToTable1" class="btn btnRed width_auto height40" href="@Url.Action("ExporttoExcelAdmin", "Wallet")"><i class="fa fa-file-excel-o"></i></a>}
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+
+    <div class="datatable">
+        <div class="table-responsive">
+            <table class="borderbtm">
+                <tbody>
+                    <tr>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <th><input type="button" id="savecomments" class="btn_pinkcolor btn_pink_table" onclick="updatecomment()" value="Save" /></th>
+                            <th class="text-center" width="10%">Customer No</th>
+                        }
+                        
+                        <th class="text-center" width="10%">Transaction No</th>
+                        <th class="text-right" width="8%">Credits</th>
+                        <th class="text-center">Transaction Date</th>
+                        <th class="text-center">Status</th>
+                        @*<th class="text-center">Transaction Type</th>*@
+                        @*<th class="text-center">Payment Method</th>*@
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <th class="text-center">Action</th>
+                            <th class="text-center">Remarks</th>
+                        }
+                        
+                    </tr>
+                    @foreach (var e in Model)
+                    {
+                        <tr>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <td><input type="checkbox" id="checkboxid" name="transchk" value="@e.Id" /></td>
+                                <td class="text-center">@e.CustomerId</td>
+                            }
+                         
+                            <td class="text-center">@e.Id</td>
+                            <td class="text-right">@e.Amount</td>
+                            <td class="text-center">@e.TransactionDate.ToString("dd-MMM-yyyy")</td>
+                            <td class="text-center">@e.status</td>
+                            @Html.Hidden("eventhidden", @e.EventId)
+                            @if (User.IsInRole("Admin"))
+                            {
+                                if (@e.status == "Pending")
+                                {
+                                    <td class="text-center">
+                                        <a class="btn_pinkcolor btn_pink_table width_auto" style="margin-right:5px!important" onclick="return ChangeStatus(true,@e.Id,@e.EventId);">Approve </a> 
+                                        <a class="btn_pinkcolor btn_pink_table" onclick="return ChangeStatus(false,@e.Id,@e.EventId);">Reject</a>
+                                    </td>
+                                    <td class="text-left">
+                                        <input type="text" id="remarks_@e.Id" value="@e.Remarks" style="border-color:#b9b7b7; background: #eee; height: 25px; text-align:left; width: 99%; padding-left:3px; padding-right:3px;"/>
+
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                    <td class="text-left">
+                                        <input type="text" id="remarks_@e.Id" value="@e.Remarks" style="border-color:#b9b7b7; text-align:left; background: #eee; height: 25px; width: 99%; padding-left:3px; padding-right:3px;" />
+                                    </td>
+                                }
+                            }
+                           
+                            @*<td class="text-center" width="180px">
+                                    <a href="@Url.Action("Edit","Event",new { Id = e.Id})" class="on-default edit-row iconbtn" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>
+                                    <a onclick="Delete(@e.Id);" class="fa fa-remove iconbtn" data-toggle="tooltip" data-placement="top" title="Delete"></a>
+                                </td>*@
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mar_top_15">
+        @{
+            Html.RenderPartial("_Pagination");
+        }
+    </div>
+</div>
+
+
+<script>
+
+    var top=0;
+
+    function FunPageIndex(pageindex)//grid pagination
+    {
+        GetData(0,pageindex, '@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'@ViewBag.Alpha',@ViewBag.SearchRecords,'@ViewBag.SearchTitle');
+    }
+
+
+    function FunPageRecord(PageRecord)//Grid Page per record
+    {
+        GetData(0,1, '@ViewBag.OrderByVal',@ViewBag.IsAscVal,PageRecord,'@ViewBag.Alpha',@ViewBag.SearchRecords,'@ViewBag.SearchTitle');
+    }
+
+    function FunSearchRecord()//Search
+    {
+        var transactiontype = $("#ddltransactiontype").val();
+        var status = $("#ddlstatus").val();
+        //var element_txtSearchTitle = document.getElementById('txtSearchTitle').value;
+        GetData(1, 1, '@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize, '', '',transactiontype, status);
+
+    }
+
+    function GetData(IsBindData_val, PageIndex, orderby_val, isAsc_val, PageSize_val, alpha_val, SearchRecords_val, transactiontype_val,status_val)
+    {
+        $.ajax({
+            url: '/Wallet/Grid',
+            data: { IsBindData: IsBindData_val, currentPageIndex: PageIndex, orderby: orderby_val.trim(), IsAsc: isAsc_val, PageSize: PageSize_val, SearchRecords: SearchRecords_val, Alpha: alpha_val, transactiontype: transactiontype_val ,status: status_val},
+            beforeSend: function () {  },
+            success: function (response) {
+                $('#grddata').empty();
+                $('#grddata').append(response);
+            }
+
+        });
+    }
+    function ChangeStatus(IsApproved, Id, EventId) {
+        var remarks = $('#remarks_' + Id).val();
+        $.ajax({
+            url: '/Wallet/ChangeTransactionStatus',
+            data: { IsApproved: IsApproved, Id: Id, EventId: EventId, Remark: remarks},
+            //beforeSend: function () { },
+            success: function (response) {
+                $('#grddata').empty();
+                $('#grddata').append(response);
+                $("msgdiv").show();
+                //setTimeout(function () {
+                //    $("msgdiv").hide();
+                //}, 3000);
+            }
+        });
+    }
+
+    function updatecomment() {
+        var remarks = [];
+        $.each($("input[name='transchk']:checked"), function () {
+            remarks.push({ 'Id': $(this).val(), 'Remarks': $('#remarks_' + $(this).val()).val() });
+        });
+        if (remarks.length > 0) {
+            $.ajax({
+                url: '/Wallet/UpdateComments',
+                method:"POST",
+                data: { RemarkModel: remarks },
+                success: function (response) {
+                    history.go(0);
+                }
+            });
+        }
+        else {
+            alert("Please select checkbox");
+        }
+    }
+    function FunWithSelected() {
+
+        var e = document.getElementById("SelectedRecord");
+        var strUser = e.options[e.selectedIndex].value;
+
+        var suc=0;
+
+        if (strUser != "") {
+            $('#SelectedRecord').css("border-color", "#cdcdcd");
+            $('#SelectedRecord').css("background", "#FFFFFF");
+            if(strUser==1)
+            {
+                var check = confirm("Are you sure you want to Delete selected all record?");
+                if (check == true) {
+
+                    var checkboxes = document.getElementsByName('chk');
+                    for(var i=0, n=checkboxes.length;i<n;i++) {
+                        if(checkboxes[i].checked==true)
+                        {
+                            Delete(checkboxes[i].value);
+                        }
+                    }
+                    suc=1;
+
+                }
+            }
+
+            if(suc==1)
+            {
+                GetData(1,@ViewBag.CurrentPageIndex,  '@ViewBag.OrderByVal',@ViewBag.IsAscVal,@ViewBag.PageSize,'@ViewBag.Alpha',@ViewBag.SearchRecords,'@ViewBag.transactiontype','@ViewBag.status');
+                return true;
+                //alert(transactiontype);
+            }
+            else{
+                return false;
+            }
+
+
+        }
+        else {
+            $('#SelectedRecord').css("border-color", "#FF0000");
+            $('#SelectedRecord').css("background", "#f9e8e8");
+            return false;
+        }
+    }
+
+    function Delete(id) {
+        var check = confirm("Are you sure you want to Delete this record?");
+        if (check == true) {
+            $.ajax({
+                method: "POST",
+                url: '/Wallet/Delete',
+                data: { eventid: id },
+                success: function (response) {
+                    $('#grddata').empty();
+                    $('#grddata').append(response);
+                }
+            });
+        }
+    }
+
+    $(document).ready(function(){
+
+        document.getElementById('SelectRecords').value = @ViewBag.PageSize
+
+    });
+
+    $(function () {
+
+        $('.date-picker').datepicker();
+    })
+
+
+</script>
+
+<script type="text/javascript">
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+    function FunCheck() {
+        checkboxes = document.getElementsByName('chk');
+
+        if (document.getElementById("CdkSelect").checked == true) {
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = true;
+            }
+        }
+        else {
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = false;
+            }
+        }
+    }
+</script>
+

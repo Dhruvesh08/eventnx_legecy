@@ -1,0 +1,636 @@
+@using DataLayer
+@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" href="https://cdn.rawgit.com/formio/ngFormioGrid/master/dist/ng-formio-grid-full.min.css" />
+<script src="https://cdn.rawgit.com/formio/ngFormioGrid/master/dist/ng-formio-grid-full.min.js"></script>
+<style>
+    .btn_center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+
+    <div class="mainBlock wallet_page">
+
+        <div class="mainBlockTop">
+            <div class="mainBlockTopLeft">Event Details</div>
+            <div class="main_right"><a class="btn_back" href="@Url.Action("Index","Event")"> < Back</a></div>
+            </div>
+        @if (Model.EventId > 0)
+        {
+
+            <div class="margintop30 marginbottom30">
+                @if (Model.usercount != 0)
+                {
+                <div class="top_btn_area">
+                    <a href="@Url.Action("Edit", "Event", new { EventId = Model.EventId })" data-toggle="tooltip" data-placement="top" title="Edit Event">Edit</a>&nbsp;
+                    <a onclick="ShowModel(@Model.EventId);" data-toggle="modal" data-target="#eventCodeModal" data-placement="top" title="Generate Script">Code</a>&nbsp;
+                    <a onclick="SetEventId(@Model.EventId,'@Model.ButtonURL');" data-toggle="modal" data-target="#linkedinbuttonModal" data-placement="top" title="Linkedin Buttons">Buttons</a>&nbsp;
+                    <a onclick="Delete(@Model.EventId);" data-toggle="tooltip" data-placement="top" title="Delete Event">Archive</a>
+                   
+                        @if (ViewBag.Customers == ViewBag.CustomerId)
+                        {
+                            <a href="@Url.Action("InviteUser", "Event", new { EventId = Model.EventId })" data-toggle="tooltip" data-placement="top" title="Edit Event">Users</a>
+                        }
+                    
+
+                    @*<a href="@Url.Action("InviteUser", "Event", new { EventId = @Model.EventId })" data-toggle="tooltip" data-placement="top" title="Edit Event">Users</a>*@
+                </div>
+                    <div class="event_data_and_name_area detail_new">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-4 col-sm-4">
+
+                                <div class="img_event">
+                                    @if (Model.Image == null)
+                                    {
+                                        <td><span class="img_span"><img src="/Content/images/img_eventlogo.jpg" width="100px" height="100px" /></span></td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <span><img src="@Model.Image" alt="" width="100px" height="auto"></span>
+                                        </td>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-lg-10 col-md-8 col-sm-8">
+                                <div class="detail_event_new">
+                                    <div>
+                                        <span class="lableBlock">
+                                            <label class="labelBox" for="inputDefault">Name :</label>
+                                        </span>
+                                        <span class="inputBlock first_capital">
+                                            @Model.EventName
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <span class="lableBlock">
+                                            <label class="labelBox" for="inputDefault">Start Date :</label>
+                                        </span>
+                                        <span class="inputBlock">
+                                            @Model.EventStartDate.ToString("dd-MMM-yyyy")
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="lableBlock">
+                                            <label class="labelBox" for="inputDefault">End Date :</label>
+                                        </span>
+                                        <span class="inputBlock">
+                                            @Model.EventEndDate.ToString("dd-MMM-yyyy")
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="set_1">
+                        <div class="row-block dashboardPage">
+                            <div class="col col-4 mainBlock blockone img_user">
+                                <div class="mainBlockTop">
+                                    <div class="dashboardboxmain designavailabel">
+                                        <h2>
+                                            Total Registrations
+                                            <span>  @Model.RegisteredUser </span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col col-4 mainBlock blockone img_user">
+                                <div class="mainBlockTop">
+                                    <div class="dashboardboxmain designavailabel">
+                                        <h2>
+                                            LinkedIn Registrations
+                                            <span>  @Model.Linkedinusers </span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col col-4 mainBlock blockone img_user">
+                                <div class="mainBlockTop">
+                                    <div class="dashboardboxmain designavailabel">
+                                        <h2>
+                                            Facebook Registrations
+                                            <span>  @Model.Facebookusers </span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col col-4 mainBlock blockone img_user">
+                                <div class="mainBlockTop">
+                                    <div class="dashboardboxmain designavailabel">
+                                        <h2>
+                                            Total References
+                                            <span>  @Model.TotalReferences  </span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col col-4 mainBlock blockone img_wallet">
+                                <div class="mainBlockTop">
+                                    <div class="dashboardboxmain designavailabel">
+                                        <h2>
+                                            Credit required to view more registrations
+                                            <span> @Model.Creditrequired  </span>
+                                        </h2>
+                                        <div class="pay_btn">
+                                            <input type="hidden" id="EventId" name="EventId" value="Session[" EventId"]" />
+                                            @if (ViewBag.EventUserData == "true")
+                                            {
+                                                if (Model.Creditrequired > 0)
+                                                {
+                                                    <a class="btn btnRed" href="@Url.Action("AddCredit","Transactions")">Request Credit</a>
+                                                    @*<input type="button" name="Pay" value="Request Credit" class="btn btnRed" data-toggle="modal" data-target="#payModal" />*@
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @{Html.RenderAction("UserGrid", new { IsBindData = 1, currentPageIndex = 1, orderby = "UserId", IsAsc = 0, PageSize = 10, SearchRecords = 1, Alpha = "", SearchTitle = "", Domain = "", Event = ViewBag.EventId, ReferralId = Model.ReferralId });}
+                <div class="row-block margintop30">
+                    <div class="col col-6 paddzero">
+
+                        @{Html.RenderAction("GridRegisteredUser", "Dashboard");}
+                    </div>
+                    <div class="col col-6 paddzero">
+
+                        @{Html.RenderAction("GridTopReferrer", "Dashboard");}
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Modal -->
+
+            @*<div class="modal fade" id="payModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="modal-body">
+                            <p>Are you sure want to credit?</p>
+                            <div class="checkbox_area">
+                                <a class="btnblack btngreay1" href="@Url.Action("transactions", "RegisteredUser", new { EventId = Model.EventId })">Yes </a>
+                                <a class="btnblack btngreay1" href="@Url.Action("Index", "RegisteredUser")">No </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>*@
+                            }
+
+    </div>
+    <div class="modal fade" id="eventCodeModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Event code</h3> 
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="set_1a special_btn_area">
+                        <a onclick="CopyToClipboard()">Copy</a>
+                        <a data-toggle="modal" data-target="#ModelEmail" data-placement="top" title="Linkedin Buttons">Send Email</a>
+                        <a href="@Url.Action("DownloadcodePDF", "RegisteredUser", new { EventId = Model.EventId })">Download code</a>
+                    </div>
+                <div class="modal-body test" id="modelbody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="linkedinbuttonModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Linkedin Buttons</h3>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-body" id="modelbutttonbody">
+
+                    <div class="col-lg-12 col-md-12">
+                        <div class="linkdinbox">
+
+                            @using (Html.BeginForm("UpdateEventbuttonAjax", "Event", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <input type="hidden" name="EventId" id="EventId" value="@Model.EventId" />
+                                <ul>
+                                    <li>
+                                        <div class="alert alert-success" id="msgbox" style="display:none">
+                                            <div class="tick">
+                                                <label id="buttonmsg"></label>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/connect1.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/connect1.png" /></span>
+                                        <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/connect2.png" /><img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/connect2.png" /></span>
+                                        <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/connect3.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/connect3.png" /></span>
+                                    </li>
+                                    <li>
+                                        <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button1_2.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button1_2.png" /></span>
+                                        <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button1_1.png" /><img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button1_1.png" /></span>
+                                        <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button1.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button1.png" /></span>
+                                    </li>
+                                    <li>
+                                        <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button3_2.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button3_2.png" /></span>
+                                        <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button3_1.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button3_1.png" /></span>
+                                        <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button3.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button3.png" /></span>
+                                    </li>
+                                    <li>
+                                        <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button4_2.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button4_2.png" /></span>
+                                        <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button4_1.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button4_1.png" /></span>
+                                        <span><input type="radio" name="linkedinradio" value="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button4.png" /> <img src="@LinkedInDemo.Class.AdminSiteConfiguration.GetURL()/Content/images/button4.png" /></span>
+                                    </li>
+                                    <li>
+                                        <hr />
+                                        <p> Or upload your own Login Button. </p>
+                                        <span class="inputBlock">
+                                            <div class="form-group marginbtmnone">
+                                                <div class="uploadresume">
+                                                    <div class="input-group">
+                                                        <input type="text" id="tempbtnfile" value="" class="form-control"
+                                                               readonly placeholder="Choose File">
+                                                        <span class="input-group-btn btn-primary btn-none btn_greay">
+                                                            <span class="btn btn-file career_btn" id="tempbtnfile">
+                                                                Browse
+                                                                <input type="file" class="custom-file-input" name="file" id="file" onchange="readbtnURL(this);" style="width: 100%;" accept=".png,.jpg">
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                    <span class="text-danger" id="filebtnerror" style="display:none;">
+                                                        Please upload Linkedin button
+                                                    </span>
+                                                    <div class="set_2" id="filemsg"></div>
+                                                </div>
+                                            </div>
+                                        </span>
+
+                                        <div class="eventlobgomainbox">
+                                            <span id="spanbtnlogo" style="display:none">
+                                                <img alt="" id="btnlogo">
+                                                <a class="btn_delete" id="btnbuttonremove"><i class="fa fa-trash"></i></a>
+                                            </span>
+                                        </div>
+
+                                    </li>
+                                    <li class="full_li">
+                                        <div class="text-center">
+                                            <button id="linkedinbutton" class="btnblack">Save</button>
+                                            <a class="btnblack btngreay1" href="@Url.Action("Index", "Event")">Cancel</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ModelEmail" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="max-width:600px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Send Email To Developer</h3>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-body" id="modelbutttonbody">
+                    <input type="hidden" name="EventId" id="EventId" />
+                    <div class="col-lg-12 col-md-12">
+                        <div class="linkdinbox">
+
+                            <div class="alert alert-success" id="emailsuccessmsgbox" style="display:none">
+                                <div class="tick">
+                                    <label id="buttonsuccessmsg"></label>
+                                </div>
+                            </div>
+                            <div id="divdeveloperemail" style="max-width:300px; width:100%;">
+                                <div class="form-group">
+                                    <input type="text" id="txtemail" name="txtemail" class="form-control" placeholder="Please Enter Email" />
+                                    <span id="divemailvalidation" style="display:none; color:red"></span>
+                                </div>
+                                <div class="form-group">
+                                    <div class="set_tow_btn">
+                                        <a class="btn btnRed" onclick="EmailToDeveloperSubmit()" style="color:#fff;">Submit</a>
+                                        @*<a class="btn btnblack" onclick="EmailToDeveloperCancel()">Cancel</a>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+    function CopyToClipboard() {
+        var elm = document.getElementById("modelbody");
+        // for Internet Explorer
+
+        if (document.body.createTextRange) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(elm);
+            range.select();
+            document.execCommand("Copy");
+            //alert("Copied div content to clipboard");
+        }
+        else if (window.getSelection) {
+            // other browsers
+
+            var selection = window.getSelection();
+            var range = document.createRange();
+            range.selectNodeContents(elm);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand("Copy");
+            //alert("Copied div content to clipboard");
+        }
+    }
+    $('#btnbuttonremove').click(function () {
+        $('#filebtn').show();
+        $('#filebtn').val('');
+        $('#tempbtnfile').val('');
+        $('#spanbtnlogo').hide();
+        $('#btnlogo').attr('src', '');
+    });
+
+    $('#emailbutton').click(function () {
+        var eventcode = document.getElementById("modelbody");
+        range.moveToElementText(elm);
+        range.select();
+
+
+        alert(range.select());
+        $.ajax({
+
+            type: "POST",
+            url: '/Event/EmailToDeveloper',
+            data: {
+
+                //EventId: $('#EventId').val(),
+                eventcode: eventcode
+
+
+            },
+            success: function (data) {
+
+                $('#msgbox').show();
+                $('#buttonmsg').text("Email Sent Successfully");
+
+            }
+        });
+    });
+    function readbtnURL(input) {
+        //if (input.files[0].size > 60000) {
+        //    alert('File size should be 200x200 pixel & Less then 50 KB');
+        //    return;
+        //}
+
+        var _URL = window.URL || window.webkitURL;
+        var file, img;
+        if ((file = input.files[0])) {
+            img = new Image();
+            img.onload = function () {
+                //if (this.width > 200 || this.height > 200) {
+                //    alert('File size should be 200x200 pixel & Less then 50 KB');
+                //    return;
+                //}
+
+                //else {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#filebtn').hide();
+                        $('#spanbtnlogo').show();
+                        $('#btnlogo')
+                            .attr('src', e.target.result);
+                        $('#filebtnerror').hide();
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+                //}
+            };
+            img.src = _URL.createObjectURL(file);
+        }
+    }
+
+    function ShowModel(eventid) {
+
+        $.ajax({
+            method: "POST",
+            url: '@Url.Content("~/Event/GetEventKey")',
+            data: { EventId: eventid },
+            success: function (response) {
+                if (response.status == "success") {
+                    var key = response.EventKey;
+                    var codeblock = "<h2>Setting Up Login Button:</h2><br>";
+                    codeblock = codeblock + "Place below code in header section only if you do not have jquery installed on your webpage<br>";
+                    codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/jquery-1.12.0.min.js'&gt;&lt;/script&gt;</code> <br>";
+                    codeblock = codeblock + "Place below script in head section of your webpage  </br>";
+                    codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/eventproloader.js'&gt;&lt;/script&gt;</code> <br>";
+                    codeblock = codeblock + "Place below code on webpage where you want to show LinkedIn login button  </br>";
+                    codeblock = codeblock + "<code>&lt;div class='linkedinlogin' id='linkedinlogin_" + key + "'&gt;&lt;/div&gt;&lt;div id='divallowpost'&gt;";
+                    codeblock = codeblock + "&lt;input type='checkbox' id='AllowPost' checked='checked' /&gt;Let my social network know that I am attending the event. This gives us permission to post to your profile about your attendance. It also allows other registered visitors to see that you’re registered to attend.";
+                    codeblock = codeblock + "&lt;/div&gt;</code> <br><br>";
+                    codeblock = codeblock + "<h2>Setting Up Event Registration Form:</h2><br>Place below code in header section only if you do not have jquery installed on your webpage </br>";
+                    codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/jquery-1.12.0.min.js'&gt;&lt;/script&gt;</code> <br>";
+                    codeblock = codeblock + "Place below script in header section of your webpage  </br>";
+                    codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/eventproloader.js'&gt;&lt;/script&gt;</code> <br>";
+                    codeblock = codeblock + "Use below hidden fields value to autofill form with LinkedIn data</br>";
+                    codeblock = codeblock + "hidEventProUserId</br>hidProfileImage</br>hidFirstName</br>hidLastName</br>hidEmail<br><br>";
+                    codeblock = codeblock + "Place below div tag in Registration Form</br>";
+                    codeblock = codeblock + "<code>&lt;div id='eventregistration' class='eventregistration' &gt; &lt;/div &gt;</code><br><br>";
+                    codeblock = codeblock + "<h2>Setting Up Confirmation Page:</h2><br>Place below code in header section only if you do not have jquery installed on your webpage  </br>";
+                    codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/jquery-1.12.0.min.js'&gt;&lt;/script&gt;</code> <br>";
+                    codeblock = codeblock + "Place below script in header section of your webpage </br>";
+                    codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/eventproloader.js'&gt;&lt;/script&gt;</code> <br><br>";
+                    codeblock = codeblock + "After successful registration, render below script with CRM parameters.  </br>";
+                    codeblock = codeblock + "<code>&lt;script id='submitdatatoeventpro' src= 'https://www.eventnx.com/eventscript/submitdatatoeventpro.js'";
+                    codeblock = codeblock + " data-firstname='Your_system_firstname_param'";
+                    codeblock = codeblock + " data-lastname='Your_system_lastname_param'";
+                    codeblock = codeblock + " data-emailid='Your_system_emailid_param'";
+                    codeblock = codeblock + " data-companyname='Your_system_companyname_param'";
+                    codeblock = codeblock + " data-jobtitle='Your_system_jobtitle_param'";
+                    codeblock = codeblock + " data-crmregid='Your_system_crmregid_param'&gt;</code><br><br>";
+                    codeblock = codeblock + "Below script will display a sharable link on the confirmation page which registered user can copy and share on social media.</br>";
+                    codeblock = codeblock + "<code>&lt;div id='divsuccessmessage' style='display: none;'&gt; &lt;/div &gt;</code><br>";
+                    codeblock = codeblock + "Below script lists all the socially registered users in a grid manner.</br>";
+                    codeblock = codeblock + "<code>&lt;div id='divwhoisgoing' style='display: none;'&gt; &lt;/div &gt; </code><br><br>";
+                    codeblock = codeblock + "<h2>Embed Code  </br>";
+                    codeblock = codeblock + "<code>&lt;a id=&quot;btnLinkedIn&quot; target=&quot;blank&quot; ";
+                    codeblock = codeblock + "href=&quot;https://www.linkedin.com/oauth/v2/authorization?response_type=code&amp;amp;client_id=81wyrvvax51otg&amp;amp;scope=r_emailaddress%20w_share%20r_basicprofile%20r_liteprofile%20rw_company_admin%20w_member_social&amp;amp;redirect_uri=https%3A%2F%2Fwww.eventnx.com%2F%3Feid%3D" + key + "%26r%3D0&quot;&gt";
+                    codeblock = codeblock + "&lt;img src=&quot;https://www.eventnx.com/Content/images/button4.png&quot;&gt;"
+                    codeblock = codeblock + "&lt;/a&gt;</code>";
+                    $('#modelbody').html(codeblock);
+                }
+                else {
+                    $('#modelbody').html("<h3>Please create event registration form to generate code</h2>");
+                }
+            }
+        });
+    }
+
+    @*$('#linkedinbutton').click(function () {
+
+        $.ajax({
+            method: "POST",
+            url: '@Url.Content("~/Dashboard/Delete")',
+            data: { EventId: id },
+            success: function (response) {
+                console.log(response)
+                console.log('@Url.Action("Index", "Event")')
+                window.location.href = '@Url.Action("Index", "Event")';
+            }
+        });
+    })*@
+    function Delete(id) {
+        var check = confirm("Are you sure you want to Delete this record?");
+        if (check == true) {
+            $.ajax({
+                method: "POST",
+                url: '@Url.Content("~/Dashboard/Delete")',
+                data: { eventid: id },
+                success: function (response) {
+                    console.log(response)
+                    console.log('@Url.Action("Index", "Event")')
+                    window.location.href = '@Url.Action("Index", "Event")';
+                }
+            });
+        }
+    }
+
+    function SetEventId(EventId, buttonUrl) {
+        $('#EventId').val(EventId);
+        $('msgbox').hide();
+        $("input[name=linkedinradio][value='" + buttonUrl + "']").prop('checked', true);
+    }
+    function EmailToDeveloperSubmit() {
+        var email = $("#txtemail").val();
+        var codeblock = "<h2>Setting Up Login Button:</h2><br>";
+
+        var emailvalidation = ValidateEmail(email);
+        if (email != null && email != "") {
+            $("#divemailvalidation").hide();
+            if (emailvalidation) {
+                var eventid =@Model.EventId;
+
+            $.ajax({
+                method: "POST",
+                url: '@Url.Content("~/Event/GetEventKey")',
+                data: { EventId: eventid },
+                success: function (response) {
+                    if (response.status == "success") {
+                        var key = response.EventKey;
+                        var codeblock = "<h2>Setting Up Login Button:</h2><br>";
+                        codeblock = codeblock + "Place below code in header section only if you do not have jquery installed on your webpage<br>";
+                        codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/jquery-1.12.0.min.js'&gt;&lt;/script&gt;</code> <br>";
+                        codeblock = codeblock + "Place below script in head section of your webpage  </br>";
+                        codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/eventproloader.js'&gt;&lt;/script&gt;</code> <br>";
+                        codeblock = codeblock + "Place below code on webpage where you want to show LinkedIn login button  </br>";
+                        codeblock = codeblock + "<code>&lt;div class='linkedinlogin' id='linkedinlogin_" + key + "'&gt;&lt;/div&gt;&lt;div id='divallowpost'&gt;";
+                        codeblock = codeblock + "&lt;input type='checkbox' id='AllowPost' checked='checked' /&gt;Let my social network know that I am attending the event. This gives us permission to post to your profile about your attendance. It also allows other registered visitors to see that you’re registered to attend.";
+                        codeblock = codeblock + "&lt;/div&gt;</code> <br><br>";
+                        codeblock = codeblock + "<h2>Setting Up Event Registration Form:</h2><br>Place below code in header section only if you do not have jquery installed on your webpage </br>";
+                        codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/jquery-1.12.0.min.js'&gt;&lt;/script&gt;</code> <br>";
+                        codeblock = codeblock + "Place below script in header section of your webpage  </br>";
+                        codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/eventproloader.js'&gt;&lt;/script&gt;</code> <br>";
+                        codeblock = codeblock + "Use below hidden fields value to autofill form with LinkedIn data</br>";
+                        codeblock = codeblock + "hidEventProUserId<br>hidProfileImage<br>hidFirstName<br>hidLastName<br>hidEmail<br><br>";
+                        codeblock = codeblock + "Place below div tag in Registration Form </br>";
+                        codeblock = codeblock + "<code>&lt;div id='eventregistration' class='eventregistration' &gt; &lt;/div &gt;</code><br><br>";
+                        codeblock = codeblock + "<h2>Setting Up Confirmation Page:</h2><br>Place below code in header section only if you do not have jquery installed on your webpage  </br>";
+                        codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/jquery-1.12.0.min.js'&gt;&lt;/script&gt;</code> <br>";
+                        codeblock = codeblock + "<p>Place below script in header section of your webpage </p></br>";
+                        codeblock = codeblock + "<code>&lt;script src='https://www.eventnx.com/eventscript/eventproloader.js'&gt;&lt;/script&gt;</code> <br><br>";
+                        codeblock = codeblock + "After successful registration, render below script with CRM parameters.  </br>";
+                        codeblock = codeblock + "<code>&lt;script src= 'https://www.eventnx.com/eventscript/submitdatatoeventpro.js'";
+                        codeblock = codeblock + " data-eventprouserid='Eventpro_system_userid'";
+                        codeblock = codeblock + " data-firstname='Your_system_firstname_param'";
+                        codeblock = codeblock + " data-lastname='Your_system_lastname_param'";
+                        codeblock = codeblock + " data-emailid='Your_system_emailid_param'";
+                        codeblock = codeblock + " data-companyname='Your_system_companyname_param'";
+                        codeblock = codeblock + " data-jobtitle='Your_system_jobtitle_param'";
+                        codeblock = codeblock + " data-crmregid='Your_system_crmregid_param'&gt;</code><br><br>";
+                        codeblock = codeblock + "<p>Below script will display a sharable link on the confirmation page which registered user can copy and share on social media.</p></br>";
+                        codeblock = codeblock + "<code>&lt;div id='divsuccessmessage' style='display: none;'&gt; &lt;/div &gt;</code><br>";
+                        codeblock = codeblock + "<p>Below script lists all the socially registered users in a grid manner.</p></br>";
+                        codeblock = codeblock + "<code>&lt;div id='divwhoisgoing' style='display: none;'&gt; &lt;/div &gt; </code><br><br>";
+                        codeblock = codeblock + "<h2>Embed Code  </br>";
+                        codeblock = codeblock + "<code>&lt;a id=&quot;btnLinkedIn&quot; target=&quot;blank&quot; ";
+                        codeblock = codeblock + "href=&quot;https://www.linkedin.com/oauth/v2/authorization?response_type=code&amp;amp;client_id=81wyrvvax51otg&amp;amp;scope=r_emailaddress%20w_share%20r_basicprofile%20r_liteprofile%20rw_company_admin%20w_member_social&amp;amp;redirect_uri=https%3A%2F%2Fwww.eventnx.com%2F%3Feid%3D" + key + "%26r%3D0&quot;&gt";
+                        codeblock = codeblock + "&lt;img src=&quot;https://www.eventnx.com/Content/images/button4.png&quot;&gt;"
+                        codeblock = codeblock + "&lt;/a&gt;</code>";
+                            $.ajax({
+                                method: "POST",
+                                url: '/Event/EmailToDeveloper',
+                                //data: { Email: email, EventCode: eventcode },
+                                data: { Email: email, EventCode: codeblock, EventId: eventid },
+                                success: function (response) {
+                                    if (response.status) {
+                                        $("#divdeveloperemail").hide();
+                                        $("#buttonsuccessmsg").html(response.message);
+                                        $("#emailsuccessmsgbox").show();
+                                    }
+                                    else {
+                                        $("#emailsuccessmsgbox").show();
+
+                                    }
+                                }
+                            });
+                    }
+                    else {
+                        $('#modelbody').html("<h3>Place create event registration form to generate code</h2>");
+                    }
+                }
+            });
+        }
+        else {
+                $("#divemailvalidation").show();
+                $("#divemailvalidation").html("Please Enter Valid Email");
+        }
+        }
+        else {
+            $("#divemailvalidation").show();
+            $("#divemailvalidation").html("Please Enter Email");
+        }
+
+
+
+    }
+
+
+  function ValidateEmail(mail)
+{
+      if (/^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+  {
+    return (true)
+  }
+    return (false)
+    }
+    </script>

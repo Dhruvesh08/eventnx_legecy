@@ -1,0 +1,23 @@
+@model LinkedInDemo.Models.EventMasterModel
+
+@using DataLayer
+@{
+    ViewBag.Title = "Details";
+
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="mainBlock minheight500">       
+      
+        @if (ViewBag.Message != null)        
+        { 
+        <div class="messgeg_area">
+            <p>@ViewBag.Message</p>
+        <div class="dashboardboxmain accountvalid top_btn_area"><a id="addToTable1" class="btn btnRed" href="@Url.Action("AddCredit", "Transactions")"><i class="fa fa-plus"></i>&nbsp;Add Credit</a></div>
+            </div>
+
+        }
+     </div>
+}

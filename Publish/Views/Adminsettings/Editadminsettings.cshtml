@@ -1,0 +1,222 @@
+@model LinkedInDemo.Models.Adminsettingmodel
+@{
+    ViewBag.Title = "Editadminsettings";
+}
+
+@using (Html.BeginForm("Editadminsettings", "Adminsettings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+  @Html.AntiForgeryToken()
+
+    <div class="mainBlock minheight500">
+        <div class="mainBlockTop">
+            <div class="mainBlockTopLeft">Edit Admin Settings </div>
+            @*<div class="back_btn_ara"><a id="addtotable1" href="@Url.Action("Index", "Adminsettings")" style="color:#33353f"><i class="fa fa-chevron-left"></i>&nbsp;Back</a></div>*@
+        </div>
+        
+        <div class="panel-body">
+            <div class="form-horizontal form-bordered innerform">
+                @Html.ValidationSummary(true)
+                <div>
+                    <div class="pad-top">
+            @if (ViewBag.Message != null)
+            {
+                            <label id=" success"> </label>
+                                <div class="alert alert-success">
+                                    <div class="tick">
+                                        <span>@ViewBag.Message </span>
+                                    </div>
+                                </div>
+
+            }
+            
+            @*@if (ViewBag.StatusMessage == "Exists")
+            {
+                                <div class=" alert alert-danger">
+                                    <div class="cross">
+                                        <span>@ViewBag.Message </span>
+                                    </div>
+                                </div>
+            }*@
+                        </div>
+                    </div>
+            
+                    <input type="hidden" id="UserId" name="UserId" value="@Model.Id" />
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-10">
+                            <ul class="formTop">
+
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">Tax Percent*</label>
+                                    </span>
+
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.Taxpercent, new { @class = "form-control", maxlength = 100, @placeholder = "Taxpercent" })
+                                        @Html.ValidationMessageFor(model => model.Taxpercent)
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">Company Name *</label>
+                                    </span>
+                                    <span class="inputBlock">
+
+                                        @Html.TextBoxFor(model => model.Companyname, new { @class = "form-control", maxlength = 100, @placeholder = "Companyname" })
+                                        @Html.ValidationMessageFor(model => model.Companyname)
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">Address 1  *</label>
+                                    </span>
+                                    <span class="inputBlock">
+
+                                        @Html.TextBoxFor(model => model.Address1, new { @class = "form-control", maxlength = 100, @placeholder = "Address1" })
+                                        @Html.ValidationMessageFor(model => model.Address1)
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">Address 2 *</label>
+                                    </span>
+                                    <span class="inputBlock">
+
+                                        @Html.TextBoxFor(model => model.Adddress2, new { @class = "form-control", maxlength = 100, @placeholder = "Adddress2" })
+                                        @Html.ValidationMessageFor(model => model.Adddress2)
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">Pincode *</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.Pincode, new { @class = "form-control ", maxlength = 100, @placeholder = "Pincode" })
+                                        @Html.ValidationMessageFor(model => model.Pincode)
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">State *</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.State, new { @class = "form-control", maxlength = 100, @placeholder = "State" })
+                                        @Html.ValidationMessageFor(model => model.State)
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">City *</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.City, new { @class = "form-control ", maxlength = 100, @placeholder = "City" })
+                                        @Html.ValidationMessageFor(model => model.City)
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">Country *</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.Country, new { @class = "form-control", maxlength = 100, @placeholder = "Country" })
+                                        @Html.ValidationMessageFor(model => model.Country)
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">Host Name *</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.Hostname, new { @class = "form-control", maxlength = 100, @placeholder = "Hostname" })
+                                        @Html.ValidationMessageFor(model => model.Hostname)
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">Smtp Username*</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.Smtpusername, new { @class = "form-control", maxlength = 100, @placeholder = "Smtpusername" })
+                                        @Html.ValidationMessageFor(model => model.Smtpusername)
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault">Smtp Password*</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.Smtpassword, new { @class = "form-control", maxlength = 100, @placeholder = "Smtpassword" })
+                                        @Html.ValidationMessageFor(model => model.Smtpassword)
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault"> Port No*</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.portno, new { @class = "form-control", maxlength = 100, @placeholder = "portno" })
+                                        @Html.ValidationMessageFor(model => model.portno)
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault"> Utm Source</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.Utm_Source, new { @class = "form-control", maxlength = 100, @placeholder = "Utm Source" })
+                                        @Html.ValidationMessageFor(model => model.Utm_Source)
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault"> Utm Medium</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.Utm_Medium, new { @class = "form-control", maxlength = 100, @placeholder = "Utm Medium" })
+                                        @Html.ValidationMessageFor(model => model.Utm_Medium)
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault"> Utm Campaign</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.Utm_Campaign, new { @class = "form-control", maxlength = 100, @placeholder = "Utm Campaign" })
+                                        @Html.ValidationMessageFor(model => model.Utm_Campaign)
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault"> Utm Content</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.Utm_Content, new { @class = "form-control", maxlength = 100, @placeholder = "Utm Content" })
+                                        @*@Html.ValidationMessageFor(model => model.Utm_Content)*@
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="lableBlock">
+                                        <label class="labelBox" for="inputDefault"> Utm Term</label>
+                                    </span>
+                                    <span class="inputBlock">
+                                        @Html.TextBoxFor(model => model.Utm_Term, new { @class = "form-control", maxlength = 100, @placeholder = "Utm Term" })
+                                        @*@Html.ValidationMessageFor(model => model.Utm_Term)*@
+                                    </span>
+                                </li>
+                                <li class="width100">
+                                    <div class="offset_30per">
+                                       <button class="btnblack ">Save</button>
+                                        <a class="btnblack btngreay" href="@Url.Action("Admindashboard", "Dashboard")">Cancel</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+    }
+
